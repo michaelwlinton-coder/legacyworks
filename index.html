@@ -1,0 +1,1011 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LegacyWorks — Every Life Remembered</title>
+  <meta name="description" content="LegacyWorks is a premium life-story studio. We capture the voices, wisdom, and histories of individuals and transform them into films, documentaries, and legacy books your family will actually watch." />
+  <meta name="theme-color" content="#1a1a1a" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+/* ============================================================
+   LegacyWorks — Cinematic & Emotional Design System
+   Capture. Preserve. Remember.
+   ============================================================ */
+
+:root {
+  /* Palette */
+  --charcoal: #1a1a1a;
+  --charcoal-soft: #2a2a2a;
+  --charcoal-line: #3a3a3a;
+  --cream: #f5efe6;
+  --cream-deep: #ebe2d2;
+  --cream-soft: #faf6ee;
+  --gold: #c9a961;
+  --gold-deep: #a88842;
+  --gold-soft: #e0c898;
+  --sepia: #8b6f47;
+  --burgundy: #6d2e46;
+  --ink: #111111;
+  --muted: #6b6258;
+
+  /* Typography */
+  --font-display: "Cormorant Garamond", "Playfair Display", Georgia, serif;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  /* Spacing */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 2rem;
+  --space-lg: 4rem;
+  --space-xl: 8rem;
+
+  /* Layout */
+  --max-width: 1200px;
+  --max-width-narrow: 760px;
+  --max-width-prose: 640px;
+
+  /* Motion */
+  --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Reset */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+body {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--charcoal);
+  background: var(--cream);
+  font-weight: 400;
+}
+img { max-width: 100%; display: block; }
+button { font: inherit; cursor: pointer; border: 0; background: none; color: inherit; }
+a { color: inherit; text-decoration: none; }
+
+/* Typography */
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  color: var(--ink);
+}
+h1 { font-size: clamp(3rem, 7vw, 6rem); font-weight: 400; }
+h2 { font-size: clamp(2.25rem, 4.5vw, 3.75rem); font-weight: 400; }
+h3 { font-size: clamp(1.5rem, 2.5vw, 2.25rem); }
+h4 { font-size: 1.25rem; font-weight: 600; font-family: var(--font-body); letter-spacing: 0.02em; }
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+  display: inline-block;
+}
+.dark .eyebrow { color: var(--gold); }
+
+.lede {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.45;
+  color: var(--charcoal);
+  max-width: 38ch;
+}
+.dark .lede { color: var(--cream); }
+
+p { margin-bottom: 1.1em; }
+p:last-child { margin-bottom: 0; }
+
+em, .italic { font-style: italic; font-family: var(--font-display); }
+
+.serif { font-family: var(--font-display); }
+
+/* Layout */
+.container { max-width: var(--max-width); margin: 0 auto; padding: 0 1.5rem; }
+.container-narrow { max-width: var(--max-width-narrow); margin: 0 auto; padding: 0 1.5rem; }
+.section { padding: clamp(4rem, 10vw, 7rem) 0; }
+.section-tight { padding: clamp(3rem, 6vw, 4.5rem) 0; }
+
+.dark { background: var(--charcoal); color: var(--cream); }
+.dark h1, .dark h2, .dark h3, .dark h4 { color: var(--cream); }
+.cream { background: var(--cream); }
+.cream-deep { background: var(--cream-deep); }
+
+/* Navigation */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 1.25rem 0;
+  transition: background-color 0.4s var(--ease), backdrop-filter 0.4s var(--ease), padding 0.4s var(--ease);
+}
+.nav.scrolled {
+  background: rgba(26, 26, 26, 0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(201, 169, 97, 0.15);
+}
+.nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
+
+.brand {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.4rem;
+  letter-spacing: 0.18em;
+  color: var(--cream);
+  text-transform: uppercase;
+}
+.brand-mark { color: var(--gold); }
+
+.nav-links { display: flex; gap: 1.75rem; align-items: center; }
+@media (max-width: 1100px) and (min-width: 901px) { .nav-links { gap: 1.25rem; } .nav-link { font-size: 0.78rem; } }
+.nav-link {
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cream);
+  opacity: 0.85;
+  white-space: nowrap;
+  transition: opacity 0.2s var(--ease), color 0.2s var(--ease);
+}
+.nav-link:hover { opacity: 1; color: var(--gold); }
+.nav-link.active { color: var(--gold); opacity: 1; }
+
+.nav-cta {
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  padding: 0.55rem 1.1rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: background-color 0.2s var(--ease), color 0.2s var(--ease);
+}
+.nav-cta:hover { background: var(--gold); color: var(--charcoal); opacity: 1; }
+
+.nav-toggle { display: none; color: var(--cream); padding: 0.5rem; }
+
+/* Hero */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex; align-items: center;
+  background: var(--charcoal);
+  color: var(--cream);
+  overflow: hidden;
+  padding: 8rem 0 5rem;
+}
+.hero::before {
+  content: ""; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 30%, rgba(201, 169, 97, 0.18), transparent 55%),
+    radial-gradient(ellipse at 80% 80%, rgba(139, 111, 71, 0.22), transparent 55%),
+    linear-gradient(180deg, var(--charcoal) 0%, #0e0e0e 100%);
+  z-index: 0;
+}
+.hero::after {
+  content: ""; position: absolute; inset: 0;
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(245, 239, 230, 0.04) 1px, transparent 0);
+  background-size: 22px 22px;
+  z-index: 0;
+  opacity: 0.5;
+}
+.hero-inner { position: relative; z-index: 2; width: 100%; }
+.hero-eyebrow { color: var(--gold); margin-bottom: 1.5rem; }
+.hero h1 {
+  color: var(--cream);
+  font-weight: 300;
+  font-style: italic;
+  max-width: 18ch;
+  margin-bottom: 1.5rem;
+}
+.hero h1 strong { font-style: normal; font-weight: 500; color: var(--gold-soft); }
+.hero p {
+  max-width: 50ch;
+  font-size: 1.1rem;
+  color: rgba(245, 239, 230, 0.78);
+  margin-bottom: 2.5rem;
+}
+.hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+/* Hero film-frame decoration */
+.film-frame {
+  position: absolute;
+  inset: 1.5rem;
+  border: 1px solid rgba(201, 169, 97, 0.25);
+  pointer-events: none;
+  z-index: 1;
+}
+.film-frame::before, .film-frame::after {
+  content: ""; position: absolute;
+  width: 12px; height: 12px;
+  border: 1px solid var(--gold);
+}
+.film-frame::before { top: -6px; left: -6px; border-right: 0; border-bottom: 0; }
+.film-frame::after { bottom: -6px; right: -6px; border-left: 0; border-top: 0; }
+
+.scroll-cue {
+  position: absolute;
+  bottom: 2rem; left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(245, 239, 230, 0.55);
+  z-index: 3;
+  display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+}
+.scroll-cue::after {
+  content: ""; width: 1px; height: 36px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  padding: 0.95rem 1.8rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border: 1px solid transparent;
+  transition: all 0.25s var(--ease);
+  cursor: pointer;
+}
+.btn-primary { background: var(--gold); color: var(--charcoal); border-color: var(--gold); }
+.btn-primary:hover { background: var(--gold-deep); border-color: var(--gold-deep); transform: translateY(-1px); }
+
+.btn-ghost { background: transparent; color: var(--cream); border-color: rgba(245, 239, 230, 0.4); }
+.btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+.btn-dark { background: var(--charcoal); color: var(--cream); border-color: var(--charcoal); }
+.btn-dark:hover { background: var(--charcoal-soft); }
+
+.btn-arrow::after { content: "→"; transition: transform 0.2s var(--ease); }
+.btn-arrow:hover::after { transform: translateX(4px); }
+
+/* Mission / Quote section */
+.quote-section {
+  background: var(--cream);
+  padding: clamp(5rem, 10vw, 8rem) 0;
+  position: relative;
+}
+.quote-mark {
+  font-family: var(--font-display);
+  font-size: 12rem; line-height: 0.7;
+  color: var(--gold);
+  opacity: 0.25;
+  position: absolute;
+  top: 3rem; left: 50%;
+  transform: translateX(-50%);
+}
+.big-quote {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3.5vw, 3rem);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.3;
+  text-align: center;
+  max-width: 22ch;
+  margin: 0 auto;
+  color: var(--ink);
+  position: relative;
+}
+.quote-attribution {
+  text-align: center;
+  margin-top: 2.5rem;
+  font-size: 0.82rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Stat block */
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 3rem;
+  text-align: center;
+}
+.stat { }
+.stat-number {
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 6vw, 5.5rem);
+  font-weight: 400;
+  line-height: 1;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+  display: block;
+}
+.dark .stat-number { color: var(--gold); }
+.stat-label {
+  font-size: 0.85rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.dark .stat-label { color: rgba(245, 239, 230, 0.7); }
+
+/* Tier cards (the marquee section) */
+.tiers {
+  background: var(--charcoal);
+  color: var(--cream);
+  padding: clamp(5rem, 10vw, 8rem) 0;
+}
+.tiers-header { text-align: center; max-width: 700px; margin: 0 auto 4rem; }
+.tier-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+.tier-card {
+  position: relative;
+  background: var(--charcoal-soft);
+  border: 1px solid var(--charcoal-line);
+  padding: 3rem 2.25rem 2.5rem;
+  display: flex; flex-direction: column;
+  transition: transform 0.4s var(--ease), border-color 0.4s var(--ease);
+}
+.tier-card:hover { transform: translateY(-6px); border-color: var(--gold); }
+.tier-card.featured {
+  background: linear-gradient(180deg, #2a2a2a 0%, #1f1f1f 100%);
+  border-color: rgba(201, 169, 97, 0.4);
+}
+.tier-card.featured::before {
+  content: "Most Requested";
+  position: absolute; top: -1px; left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--gold); color: var(--charcoal);
+  font-size: 0.68rem; letter-spacing: 0.18em;
+  font-weight: 600; text-transform: uppercase;
+  padding: 0.4rem 1rem;
+  white-space: nowrap;
+}
+.tier-eyebrow {
+  font-size: 0.7rem; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--gold);
+  margin-bottom: 1rem; font-weight: 500;
+}
+.tier-name {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+  color: var(--cream);
+}
+.tier-tagline {
+  font-style: italic;
+  font-family: var(--font-display);
+  color: var(--gold-soft);
+  font-size: 1.1rem;
+  margin-bottom: 1.75rem;
+  line-height: 1.4;
+}
+.tier-price {
+  font-family: var(--font-display);
+  font-size: 2.25rem;
+  font-weight: 500;
+  color: var(--cream);
+  margin-bottom: 0.25rem;
+}
+.tier-price-note {
+  font-size: 0.78rem; letter-spacing: 0.12em;
+  text-transform: uppercase; color: rgba(245, 239, 230, 0.55);
+  margin-bottom: 2rem;
+}
+.tier-features {
+  list-style: none;
+  margin-bottom: 2.5rem;
+  flex-grow: 1;
+}
+.tier-features li {
+  padding: 0.7rem 0;
+  border-bottom: 1px solid rgba(245, 239, 230, 0.07);
+  font-size: 0.95rem;
+  color: rgba(245, 239, 230, 0.82);
+  display: flex; align-items: flex-start; gap: 0.7rem;
+}
+.tier-features li::before {
+  content: "✦"; color: var(--gold);
+  font-size: 0.7rem;
+  margin-top: 0.4rem;
+}
+.tier-features li:last-child { border-bottom: 0; }
+.tier-cta {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  border: 1px solid rgba(245, 239, 230, 0.3);
+  padding: 0.85rem 1.5rem;
+  font-size: 0.78rem; letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--cream);
+  align-self: flex-start;
+  transition: all 0.2s var(--ease);
+}
+.tier-cta:hover { background: var(--gold); color: var(--charcoal); border-color: var(--gold); }
+.tier-cta::after { content: "→"; transition: transform 0.2s var(--ease); }
+.tier-cta:hover::after { transform: translateX(3px); }
+
+/* Two-column section */
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: center;
+}
+.split.reverse { direction: rtl; }
+.split.reverse > * { direction: ltr; }
+
+.image-frame {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  background: linear-gradient(135deg, #2c241a 0%, #4a3a25 50%, #2c241a 100%);
+  overflow: hidden;
+}
+.image-frame.landscape { aspect-ratio: 4 / 3; }
+.image-frame.square { aspect-ratio: 1 / 1; }
+.image-frame::before {
+  content: "";
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at center, rgba(201, 169, 97, 0.25) 0%, transparent 60%),
+    repeating-linear-gradient(45deg, transparent 0px, rgba(0,0,0,0.04) 2px, transparent 4px);
+}
+.image-frame::after {
+  content: "";
+  position: absolute; inset: 12px;
+  border: 1px solid rgba(245, 239, 230, 0.2);
+}
+.image-frame .frame-caption {
+  position: absolute;
+  bottom: 1.5rem; left: 1.5rem; right: 1.5rem;
+  z-index: 2;
+  font-family: var(--font-display);
+  font-style: italic;
+  color: var(--cream);
+  font-size: 1.15rem;
+  text-align: center;
+  text-shadow: 0 2px 16px rgba(0,0,0,0.6);
+}
+.image-frame .frame-icon {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-display);
+  font-size: 5rem;
+  color: var(--gold);
+  opacity: 0.55;
+  font-style: italic;
+  z-index: 1;
+}
+
+/* Process steps */
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 2rem;
+  counter-reset: step;
+}
+.process-step {
+  position: relative;
+  padding: 2rem 1.5rem;
+  border-top: 1px solid var(--gold);
+  counter-increment: step;
+}
+.process-step::before {
+  content: "0" counter(step);
+  font-family: var(--font-display);
+  font-size: 3rem;
+  color: var(--gold);
+  display: block;
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+.process-step h4 {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 0.6rem;
+}
+.dark .process-step h4 { color: var(--cream); }
+.process-step p {
+  font-size: 0.95rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+.dark .process-step p { color: rgba(245, 239, 230, 0.7); }
+
+/* Comparison / feature table */
+.compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+.compare-table th, .compare-table td {
+  padding: 1.1rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(26, 26, 26, 0.1);
+  vertical-align: top;
+}
+.dark .compare-table th, .dark .compare-table td { border-bottom-color: rgba(245, 239, 230, 0.1); }
+.compare-table th {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.1rem;
+  color: var(--ink);
+  letter-spacing: 0;
+  text-transform: none;
+}
+.dark .compare-table th { color: var(--cream); }
+.compare-table td.label {
+  color: var(--muted);
+  font-weight: 500;
+}
+.compare-table .check { color: var(--gold); font-weight: 600; }
+.compare-table .cross { color: rgba(26, 26, 26, 0.25); }
+
+/* Bullets list with gold accent */
+.feature-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem 2rem;
+}
+.feature-list li {
+  padding: 1rem 0 1rem 1.5rem;
+  border-bottom: 1px solid rgba(26, 26, 26, 0.08);
+  font-size: 0.98rem;
+  position: relative;
+  line-height: 1.55;
+}
+.feature-list li::before {
+  content: "✦";
+  position: absolute;
+  left: 0; top: 1.1rem;
+  color: var(--gold);
+  font-size: 0.8rem;
+}
+.dark .feature-list li { border-bottom-color: rgba(245, 239, 230, 0.1); color: rgba(245, 239, 230, 0.85); }
+
+/* CTA banner */
+.cta-banner {
+  background: var(--charcoal);
+  color: var(--cream);
+  padding: clamp(4rem, 8vw, 6rem) 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.cta-banner::before {
+  content: ""; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at center, rgba(201, 169, 97, 0.15), transparent 60%);
+  z-index: 0;
+}
+.cta-banner > .container { position: relative; z-index: 1; }
+.cta-banner h2 {
+  color: var(--cream);
+  margin-bottom: 1rem;
+  font-style: italic;
+  font-weight: 300;
+}
+.cta-banner p { color: rgba(245, 239, 230, 0.75); max-width: 50ch; margin: 0 auto 2.5rem; }
+
+/* Footer */
+.footer {
+  background: #0e0e0e;
+  color: rgba(245, 239, 230, 0.7);
+  padding: 5rem 0 2rem;
+  border-top: 1px solid rgba(201, 169, 97, 0.15);
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 3rem;
+  margin-bottom: 4rem;
+}
+.footer-brand { font-family: var(--font-display); font-size: 1.6rem; letter-spacing: 0.18em; color: var(--cream); margin-bottom: 1rem; text-transform: uppercase; }
+.footer-tagline { font-style: italic; font-family: var(--font-display); color: var(--gold); font-size: 1.1rem; }
+.footer h4 {
+  color: var(--cream);
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+  font-family: var(--font-body);
+  font-weight: 600;
+}
+.footer ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+.footer a { color: rgba(245, 239, 230, 0.7); font-size: 0.95rem; transition: color 0.2s; }
+.footer a:hover { color: var(--gold); }
+.footer-bottom {
+  padding-top: 2rem;
+  border-top: 1px solid rgba(245, 239, 230, 0.08);
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+  font-size: 0.85rem;
+  color: rgba(245, 239, 230, 0.5);
+}
+
+/* Page hero (smaller than home hero) */
+.page-hero {
+  background: var(--charcoal);
+  color: var(--cream);
+  padding: 12rem 0 6rem;
+  position: relative;
+  overflow: hidden;
+}
+.page-hero::before {
+  content: ""; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 70% 40%, rgba(201, 169, 97, 0.18), transparent 60%);
+}
+.page-hero .container { position: relative; }
+.page-hero h1 {
+  font-style: italic;
+  font-weight: 300;
+  max-width: 18ch;
+  color: var(--cream);
+}
+.page-hero h1 strong { font-style: normal; font-weight: 500; color: var(--gold-soft); }
+.page-hero .lede { color: rgba(245, 239, 230, 0.78); margin-top: 1.5rem; }
+
+/* Pricing block on tier pages */
+.price-block {
+  background: var(--cream-deep);
+  border-left: 4px solid var(--gold);
+  padding: 2.5rem;
+  margin: 3rem 0;
+}
+.price-block .price {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5vw, 3.75rem);
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+.price-block .price-note {
+  font-size: 0.85rem;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.price-block p { margin-top: 1.25rem; max-width: 50ch; }
+
+/* Inline link */
+.link {
+  color: var(--gold-deep);
+  text-decoration: underline;
+  text-decoration-color: rgba(201, 169, 97, 0.4);
+  text-underline-offset: 4px;
+  transition: text-decoration-color 0.2s;
+}
+.link:hover { text-decoration-color: var(--gold-deep); }
+.dark .link { color: var(--gold); }
+
+/* Reveal animations */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
+.reveal.visible { opacity: 1; transform: none; }
+
+/* Responsive */
+@media (max-width: 900px) {
+  .nav-links { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: var(--charcoal); flex-direction: column; justify-content: center; align-items: center; gap: 1.5rem; }
+  .nav-links.open { display: flex; }
+  .nav-links .nav-link { font-size: 1.2rem; font-family: var(--font-display); letter-spacing: 0.05em; text-transform: none; }
+  .nav-toggle { display: block; z-index: 101; }
+  .tier-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .split { grid-template-columns: 1fr; gap: 2.5rem; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+  .hero { padding: 7rem 0 4rem; min-height: 90vh; }
+  .scroll-cue { display: none; }
+}
+@media (max-width: 560px) {
+  body { font-size: 16px; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .feature-list { grid-template-columns: 1fr; }
+  .tier-card { padding: 2.5rem 1.75rem; }
+  .nav { padding: 0.75rem 0; }
+}
+
+</style>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%231a1a1a'/><text x='50%25' y='58%25' text-anchor='middle' fill='%23c9a961' font-family='Georgia,serif' font-size='20' font-style='italic'>L</text></svg>" />
+</head>
+<body>
+  <!-- Nav -->
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="index.html" class="brand">Legacy<span class="brand-mark">Works</span></a>
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">☰</button>
+      <div class="nav-links">
+        <a href="story-starter.html" class="nav-link">Story Starter</a>
+        <a href="story-keeper.html" class="nav-link">Story Keeper</a>
+        <a href="story-legacy.html" class="nav-link">Story Legacy</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-cta">Book a Call</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="film-frame"></div>
+    <div class="container hero-inner">
+      <span class="eyebrow hero-eyebrow">Capture · Preserve · Remember</span>
+      <h1>Every life deserves to be <strong>remembered.</strong></h1>
+      <p>LegacyWorks transforms the voices, wisdom, and histories of the people you love into films and books your whole family will actually watch, share, and cherish — for generations.</p>
+      <div class="hero-actions">
+        <a href="#tiers" class="btn btn-primary btn-arrow">See the three tiers</a>
+        <a href="contact.html" class="btn btn-ghost">Book a discovery call</a>
+      </div>
+    </div>
+    <div class="scroll-cue">Scroll</div>
+  </header>
+
+  <!-- Quote / mission -->
+  <section class="quote-section">
+    <div class="container-narrow">
+      <p class="big-quote reveal">When was the last time you heard your grandmother&rsquo;s voice?</p>
+      <p class="quote-attribution reveal">Most of us can&rsquo;t answer that — not because we didn&rsquo;t love her, but because no one ever captured it.</p>
+    </div>
+  </section>
+
+  <!-- Stat / scale -->
+  <section class="section dark">
+    <div class="container">
+      <div style="text-align:center; max-width: 720px; margin: 0 auto 4rem;">
+        <span class="eyebrow reveal">The problem</span>
+        <h2 class="reveal" style="margin-top: 1rem;">Stories are disappearing. <em>Every single day.</em></h2>
+      </div>
+      <div class="stat-row">
+        <div class="stat reveal">
+          <span class="stat-number">99M</span>
+          <span class="stat-label">Americans aged 55 and older</span>
+        </div>
+        <div class="stat reveal">
+          <span class="stat-number">$4B+</span>
+          <span class="stat-label">Personal history &amp; legacy market</span>
+        </div>
+        <div class="stat reveal">
+          <span class="stat-number">~0%</span>
+          <span class="stat-label">Of families who actually capture it in time</span>
+        </div>
+      </div>
+      <p class="lede reveal" style="text-align:center; margin: 4rem auto 0; max-width: 50ch; color: rgba(245,239,230,0.7);">Tapes rot. Photos fade. Memories die with the people who hold them. The tools exist. The time never comes. And then it&rsquo;s too late.</p>
+    </div>
+  </section>
+
+  <!-- What we do -->
+  <section class="section cream-deep">
+    <div class="container">
+      <div class="split">
+        <div class="reveal">
+          <span class="eyebrow">What we do</span>
+          <h2 style="margin: 1rem 0 1.5rem;">A life-story studio for every family.</h2>
+          <p class="lede" style="margin-bottom: 2rem;">We capture voices, wisdom, and histories — and transform them into professionally produced videos, documentaries, and legacy books in formats your whole family will treasure.</p>
+          <p style="color: var(--muted);">Whether you want to film a grandparent yourself, hand the work to a coach, or commission a feature-length life film — there&rsquo;s a LegacyWorks tier built for you.</p>
+          <a href="#tiers" class="btn btn-dark btn-arrow" style="margin-top: 2rem;">Explore the tiers</a>
+        </div>
+        <div class="reveal">
+          <div class="image-frame landscape">
+            <span class="frame-icon">L</span>
+            <div class="frame-caption">&ldquo;Don&rsquo;t let their story end with them.&rdquo;</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Three tiers -->
+  <section class="tiers" id="tiers">
+    <div class="container">
+      <div class="tiers-header reveal">
+        <span class="eyebrow">Three tiers · One brand</span>
+        <h2 style="margin: 1rem 0 1rem;">Three ways to capture a legacy.</h2>
+        <p class="lede" style="margin: 0 auto; color: rgba(245,239,230,0.75);">From a $995 DIY kit to a feature-length life documentary — there&rsquo;s a path for every family and every budget.</p>
+      </div>
+
+      <div class="tier-grid">
+        <article class="tier-card reveal">
+          <span class="tier-eyebrow">Tier 01 · Do it yourself</span>
+          <h3 class="tier-name">Story Starter</h3>
+          <p class="tier-tagline">Everything they need. Nothing left out.</p>
+          <div class="tier-price">$995</div>
+          <div class="tier-price-note">One-time · DIY kit</div>
+          <ul class="tier-features">
+            <li>Professional gear guide (camera, mic, lighting)</li>
+            <li>50+ guided interview questions across life chapters</li>
+            <li>Step-by-step recording &amp; editing tutorials</li>
+            <li>AI editing tool referrals (Descript, CapCut, OpusClip)</li>
+            <li>Story structure template &amp; weekly prompts</li>
+            <li>Access to the LegacyWorks private community</li>
+          </ul>
+          <a href="story-starter.html" class="tier-cta">Explore Story Starter</a>
+        </article>
+
+        <article class="tier-card featured reveal">
+          <span class="tier-eyebrow">Tier 02 · Done for you</span>
+          <h3 class="tier-name">Story Keeper</h3>
+          <p class="tier-tagline">We handle everything. You keep the memories.</p>
+          <div class="tier-price">$2,500&ndash;$4,995</div>
+          <div class="tier-price-note">Coached program · 6&ndash;8 weeks</div>
+          <ul class="tier-features">
+            <li>Discovery call &amp; family-priorities session</li>
+            <li>6&ndash;8 weekly 1-hour interviews with a Story Coach</li>
+            <li>All editing handled by LegacyWorks</li>
+            <li>Episodes delivered to a private family channel</li>
+            <li>Professionally designed Life Story Book (digital + print)</li>
+            <li>USB keepsake &amp; 15&ndash;20 min Legacy Highlight Film</li>
+          </ul>
+          <a href="story-keeper.html" class="tier-cta">Explore Story Keeper</a>
+        </article>
+
+        <article class="tier-card reveal">
+          <span class="tier-eyebrow">Tier 03 · The life film</span>
+          <h3 class="tier-name">Story Legacy</h3>
+          <p class="tier-tagline">A life film. A lasting monument.</p>
+          <div class="tier-price">$25K&ndash;$100K</div>
+          <div class="tier-price-note">Cinematic · 3&ndash;6 months</div>
+          <ul class="tier-features">
+            <li>Dedicated Producer + Creative Director</li>
+            <li>Feature-length documentary (45&ndash;90 minutes)</li>
+            <li>Multiple production visits over 3&ndash;6 months</li>
+            <li>Cinematic filming, original music scoring</li>
+            <li>Interviews with family, friends, colleagues</li>
+            <li>Premium hardcover Legacy Book + private screening</li>
+          </ul>
+          <a href="story-legacy.html" class="tier-cta">Explore Story Legacy</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why now -->
+  <section class="section">
+    <div class="container">
+      <div class="split reverse">
+        <div class="reveal">
+          <span class="eyebrow">Why this matters now</span>
+          <h2 style="margin: 1rem 0 1.5rem;">The most universal human need is to be remembered.</h2>
+          <p>Every family has a story. Most of those stories will be lost forever — not because anyone meant to lose them, but because the right moment never quite came.</p>
+          <p>LegacyWorks exists so the next generation never has to wonder what their grandfather sounded like, how their grandmother laughed, or what their parents knew that nobody ever wrote down.</p>
+          <p>This is what you give instead of a funeral. This is what you screen at the 80th birthday. This is what grandchildren show <em>their</em> grandchildren.</p>
+          <a href="about.html" class="btn btn-dark btn-arrow" style="margin-top: 1.5rem;">Read our story</a>
+        </div>
+        <div class="reveal">
+          <div class="image-frame">
+            <span class="frame-icon">&rsquo;46</span>
+            <div class="frame-caption">Every life. Every family. Every story.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="cta-banner">
+    <div class="container">
+      <span class="eyebrow" style="color: var(--gold);">Begin</span>
+      <h2 style="margin: 1rem 0 1rem;">Don&rsquo;t let their story <em>end with them.</em></h2>
+      <p>Book a 20-minute discovery call. We&rsquo;ll help you choose the right tier and walk you through the process — no pressure, no commitment.</p>
+      <a href="contact.html" class="btn btn-primary btn-arrow">Book a discovery call</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">LegacyWorks</div>
+          <p class="footer-tagline">Every life remembered.</p>
+          <p style="margin-top: 1.25rem; font-size: 0.92rem;">A premium life-story studio capturing voices, wisdom, and histories for the families who love them.</p>
+        </div>
+        <div>
+          <h4>Tiers</h4>
+          <ul>
+            <li><a href="story-starter.html">Story Starter — $995</a></li>
+            <li><a href="story-keeper.html">Story Keeper — $2.5K&ndash;$5K</a></li>
+            <li><a href="story-legacy.html">Story Legacy — $25K&ndash;$100K</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Company</h4>
+          <ul>
+            <li><a href="about.html">Our story</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Connect</h4>
+          <ul>
+            <li><a href="mailto:mlinton@vlcm.com">mlinton@vlcm.com</a></li>
+            <li><a href="contact.html">Book a discovery call</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 LegacyWorks. Capture. Preserve. Remember.</span>
+        <span class="serif italic">Every life remembered.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+// LegacyWorks — site interactions
+
+// Sticky nav state
+(function () {
+  const nav = document.querySelector('.nav');
+  if (!nav) return;
+  const onScroll = () => {
+    if (window.scrollY > 24) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  };
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+})();
+
+// Mobile nav toggle
+(function () {
+  const toggle = document.querySelector('.nav-toggle');
+  const links = document.querySelector('.nav-links');
+  if (!toggle || !links) return;
+  toggle.addEventListener('click', () => {
+    links.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', links.classList.contains('open'));
+  });
+  // Close on link click
+  links.querySelectorAll('a').forEach((a) =>
+    a.addEventListener('click', () => links.classList.remove('open'))
+  );
+})();
+
+// Reveal on scroll
+(function () {
+  const els = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window) || !els.length) {
+    els.forEach((el) => el.classList.add('visible'));
+    return;
+  }
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          io.unobserve(e.target);
+        }
+      });
+    },
+    { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+  );
+  els.forEach((el) => io.observe(el));
+})();
+
+// Highlight active nav link based on path
+(function () {
+  const path = window.location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('.nav-link').forEach((a) => {
+    const href = a.getAttribute('href');
+    if (!href) return;
+    if (
+      href === path ||
+      (path === '' && href === 'index.html') ||
+      (path === 'index.html' && href === 'index.html')
+    ) {
+      a.classList.add('active');
+    }
+  });
+})();
+
+</script>
+</body>
+</html>
