@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Story Starter — LegacyWorks</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* === VERSION B: Donald Miller StoryBrand style — Hero's journey, customer is the hero, LegacyWorks is the guide === */
+    :root {
+      --ink: #111111;
+      --charcoal: #1a1a1a;
+      --gold: #c9a961;
+      --gold-deep: #a88842;
+      --cream: #f5efe6;
+      --cream-deep: #ebe2d2;
+      --muted: #6b6258;
+      --font-display: "Cormorant Garamond", Georgia, serif;
+      --font-body: "Inter", -apple-system, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body { font-family: var(--font-body); font-size: 17px; line-height: 1.75; color: var(--ink); background: #fff; }
+    a { color: inherit; text-decoration: none; }
+    p { margin-bottom: 1em; }
+    p:last-child { margin-bottom: 0; }
+
+    /* NAV */
+    .nav { padding: 1.25rem 2rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(0,0,0,0.07); background: #fff; position: sticky; top: 0; z-index: 50; }
+    .nav-brand { font-family: var(--font-display); font-size: 1.4rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--charcoal); }
+    .nav-brand span { color: var(--gold); }
+    .nav-cta { background: var(--gold); color: var(--charcoal); padding: 0.55rem 1.25rem; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+
+    /* HERO */
+    .hero { padding: 7rem 2rem 5rem; text-align: center; background: var(--cream); }
+    .hero-inner { max-width: 760px; margin: 0 auto; }
+    .hero-eyebrow { display: block; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold-deep); margin-bottom: 2rem; }
+    .hero h1 { font-family: var(--font-display); font-size: clamp(3rem, 6vw, 5rem); font-weight: 300; line-height: 1.1; color: var(--charcoal); margin-bottom: 1.5rem; }
+    .hero h1 strong { font-weight: 500; }
+    .hero-sub { font-size: 1.15rem; color: var(--muted); max-width: 540px; margin: 0 auto 3rem; line-height: 1.65; }
+    .btn-primary { display: inline-block; background: var(--charcoal); color: #fff; padding: 1rem 2.25rem; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.75rem; }
+    .btn-primary:hover { background: #333; }
+    .btn-secondary { display: inline-block; color: var(--muted); font-size: 0.85rem; text-decoration: underline; text-underline-offset: 4px; }
+    .hero-actions { display: flex; flex-direction: column; align-items: center; gap: 0.75rem; }
+
+    /* CHARACTERS — the problem narrative */
+    .problem { background: #fff; padding: 6rem 2rem; }
+    .problem-inner { max-width: 680px; margin: 0 auto; }
+    .section-eyebrow { display: block; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold-deep); margin-bottom: 1rem; }
+    .problem h2 { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3rem); font-weight: 400; line-height: 1.2; margin-bottom: 2rem; }
+    .problem-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin: 3rem 0; }
+    .prob-card { padding: 1.5rem; border: 1px solid rgba(0,0,0,0.08); }
+    .prob-icon { font-family: var(--font-display); font-size: 2.5rem; color: var(--gold); margin-bottom: 1rem; display: block; line-height: 1; }
+    .prob-title { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.5rem; }
+    .prob-body { font-size: 0.88rem; color: var(--muted); margin: 0; }
+
+    /* GUIDE — LegacyWorks as the guide */
+    .guide { background: var(--charcoal); color: #fff; padding: 6rem 2rem; }
+    .guide-inner { max-width: 760px; margin: 0 auto; }
+    .guide h2 { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3rem); color: #fff; font-weight: 400; margin-bottom: 1.5rem; }
+    .guide h2 em { color: var(--gold); font-style: italic; }
+    .guide-body { color: rgba(255,255,255,0.72); font-size: 1.05rem; max-width: 560px; margin-bottom: 3rem; }
+    .guide-credentials { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .cred { border-top: 2px solid var(--gold); padding-top: 1rem; }
+    .cred-num { font-family: var(--font-display); font-size: 2.5rem; color: var(--gold); line-height: 1; margin-bottom: 0.25rem; }
+    .cred-label { font-size: 0.85rem; color: rgba(255,255,255,0.55); }
+
+    /* THE PLAN */
+    .plan { background: var(--cream); padding: 6rem 2rem; }
+    .plan-inner { max-width: 760px; margin: 0 auto; }
+    .plan h2 { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 0.5rem; }
+    .plan-sub { color: var(--muted); margin-bottom: 3.5rem; font-size: 1rem; }
+    .plan-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; position: relative; }
+    .plan-steps::before { content: ""; position: absolute; top: 1.75rem; left: 2rem; right: 2rem; height: 2px; background: var(--gold); opacity: 0.3; }
+    .plan-step { position: relative; }
+    .step-circle { width: 3.5rem; height: 3.5rem; border: 2px solid var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 1.4rem; color: var(--gold); background: var(--cream); margin-bottom: 1rem; position: relative; z-index: 1; }
+    .step-title { font-weight: 600; font-size: 0.9rem; margin-bottom: 0.35rem; }
+    .step-body { font-size: 0.83rem; color: var(--muted); }
+
+    /* WHAT'S INSIDE */
+    .inside { background: #fff; padding: 6rem 2rem; }
+    .inside-inner { max-width: 760px; margin: 0 auto; }
+    .inside h2 { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 0.5rem; }
+    .inside-sub { color: var(--muted); margin-bottom: 3rem; }
+    .inside-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    .inside-item { padding: 1.5rem; background: var(--cream); }
+    .inside-item-title { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.4rem; display: flex; align-items: center; gap: 0.5rem; }
+    .inside-dot { width: 8px; height: 8px; background: var(--gold); border-radius: 50%; flex-shrink: 0; }
+    .inside-item-body { font-size: 0.88rem; color: var(--muted); margin: 0; }
+    .inside-price { text-align: center; padding: 2.5rem; background: var(--charcoal); color: #fff; margin-top: 2.5rem; }
+    .inside-price-label { font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 0.5rem; }
+    .inside-price-num { font-family: var(--font-display); font-size: 4rem; color: var(--gold); line-height: 1; margin-bottom: 0.25rem; }
+    .inside-price-sub { font-size: 0.85rem; color: rgba(255,255,255,0.45); }
+
+    /* SUCCESS / FAILURE */
+    .stakes { background: var(--cream-deep); padding: 6rem 2rem; }
+    .stakes-inner { max-width: 760px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+    .stakes h2 { font-family: var(--font-display); font-size: clamp(1.8rem, 3.5vw, 2.5rem); margin-bottom: 1.5rem; }
+    .success-list, .failure-list { list-style: none; }
+    .success-list li, .failure-list li { padding: 0.6rem 0; border-bottom: 1px solid rgba(0,0,0,0.06); font-size: 0.95rem; }
+    .success-list li::before { content: "→  "; color: #27ae60; font-weight: 700; }
+    .failure-list li::before { content: "→  "; color: #c0392b; font-weight: 700; }
+
+    /* FINAL CTA */
+    .final { background: var(--charcoal); color: #fff; padding: 7rem 2rem; text-align: center; }
+    .final-inner { max-width: 620px; margin: 0 auto; }
+    .final h2 { font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 300; margin-bottom: 1rem; }
+    .final h2 em { color: var(--gold); font-style: italic; }
+    .final p { color: rgba(255,255,255,0.6); margin-bottom: 2.5rem; font-size: 1.05rem; }
+    .final-price { font-family: var(--font-display); font-size: 3rem; color: var(--gold); display: block; margin-bottom: 2rem; }
+    .btn-final { display: inline-block; background: var(--gold); color: var(--charcoal); padding: 1.1rem 2.5rem; font-size: 0.9rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+    .final-note { margin-top: 1.5rem; font-size: 0.82rem; color: rgba(255,255,255,0.3); }
+
+    .footer { background: #111; color: rgba(255,255,255,0.35); padding: 2rem; text-align: center; font-size: 0.82rem; }
+
+    @media (max-width: 700px) {
+      .problem-cards, .guide-credentials, .plan-steps, .inside-grid, .stakes-inner { grid-template-columns: 1fr; }
+      .plan-steps::before { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-brand">Legacy<span>Works</span></div>
+    <a href="#cta" class="nav-cta">Get the Kit — $995</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <span class="hero-eyebrow">Story Starter — Tier 01</span>
+      <h1>You can capture<br>your parent's story.<br><strong>We'll show you how.</strong></h1>
+      <p class="hero-sub">Story Starter is a complete, step-by-step system that guides you through recording, editing, and preserving your loved one's life story — even if you've never touched a camera or editing software.</p>
+      <div class="hero-actions">
+        <a href="#cta" class="btn-primary">Get the Story Starter Kit — $995</a>
+        <a href="#inside" class="btn-secondary">See what's inside first</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE PROBLEM -->
+  <section class="problem">
+    <div class="problem-inner">
+      <span class="section-eyebrow">The problem</span>
+      <h2>You know you should capture their story. Something keeps stopping you.</h2>
+      <p>It's not that you don't care. You care deeply. But capturing a life story feels overwhelming — the technology, the questions to ask, the editing, the storage. You don't know where to start, so you don't. And every day you wait, you lose something you can never recover.</p>
+
+      <div class="problem-cards">
+        <div class="prob-card">
+          <span class="prob-icon">?</span>
+          <div class="prob-title">You don't know what to ask</div>
+          <p class="prob-body">Generic interview questions produce surface-level answers. Without the right questions asked in the right order, you get facts — not stories.</p>
+        </div>
+        <div class="prob-card">
+          <span class="prob-icon">⏱</span>
+          <div class="prob-title">You don't know how to edit</div>
+          <p class="prob-body">Raw interview footage is hours long and hard to watch. Without a clear editing process, it sits on a hard drive and never becomes anything.</p>
+        </div>
+        <div class="prob-card">
+          <span class="prob-icon">↗</span>
+          <div class="prob-title">You keep putting it off</div>
+          <p class="prob-body">Life gets in the way. Without a weekly structure and gentle accountability, the best intentions become the deepest regrets.</p>
+        </div>
+      </div>
+      <p>Story Starter solves all three — with a tested, complete system that walks you through every step.</p>
+    </div>
+  </section>
+
+  <!-- THE GUIDE -->
+  <section class="guide">
+    <div class="guide-inner">
+      <span class="section-eyebrow" style="color: var(--gold);">Your guide</span>
+      <h2>LegacyWorks has done this <em>before.</em></h2>
+      <p class="guide-body">We're a professional life-story production company. We've helped families capture the voices, wisdom, and histories of the people they love — and we've packaged everything we know into Story Starter so you can do it yourself.</p>
+      <div class="guide-credentials">
+        <div class="cred">
+          <div class="cred-num">52</div>
+          <div class="cred-label">Weeks of guided questions, organized by life chapter</div>
+        </div>
+        <div class="cred">
+          <div class="cred-num">3</div>
+          <div class="cred-label">Budget levels — from $0 equipment to cinematic quality</div>
+        </div>
+        <div class="cred">
+          <div class="cred-num">100%</div>
+          <div class="cred-label">Money-back guarantee if you're not satisfied</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE PLAN -->
+  <section class="plan">
+    <div class="plan-inner">
+      <span class="section-eyebrow">The plan</span>
+      <h2>Four steps. One finished life story.</h2>
+      <p class="plan-sub">Story Starter breaks the project into a clear, manageable sequence. Here's exactly what happens when you get the kit.</p>
+      <div class="plan-steps">
+        <div class="plan-step">
+          <div class="step-circle">1</div>
+          <div class="step-title">Get set up</div>
+          <p class="step-body">Choose your gear from our tested guide. Set up Riverside in under 20 minutes. We show you every setting.</p>
+        </div>
+        <div class="plan-step">
+          <div class="step-circle">2</div>
+          <div class="step-title">Start asking</div>
+          <p class="step-body">Use our 52-week question guide. 30 minutes a week. Conversations your family has never had.</p>
+        </div>
+        <div class="plan-step">
+          <div class="step-circle">3</div>
+          <div class="step-title">Edit with AI</div>
+          <p class="step-body">Upload to Descript or Riverside AI. Follow our tutorial. Produce a polished episode in hours, not weeks.</p>
+        </div>
+        <div class="plan-step">
+          <div class="step-circle">4</div>
+          <div class="step-title">Share forever</div>
+          <p class="step-body">Upload to your family's private YouTube channel. Every family member, on every device, forever.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT'S INSIDE -->
+  <section class="inside" id="inside">
+    <div class="inside-inner">
+      <span class="section-eyebrow">What's inside</span>
+      <h2>Everything you need. Nothing you don't.</h2>
+      <p class="inside-sub">Story Starter gives you the exact tools, templates, and guidance our professional team uses — packaged so any family can use them.</p>
+      <div class="inside-grid">
+        <div class="inside-item">
+          <div class="inside-item-title"><span class="inside-dot"></span>Tested gear guide</div>
+          <p class="inside-item-body">Camera, mic, and lighting at Basic, Medium, and Advanced levels. Vetted by our production team. You'll know exactly what to buy — or that you already own everything you need.</p>
+        </div>
+        <div class="inside-item">
+          <div class="inside-item-title"><span class="inside-dot"></span>52 weeks of interview questions</div>
+          <p class="inside-item-body">Organized by life chapter: childhood, family, love, work, faith, legacy, regrets, joy. Questions that unlock stories people have carried their whole lives and never told.</p>
+        </div>
+        <div class="inside-item">
+          <div class="inside-item-title"><span class="inside-dot"></span>Riverside setup tutorial</div>
+          <p class="inside-item-body">Step-by-step guide to recording professional-quality video sessions from anywhere in the world. Works for in-person and remote interviews.</p>
+        </div>
+        <div class="inside-item">
+          <div class="inside-item-title"><span class="inside-dot"></span>AI editing workflow</div>
+          <p class="inside-item-body">Exact instructions for Descript, CapCut, and Riverside AI — how to trim, caption, and export a polished episode without any editing experience.</p>
+        </div>
+        <div class="inside-item">
+          <div class="inside-item-title"><span class="inside-dot"></span>Story structure template</div>
+          <p class="inside-item-body">The framework for turning raw interview footage into a narrative your family will actually want to watch — organized, moving, and complete.</p>
+        </div>
+        <div class="inside-item">
+          <div class="inside-item-title"><span class="inside-dot"></span>Private community + coaching</div>
+          <p class="inside-item-body">Access to the LegacyWorks family community. Ask questions, share what you're making, get support from coaches and other families doing the same work.</p>
+        </div>
+      </div>
+      <div class="inside-price" id="cta">
+        <div class="inside-price-label">Your investment</div>
+        <div class="inside-price-num">$995</div>
+        <div class="inside-price-sub">One-time · Instant access · Lifetime use · 30-day guarantee</div>
+        <br><br>
+        <a href="contact.html" class="btn-final">Get the Story Starter Kit →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STAKES -->
+  <section class="stakes">
+    <div class="stakes-inner">
+      <div>
+        <h2>If you get the kit</h2>
+        <ul class="success-list">
+          <li>You have a clear system to follow starting this week</li>
+          <li>Your family gets a finished video series they'll share for generations</li>
+          <li>You asked the questions before it was too late</li>
+          <li>Your grandchildren will know who their great-grandparent was</li>
+          <li>You did something most families only wish they had</li>
+        </ul>
+      </div>
+      <div>
+        <h2>If you don't</h2>
+        <ul class="failure-list">
+          <li>Another year passes without starting</li>
+          <li>The stories get harder to remember as time goes on</li>
+          <li>You find out too late that the window has closed</li>
+          <li>The next generation inherits silence instead of a story</li>
+          <li>You wish you had done this while you still could</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final">
+    <div class="final-inner">
+      <h2>Don't let their story<br><em>end with them.</em></h2>
+      <p>You have a clear system. You have tested guidance. You have a team behind you. The only thing left is to begin.</p>
+      <span class="final-price">$995 · One-time · Instant access</span>
+      <a href="contact.html" class="btn-final">Get the Story Starter Kit →</a>
+      <p class="final-note">30-day money-back guarantee · Use it for every family member, forever</p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>© 2026 LegacyWorks · Capture. Preserve. Remember. · <a href="mailto:mike@aspirex.org" style="color:rgba(255,255,255,0.3)">mike@aspirex.org</a></p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,555 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Story Starter — Equipment Guide | LegacyWorks</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --charcoal: #1a1a1a;
+      --cream: #f5efe6;
+      --cream-deep: #ebe2d2;
+      --cream-soft: #faf6ee;
+      --gold: #c9a961;
+      --gold-deep: #a88842;
+      --gold-soft: #e0c898;
+      --muted: #6b6258;
+      --ink: #111111;
+      --font-display: "Cormorant Garamond", Georgia, serif;
+      --font-body: "Inter", -apple-system, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body { font-family: var(--font-body); font-size: 16px; line-height: 1.7; color: var(--ink); background: var(--cream-soft); }
+    a { color: var(--gold-deep); text-decoration: underline; text-underline-offset: 3px; }
+    a:hover { color: var(--gold); }
+
+    /* NAV */
+    .nav { background: var(--charcoal); padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; }
+    .nav-brand { font-family: var(--font-display); font-size: 1.4rem; letter-spacing: 0.15em; text-transform: uppercase; color: #fff; }
+    .nav-brand span { color: var(--gold); }
+    .nav-back { font-size: 0.78rem; color: rgba(255,255,255,0.5); letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; }
+    .nav-back:hover { color: var(--gold); }
+
+    /* HERO */
+    .hero { background: var(--charcoal); color: var(--cream); padding: 5rem 2rem 4rem; text-align: center; position: relative; overflow: hidden; }
+    .hero::before { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 0%, rgba(201,169,97,0.18), transparent 60%); }
+    .hero-inner { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
+    .eyebrow { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 1.25rem; }
+    .hero h1 { font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 300; line-height: 1.1; margin-bottom: 1.25rem; }
+    .hero h1 em { font-style: italic; color: var(--gold-soft); }
+    .hero-sub { color: rgba(245,239,230,0.7); font-size: 1rem; max-width: 500px; margin: 0 auto; }
+
+    /* TIER NAV */
+    .tier-nav { background: var(--charcoal); border-top: 1px solid rgba(201,169,97,0.15); }
+    .tier-nav-inner { max-width: 900px; margin: 0 auto; display: flex; }
+    .tier-tab { flex: 1; padding: 1rem; text-align: center; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(245,239,230,0.45); cursor: pointer; border-bottom: 2px solid transparent; text-decoration: none; transition: all 0.2s; }
+    .tier-tab:hover { color: var(--gold); }
+    .tier-tab.good { }
+    .tier-tab.better { }
+    .tier-tab.best { }
+    .tier-tab.pro { }
+
+    /* MAIN */
+    .main { max-width: 900px; margin: 0 auto; padding: 3rem 2rem 6rem; }
+
+    /* TIER BLOCK */
+    .tier-block { margin-bottom: 4rem; }
+    .tier-block-header { padding: 2rem 2rem 1.5rem; margin-bottom: 0; position: relative; overflow: hidden; }
+    .tier-block-header::before { content: ""; position: absolute; inset: 0; opacity: 0.04; }
+    .tier-good .tier-block-header { background: #fff; border-top: 4px solid #5a9a5a; }
+    .tier-better .tier-block-header { background: #fff; border-top: 4px solid var(--gold); }
+    .tier-best .tier-block-header { background: #fff; border-top: 4px solid #7a5a9a; }
+    .tier-pro .tier-block-header { background: var(--charcoal); border-top: 4px solid #c0392b; color: var(--cream); }
+
+    .tier-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 0.4rem; }
+    .tier-good .tier-label { color: #5a9a5a; }
+    .tier-better .tier-label { color: var(--gold-deep); }
+    .tier-best .tier-label { color: #7a5a9a; }
+    .tier-pro .tier-label { color: #e07070; }
+
+    .tier-name { font-family: var(--font-display); font-size: 2.2rem; font-weight: 400; line-height: 1.1; margin-bottom: 0.4rem; }
+    .tier-pro .tier-name { color: var(--cream); }
+
+    .tier-tagline { font-size: 0.9rem; color: var(--muted); margin-bottom: 1rem; }
+    .tier-pro .tier-tagline { color: rgba(245,239,230,0.6); }
+
+    .tier-total { display: inline-block; font-family: var(--font-display); font-size: 1.8rem; color: var(--charcoal); }
+    .tier-pro .tier-total { color: var(--gold); }
+    .tier-total-note { font-size: 0.8rem; color: var(--muted); margin-left: 0.75rem; }
+    .tier-pro .tier-total-note { color: rgba(245,239,230,0.45); }
+
+    /* ITEMS */
+    .tier-items { background: #fff; border: 1px solid rgba(0,0,0,0.06); }
+    .tier-pro .tier-items-wrap .tier-items { background: #2a2a2a; border-color: rgba(255,255,255,0.06); }
+
+    .item { display: grid; grid-template-columns: 140px 1fr auto; gap: 1rem; padding: 1.25rem 1.5rem; border-bottom: 1px solid rgba(0,0,0,0.05); align-items: start; }
+    .tier-pro .item { border-bottom-color: rgba(255,255,255,0.05); }
+    .item:last-child { border-bottom: none; }
+
+    .item-cat { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); padding-top: 2px; }
+    .tier-pro .item-cat { color: rgba(245,239,230,0.4); }
+
+    .item-name { font-weight: 600; font-size: 0.92rem; color: var(--ink); margin-bottom: 2px; }
+    .tier-pro .item-name { color: var(--cream); }
+    .item-desc { font-size: 0.83rem; color: var(--muted); line-height: 1.5; margin-bottom: 4px; }
+    .tier-pro .item-desc { color: rgba(245,239,230,0.5); }
+    .item-link { font-size: 0.78rem; color: var(--gold-deep); text-underline-offset: 3px; }
+    .tier-pro .item-link { color: var(--gold); }
+
+    .item-price { font-family: var(--font-display); font-size: 1.3rem; color: var(--charcoal); white-space: nowrap; text-align: right; padding-top: 2px; }
+    .tier-pro .item-price { color: var(--cream); }
+    .price-free { color: #5a9a5a; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.05em; }
+
+    /* MIKE'S KIT BADGE */
+    .lw-badge { display: inline-block; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; background: var(--gold); color: var(--charcoal); padding: 2px 7px; border-radius: 2px; margin-left: 6px; vertical-align: 2px; }
+
+    /* TOTAL BAR */
+    .total-bar { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 1.5rem; flex-wrap: wrap; gap: 0.5rem; }
+    .tier-good .total-bar { background: #f0f7f0; border-top: 1px solid rgba(90,154,90,0.15); }
+    .tier-better .total-bar { background: rgba(201,169,97,0.08); border-top: 1px solid rgba(201,169,97,0.2); }
+    .tier-best .total-bar { background: rgba(122,90,154,0.06); border-top: 1px solid rgba(122,90,154,0.12); }
+    .tier-pro .total-bar { background: rgba(192,57,43,0.1); border-top: 1px solid rgba(192,57,43,0.2); }
+
+    .total-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+    .tier-pro .total-label { color: rgba(245,239,230,0.45); }
+    .total-amount { font-family: var(--font-display); font-size: 2rem; color: var(--charcoal); }
+    .tier-better .total-amount { color: var(--gold-deep); }
+    .tier-pro .total-amount { color: var(--gold); }
+    .total-sub { font-size: 0.78rem; color: var(--muted); }
+    .tier-pro .total-sub { color: rgba(245,239,230,0.4); }
+
+    /* COMPARISON TABLE */
+    .compare-section { margin-top: 5rem; }
+    .compare-section h2 { font-family: var(--font-display); font-size: 2.5rem; font-weight: 400; margin-bottom: 2rem; text-align: center; }
+    .compare-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; background: #fff; }
+    th { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; padding: 1rem; text-align: center; border-bottom: 2px solid rgba(0,0,0,0.08); }
+    th:first-child { text-align: left; }
+    td { padding: 0.9rem 1rem; font-size: 0.88rem; border-bottom: 1px solid rgba(0,0,0,0.05); text-align: center; vertical-align: middle; }
+    td:first-child { text-align: left; font-weight: 500; color: var(--muted); }
+    .col-good { color: #5a9a5a; }
+    .col-better { color: var(--gold-deep); }
+    .col-best { color: #7a5a9a; }
+    .col-pro { color: #c0392b; }
+    tr.highlight-row td { background: rgba(201,169,97,0.05); }
+    .check { font-size: 1rem; }
+
+    /* NOTE */
+    .note { margin-top: 3rem; padding: 1.5rem 2rem; background: rgba(201,169,97,0.08); border-left: 3px solid var(--gold); }
+    .note p { font-size: 0.88rem; color: var(--muted); margin: 0; }
+    .note strong { color: var(--ink); }
+
+    /* FOOTER */
+    .footer { background: var(--charcoal); color: rgba(255,255,255,0.35); padding: 2rem; text-align: center; font-size: 0.82rem; }
+
+    @media (max-width: 640px) {
+      .item { grid-template-columns: 1fr; gap: 0.4rem; }
+      .item-price { text-align: left; }
+      .tier-tab { font-size: 0.65rem; padding: 0.75rem 0.4rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-brand">Legacy<span>Works</span></div>
+    <a href="story-starter.html" class="nav-back">← Story Starter</a>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <span class="eyebrow">Story Starter · Equipment Guide</span>
+      <h1>Good. Better. Best. <em>Pro.</em></h1>
+      <p class="hero-sub">Four equipment setups at every budget. Start where you are. Upgrade when you're ready. Every tier produces results your family will treasure.</p>
+    </div>
+  </section>
+
+  <nav class="tier-nav">
+    <div class="tier-nav-inner">
+      <a href="#good" class="tier-tab good">Good — $0</a>
+      <a href="#better" class="tier-tab better">Better — ~$300</a>
+      <a href="#best" class="tier-tab best">Best — ~$500</a>
+      <a href="#pro" class="tier-tab pro">Pro — $800+</a>
+    </div>
+  </nav>
+
+  <div class="main">
+
+    <!-- ============ GOOD ============ -->
+    <div class="tier-block tier-good" id="good">
+      <div class="tier-block-header">
+        <div class="tier-label">Tier 01 — Good</div>
+        <div class="tier-name">Use What You Own</div>
+        <div class="tier-tagline">Start today with $0 in new equipment. A modern smartphone and a window is genuinely enough.</div>
+        <span class="tier-total">$0</span>
+        <span class="tier-total-note">Everything you need is already in your home</span>
+      </div>
+      <div class="tier-items">
+        <div class="item">
+          <div class="item-cat">📷 Camera</div>
+          <div>
+            <div class="item-name">Your Smartphone</div>
+            <div class="item-desc">iPhone 12+ or any Android from 2020 onward. Shoot in landscape mode, rear camera, lock the exposure before recording. Better than a professional camera from 10 years ago.</div>
+          </div>
+          <div class="item-price"><span class="price-free">Free</span></div>
+        </div>
+        <div class="item">
+          <div class="item-cat">🎙 Microphone</div>
+          <div>
+            <div class="item-name">Wired Earbuds</div>
+            <div class="item-desc">The pair that came with your phone. Plug in, drape the cord near your subject's chest. Dramatically better than the phone mic from across the room.</div>
+          </div>
+          <div class="item-price"><span class="price-free">Free</span></div>
+        </div>
+        <div class="item">
+          <div class="item-cat">💡 Lighting</div>
+          <div>
+            <div class="item-name">A Window</div>
+            <div class="item-desc">Seat your subject facing a window — natural light in front of them, not behind. Overcast days are perfect. This single setup change makes more difference than any equipment upgrade.</div>
+          </div>
+          <div class="item-price"><span class="price-free">Free</span></div>
+        </div>
+        <div class="item">
+          <div class="item-cat">🎬 Recording</div>
+          <div>
+            <div class="item-name">Riverside.fm (Free Plan)</div>
+            <div class="item-desc">Records each person's video and audio separately. Works in a browser — your subject needs no download. The free plan gives you 2 hours/month to start.</div>
+            <a class="item-link" href="https://riverside.fm" target="_blank">riverside.fm →</a>
+          </div>
+          <div class="item-price"><span class="price-free">Free</span></div>
+        </div>
+        <div class="item">
+          <div class="item-cat">✂️ Editing</div>
+          <div>
+            <div class="item-name">CapCut (Free)</div>
+            <div class="item-desc">Drag in your footage, trim the silent gaps, add auto-captions in one click. A finished 15-minute episode in under an hour.</div>
+            <a class="item-link" href="https://www.capcut.com" target="_blank">capcut.com →</a>
+          </div>
+          <div class="item-price"><span class="price-free">Free</span></div>
+        </div>
+        <div class="item">
+          <div class="item-cat">📦 Storage</div>
+          <div>
+            <div class="item-name">Private YouTube Channel</div>
+            <div class="item-desc">Set visibility to "Unlisted" or "Private." Every family member watches on any device, forever. No hard drives to lose.</div>
+            <a class="item-link" href="https://youtube.com" target="_blank">youtube.com →</a>
+          </div>
+          <div class="item-price"><span class="price-free">Free</span></div>
+        </div>
+        <div class="total-bar">
+          <div>
+            <div class="total-label">Total hardware investment</div>
+            <div class="total-amount">$0</div>
+          </div>
+          <div class="total-sub">You can record your first session this weekend.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ BETTER ============ -->
+    <div class="tier-block tier-better" id="better">
+      <div class="tier-block-header">
+        <div class="tier-label">Tier 02 — Better <span class="lw-badge">LegacyWorks Kit</span></div>
+        <div class="tier-name">The Tested Setup</div>
+        <div class="tier-tagline">The exact equipment LegacyWorks has tested and recommends. A real upgrade in audio and video quality — without overcomplicating things.</div>
+        <span class="tier-total">~$300–$350</span>
+        <span class="tier-total-note">One-time hardware + ~$19/mo Riverside Standard</span>
+      </div>
+      <div class="tier-items">
+        <div class="item">
+          <div class="item-cat">📷 Camera</div>
+          <div>
+            <div class="item-name">Anker AnkerWork C310 4K Webcam <span class="lw-badge">LegacyWorks tested</span></div>
+            <div class="item-desc">12MP sensor, AI auto-focus, AI framing that keeps you centered, noise-canceling built-in mic, built-in privacy cover. 1080p@60fps HDR. Plug-and-play USB-C. Perfect for Riverside sessions.</div>
+            <a class="item-link" href="https://a.co/d/07M1o43O" target="_blank">View on Amazon →</a>
+          </div>
+          <div class="item-price">~$100</div>
+        </div>
+        <div class="item">
+          <div class="item-cat">🔌 Connectivity</div>
+          <div>
+            <div class="item-name">USB-C Video Output Hub <span class="lw-badge">LegacyWorks tested</span></div>
+            <div class="item-desc">3 USB-C + 2 USB-A ports, 4K@60Hz HDMI, 100W PD charging, SD/TF card slots. Works with MacBook, iPad Pro, XPS, Surface. Keeps everything connected cleanly at your recording station.</div>
+            <a class="item-link" href="https://a.co/d/0e8BR75i" target="_blank">View on Amazon →</a>
+          </div>
+          <div class="item-price">~$30–$40</div>
+        </div>
+        <div class="item">
+          <div class="item-cat">💡 Lighting</div>
+          <div>
+            <div class="item-name">RALENO 9" LED Video Light Panel <span class="lw-badge">LegacyWorks tested</span></div>
+            <div class="item-desc">2500K–6500K adjustable color temperature, CRI>95, 4000mAh built-in battery, Type-C USB charging. Soft, flattering light that makes your subject look present and warm on screen. Portable — no wall outlet needed.</div>
+            <a class="item-link" href="https://a.co/d/0db6rBuS" target="_blank">View on Amazon →</a>
+          </div>
+          <div class="item-price">~$40–$60</div>
+        </div>
+        <div class="item">
+          <div class="item-cat">🎙 Microphone</div>
+          <div>
+            <div class="item-name">MAONO HD300T USB/XLR Podcast Dynamic Mic <span class="lw-badge">LegacyWorks tested</span></div>
+            <div class="item-desc">USB and XLR output, volume control knob, shock mount and pop filter included. Dynamic capsule rejects background noise better than condenser mics in untreated rooms. Sounds like a podcast, not a phone call.</div>
+            <a class="item-link" href="https://a.co/d/05lnxbjt" target="_blank">View on Amazon →</a>
+          </div>
+          <div class="item-price">~$60–$80</div>
+        </div>
+        <div class="item">
+          <div class="item-cat">🎬 Recording</div>
+          <div>
+            <div class="item-name">Riverside.fm Standard</div>
+            <div class="item-desc">Unlimited recording sessions, AI transcription, separate audio/video tracks per participant. The platform built for professional remote interviews.</div>
+            <a class="item-link" href="https://riverside.fm" target="_blank">riverside.fm →</a>
+          </div>
+          <div class="item-price">$19/mo</div>
+        </div>
+        <div class="item">
+          <div class="item-cat">✂️ Editing</div>
+          <div>
+            <div class="item-name">Descript or Riverside AI</div>
+            <div class="item-desc">Edit video by editing the transcript — delete a word, the video cuts itself. Auto-removes filler words, silences, and breath sounds. Raw interview → polished episode in under an hour.</div>
+            <a class="item-link" href="https://www.descript.com" target="_blank">descript.com →</a>
+          </div>
+          <div class="item-price">Free–$24/mo</div>
+        </div>
+        <div class="total-bar">
+          <div>
+            <div class="total-label">Total hardware (one-time)</div>
+            <div class="total-amount">~$230–$280</div>
+          </div>
+          <div class="total-sub">+ ~$19–$43/month for Riverside + Descript while recording</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ BEST ============ -->
+    <div class="tier-block tier-best" id="best">
+      <div class="tier-block-header">
+        <div class="tier-label">Tier 03 — Best</div>
+        <div class="tier-name">Premium Family Setup</div>
+        <div class="tier-tagline">A noticeable step up in audio quality with a wireless lavalier mic — plus a proper webcam upgrade. Results that look and sound genuinely professional.</div>
+        <span class="tier-total">~$450–$550</span>
+        <span class="tier-total-note">One-time hardware + ~$19–$43/mo software</span>
+      </div>
+      <div class="tier-items">
+        <div class="item">
+          <div class="item-cat">📷 Camera</div>
+          <div>
+            <div class="item-name">Logitech Brio 4K Webcam</div>
+            <div class="item-desc">True 4K recording, auto light correction, HDR support, ultra-wide field of view. Works seamlessly with Riverside. Clips to any monitor, plug-and-play USB.</div>
+            <a class="item-link" href="https://www.amazon.com/s?k=Logitech+Brio+4K+Webcam" target="_blank">Search on Amazon →</a>
+          </div>
+          <div class="item-price">~$130–$150</div>
+        </div>
+        <div class="item">
+          <div class="item-cat">🎙 Microphone</div>
+          <div>
+            <div class="item-name">DJI Mic Mini (Wireless Lavalier)</div>
+            <div class="item-desc">Tiny clip-on mic that transmits wirelessly. Your subject clips it to their collar and forgets it's there. Intelligent noise cancellation, automatic limiting, 48-hour total use. The jump in audio intimacy is remarkable.</div>
+            <a class="item-link" href="https://www.amazon.com/s?k=DJI+Mic+Mini+wireless+lavalier" target="_blank">Search on Amazon →</a>
+          </div>
+          <div class="item-price">~$150–$180</div>
+        </div>
+        <div class="item">
+          <div class="item-cat">💡 Lighting</div>
+          <div>
+            <div class="item-name">Neewer 2-Pack Bi-Color LED Panel Kit</div>
+            <div class="item-desc">Two 480-LED panels, 3200K–5600K adjustable, CRI96+, 75" adjustable stands included. Two-light setup eliminates shadows and creates the soft, even look you see in professional documentary interviews.</div>
+            <a class="item-link" href="https://www.amazon.com/s?k=Neewer+480+LED+video+light+kit" target="_blank">Search on Amazon →</a>
+          </div>
+          <div class="item-price">~$80–$100</div>
+        </div>
+        <div class="item">
+          <div class="item-cat">🎬 Recording</div>
+          <div>
+            <div class="item-name">Riverside.fm Standard</div>
+            <div class="item-desc">Unlimited recording, separate participant tracks, AI transcription. At this setup level, the local 4K recording feature ensures nothing is lost to internet quality drops.</div>
+            <a class="item-link" href="https://riverside.fm" target="_blank">riverside.fm →</a>
+          </div>
+          <div class="item-price">$19/mo</div>
+        </div>
+        <div class="item">
+          <div class="item-cat">✂️ Editing</div>
+          <div>
+            <div class="item-name">Descript Creator</div>
+            <div class="item-desc">Unlimited transcription, AI filler-word removal, Overdub, Studio Sound noise reduction. At this level you're producing episodes that families want to watch, not just feel obligated to.</div>
+            <a class="item-link" href="https://www.descript.com" target="_blank">descript.com →</a>
+          </div>
+          <div class="item-price">$24/mo</div>
+        </div>
+        <div class="total-bar">
+          <div>
+            <div class="total-label">Total hardware (one-time)</div>
+            <div class="total-amount">~$360–$430</div>
+          </div>
+          <div class="total-sub">+ ~$43/month for Riverside + Descript while recording</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ PRO ============ -->
+    <div class="tier-block tier-pro" id="pro">
+      <div class="tier-block-header">
+        <div class="tier-label">Tier 04 — Pro</div>
+        <div class="tier-name">Studio-Quality Production</div>
+        <div class="tier-tagline">For families who want the finished film to look like it was made by a documentary crew. This is the setup Story Keeper coaches use in the field.</div>
+        <span class="tier-total">$800–$1,000+</span>
+        <span class="tier-total-note">One-time hardware + ~$53/mo software</span>
+      </div>
+      <div class="tier-items-wrap">
+        <div class="tier-items">
+          <div class="item">
+            <div class="item-cat">📷 Camera</div>
+            <div>
+              <div class="item-name">Sony ZV-1 II</div>
+              <div class="item-desc">Compact digital camera purpose-built for vlogging and interviews. 4K video, face tracking, wide-angle lens ideal for seated subjects at a kitchen table. No photography experience needed — it figures out the shot for you.</div>
+              <a class="item-link" href="https://www.amazon.com/s?k=Sony+ZV-1+II" target="_blank">Search on Amazon →</a>
+            </div>
+            <div class="item-price">~$399</div>
+          </div>
+          <div class="item">
+            <div class="item-cat">🎙 Microphone</div>
+            <div>
+              <div class="item-name">Rode Wireless GO II</div>
+              <div class="item-desc">The industry standard for professional wireless interview audio. Tiny clip-on transmitter, 200m range, 7-hour battery, onboard recording backup. Series IV 2.4GHz with 128-bit encryption. What TV crews use.</div>
+              <a class="item-link" href="https://www.amazon.com/dp/B09M9QFVLK" target="_blank">View on Amazon →</a>
+            </div>
+            <div class="item-price">~$299</div>
+          </div>
+          <div class="item">
+            <div class="item-cat">💡 Lighting</div>
+            <div>
+              <div class="item-name">Godox SL60W + Softbox</div>
+              <div class="item-desc">60W LED studio light with included softbox diffuser. Turns a bright LED into a large, soft, cinematic light source. Set it 45° to one side — this is the look you see in feature documentaries.</div>
+              <a class="item-link" href="https://www.amazon.com/s?k=Godox+SL60W+softbox" target="_blank">Search on Amazon →</a>
+            </div>
+            <div class="item-price">~$100–$130</div>
+          </div>
+          <div class="item">
+            <div class="item-cat">📐 Stability</div>
+            <div>
+              <div class="item-name">Joby GorillaPod 3K</div>
+              <div class="item-desc">Flexible tripod that wraps around chairs, tables, and shelves — or stands on its own. Holds cameras up to 3kg. Compact enough to bring to a parent's home without a production kit.</div>
+              <a class="item-link" href="https://www.amazon.com/s?k=Joby+GorillaPod+3K" target="_blank">Search on Amazon →</a>
+            </div>
+            <div class="item-price">~$50–$70</div>
+          </div>
+          <div class="item">
+            <div class="item-cat">🎬 Recording</div>
+            <div>
+              <div class="item-name">Riverside.fm Pro</div>
+              <div class="item-desc">4K local recording (quality never degrades over internet), full AI suite, magic clips, background noise removal. Professional-grade remote production platform.</div>
+              <a class="item-link" href="https://riverside.fm" target="_blank">riverside.fm →</a>
+            </div>
+            <div class="item-price">$29/mo</div>
+          </div>
+          <div class="item">
+            <div class="item-cat">✂️ Editing</div>
+            <div>
+              <div class="item-name">Descript Creator</div>
+              <div class="item-desc">Full AI editing suite — transcript-based editing, Studio Sound, Overdub, filler word removal. Cut a 60-minute raw interview down to a polished 20-minute episode in the time it takes to watch it once.</div>
+              <a class="item-link" href="https://www.descript.com" target="_blank">descript.com →</a>
+            </div>
+            <div class="item-price">$24/mo</div>
+          </div>
+          <div class="total-bar">
+            <div>
+              <div class="total-label">Total hardware (one-time)</div>
+              <div class="total-amount">~$850–$1,000</div>
+            </div>
+            <div class="total-sub">+ ~$53/month for Riverside Pro + Descript while recording</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COMPARISON TABLE -->
+    <div class="compare-section">
+      <h2>At a glance — all four tiers</h2>
+      <div class="compare-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th class="col-good">Good</th>
+              <th class="col-better">Better</th>
+              <th class="col-best">Best</th>
+              <th class="col-pro">Pro</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Hardware cost</td>
+              <td class="col-good">$0</td>
+              <td class="col-better">~$230–$280</td>
+              <td class="col-best">~$360–$430</td>
+              <td class="col-pro">~$850–$1,000</td>
+            </tr>
+            <tr>
+              <td>Monthly software</td>
+              <td class="col-good">$0</td>
+              <td class="col-better">~$19–$43</td>
+              <td class="col-best">~$43</td>
+              <td class="col-pro">~$53</td>
+            </tr>
+            <tr class="highlight-row">
+              <td>Mike's tested kit</td>
+              <td>—</td>
+              <td class="col-better">✅ Yes</td>
+              <td>—</td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td>Audio quality</td>
+              <td class="col-good">Good</td>
+              <td class="col-better">Very Good</td>
+              <td class="col-best">Excellent</td>
+              <td class="col-pro">Professional</td>
+            </tr>
+            <tr>
+              <td>Video quality</td>
+              <td class="col-good">Good</td>
+              <td class="col-better">Very Good</td>
+              <td class="col-best">4K Sharp</td>
+              <td class="col-pro">Cinematic</td>
+            </tr>
+            <tr>
+              <td>Wireless mic</td>
+              <td>—</td>
+              <td>—</td>
+              <td class="col-best">✅ DJI Mic Mini</td>
+              <td class="col-pro">✅ Rode GO II</td>
+            </tr>
+            <tr>
+              <td>Setup difficulty</td>
+              <td class="col-good">None</td>
+              <td class="col-better">Very easy</td>
+              <td class="col-best">Easy</td>
+              <td class="col-pro">Moderate</td>
+            </tr>
+            <tr>
+              <td>Best for</td>
+              <td class="col-good">Start today</td>
+              <td class="col-better">Most families</td>
+              <td class="col-best">Premium keepsake</td>
+              <td class="col-pro">Film quality</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="note">
+      <p><strong>Note:</strong> The full equipment list — including exact Amazon links, setup tutorials, and how to use each piece — is included in your Story Starter kit after purchase. Customers see the tier overview on the site but receive the complete tested recommendations, settings guides, and step-by-step setup tutorials inside the kit.</p>
+    </div>
+
+  </div>
+
+  <footer class="footer">
+    <p>© 2026 LegacyWorks · Capture. Preserve. Remember. · <a href="mailto:mike@aspirex.org" style="color:rgba(255,255,255,0.3)">mike@aspirex.org</a></p>
+  </footer>
+
+</body>
+</html>
