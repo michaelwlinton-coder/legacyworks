@@ -1,0 +1,758 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>52-Week Interview Question Bank — LegacyWorks Story Starter</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%231a1a1a'/><text x='50%25' y='58%25' text-anchor='middle' fill='%23c9a961' font-family='Georgia,serif' font-size='20' font-style='italic'>L</text></svg>" />
+  <style>
+    :root {
+      --charcoal: #1a1a1a;
+      --ink: #111111;
+      --cream: #f5efe6;
+      --cream-deep: #ebe2d2;
+      --cream-soft: #faf6ee;
+      --gold: #c9a961;
+      --gold-deep: #a88842;
+      --gold-soft: #e0c898;
+      --muted: #6b6258;
+      --sepia: #8b6f47;
+      --font-display: "Cormorant Garamond", Georgia, serif;
+      --font-body: "Inter", -apple-system, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body { font-family: var(--font-body); font-size: 16px; line-height: 1.75; color: var(--ink); background: var(--cream-soft); }
+    a { color: var(--gold-deep); text-decoration: none; }
+    @media print {
+      .no-print { display: none !important; }
+      .chapter { page-break-inside: avoid; }
+      body { background: white; font-size: 13px; }
+      .hero { min-height: auto; padding: 2rem; }
+    }
+
+    /* NAV */
+    .nav { background: var(--charcoal); padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
+    .nav-brand { font-family: var(--font-display); font-size: 1.35rem; letter-spacing: 0.15em; text-transform: uppercase; color: #fff; }
+    .nav-brand span { color: var(--gold); }
+    .nav-right { display: flex; gap: 1rem; align-items: center; }
+    .nav-back { font-size: 0.75rem; color: rgba(255,255,255,0.5); letter-spacing: 0.1em; text-transform: uppercase; }
+    .nav-print { font-size: 0.75rem; color: var(--gold); border: 1px solid rgba(201,169,97,0.4); padding: 0.4rem 0.9rem; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; background: none; font-family: var(--font-body); }
+    .nav-print:hover { background: rgba(201,169,97,0.1); }
+
+    /* HERO */
+    .hero { background: var(--charcoal); padding: 5rem 2rem 4rem; position: relative; overflow: hidden; }
+    .hero::before { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse at 20% 50%, rgba(201,169,97,0.12), transparent 55%), radial-gradient(ellipse at 80% 10%, rgba(139,111,71,0.1), transparent 55%); }
+    .hero-inner { max-width: 860px; margin: 0 auto; position: relative; z-index: 1; }
+    .hero-eyebrow { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 1.5rem; }
+    .hero h1 { font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 300; line-height: 1.1; color: var(--cream); margin-bottom: 1.5rem; }
+    .hero h1 em { font-style: italic; color: var(--gold-soft); }
+    .hero-sub { font-size: 1rem; color: rgba(245,239,230,0.65); max-width: 580px; line-height: 1.7; margin-bottom: 3rem; }
+    .hero-meta { display: flex; gap: 3rem; flex-wrap: wrap; }
+    .hero-stat { }
+    .hero-stat-num { font-family: var(--font-display); font-size: 2.5rem; color: var(--gold); line-height: 1; display: block; }
+    .hero-stat-label { font-size: 0.8rem; color: rgba(245,239,230,0.45); letter-spacing: 0.05em; }
+
+    /* HOW TO USE */
+    .how-to { background: var(--cream-deep); padding: 3rem 2rem; border-bottom: 1px solid rgba(201,169,97,0.2); }
+    .how-to-inner { max-width: 860px; margin: 0 auto; }
+    .how-to h3 { font-family: var(--font-display); font-size: 1.5rem; font-weight: 500; margin-bottom: 1.5rem; color: var(--ink); }
+    .how-to-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
+    .how-to-item { }
+    .how-to-num { font-family: var(--font-display); font-size: 2rem; color: var(--gold); opacity: 0.5; line-height: 1; margin-bottom: 0.35rem; }
+    .how-to-title { font-weight: 600; font-size: 0.88rem; margin-bottom: 0.25rem; }
+    .how-to-body { font-size: 0.83rem; color: var(--muted); line-height: 1.55; }
+
+    /* CHAPTER NAV */
+    .chapter-nav { background: #fff; border-bottom: 1px solid rgba(0,0,0,0.07); padding: 1.25rem 2rem; position: sticky; top: 56px; z-index: 90; overflow-x: auto; }
+    .chapter-nav-inner { max-width: 860px; margin: 0 auto; display: flex; gap: 0.5rem; flex-wrap: nowrap; min-width: max-content; }
+    .chapter-pill { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.4rem 0.85rem; border: 1px solid rgba(0,0,0,0.1); color: var(--muted); white-space: nowrap; text-decoration: none; transition: all 0.2s; }
+    .chapter-pill:hover { border-color: var(--gold); color: var(--gold-deep); background: rgba(201,169,97,0.05); }
+
+    /* MAIN */
+    .main { max-width: 860px; margin: 0 auto; padding: 3rem 2rem 6rem; }
+
+    /* CHAPTER */
+    .chapter { margin-bottom: 4rem; }
+    .chapter-header { padding: 2rem 2rem 1.5rem; background: var(--charcoal); color: var(--cream); margin-bottom: 0; position: relative; overflow: hidden; }
+    .chapter-header::after { content: ""; position: absolute; right: -20px; top: 50%; transform: translateY(-50%); font-family: var(--font-display); font-size: 10rem; color: rgba(255,255,255,0.03); line-height: 1; font-style: italic; }
+    .chapter-num-label { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 0.5rem; }
+    .chapter-title { font-family: var(--font-display); font-size: clamp(1.8rem, 3.5vw, 2.75rem); font-weight: 300; line-height: 1.1; margin-bottom: 0.75rem; }
+    .chapter-title em { font-style: italic; color: var(--gold-soft); }
+    .chapter-desc { font-size: 0.88rem; color: rgba(245,239,230,0.55); max-width: 55ch; line-height: 1.6; }
+    .chapter-weeks { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(201,169,97,0.6); margin-top: 1rem; display: block; }
+
+    /* QUESTIONS */
+    .questions { background: #fff; border: 1px solid rgba(0,0,0,0.06); }
+    .question-item { display: grid; grid-template-columns: 4rem 1fr; gap: 0; border-bottom: 1px solid rgba(0,0,0,0.05); }
+    .question-item:last-child { border-bottom: none; }
+    .week-num { background: rgba(201,169,97,0.06); border-right: 1px solid rgba(201,169,97,0.1); padding: 1.25rem 0.75rem; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .week-label { font-size: 0.6rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); display: block; }
+    .week-number { font-family: var(--font-display); font-size: 1.6rem; color: var(--charcoal); line-height: 1; }
+    .question-body { padding: 1.25rem 1.5rem; }
+    .question-main { font-size: 1rem; font-weight: 500; color: var(--ink); margin-bottom: 0.5rem; line-height: 1.4; }
+    .question-follow { font-size: 0.82rem; color: var(--muted); line-height: 1.55; }
+    .question-follow span { display: inline; }
+    .question-follow span::before { content: "· "; color: var(--gold); }
+    .question-follow span:first-child::before { content: "Follow-ups: "; color: var(--muted); font-style: italic; }
+    .question-tip { display: inline-block; margin-top: 0.5rem; font-size: 0.75rem; background: rgba(201,169,97,0.08); color: var(--gold-deep); padding: 0.2rem 0.65rem; font-style: italic; }
+
+    /* CLOSING NOTE */
+    .closing { background: var(--charcoal); color: var(--cream); padding: 4rem 2rem; text-align: center; }
+    .closing-inner { max-width: 600px; margin: 0 auto; }
+    .closing h2 { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3rem); font-weight: 300; margin-bottom: 1.25rem; }
+    .closing h2 em { color: var(--gold); font-style: italic; }
+    .closing p { color: rgba(245,239,230,0.6); margin-bottom: 2rem; font-size: 0.95rem; }
+    .btn-closing { display: inline-block; background: var(--gold); color: var(--charcoal); padding: 0.9rem 2rem; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; }
+
+    .footer { background: #111; color: rgba(255,255,255,0.3); padding: 1.5rem 2rem; text-align: center; font-size: 0.8rem; }
+
+    @media (max-width: 600px) {
+      .question-item { grid-template-columns: 3rem 1fr; }
+      .week-number { font-size: 1.2rem; }
+      .hero-meta { gap: 1.5rem; }
+      .how-to-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav no-print">
+    <div class="nav-brand">Legacy<span>Works</span></div>
+    <div class="nav-right">
+      <a href="kit.html" class="nav-back">← Story Starter</a>
+      <button class="nav-print" onclick="window.print()">Print / Save PDF</button>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <span class="hero-eyebrow">Story Starter · Inside the Kit · Members Only</span>
+      <h1>52 weeks.<br><em>One complete life.</em></h1>
+      <p class="hero-sub">These questions were designed by professional story coaches and documentary interviewers with over five decades of experience drawing out the stories families never knew they needed to hear. One session per week. Thirty minutes each. A year from now, you'll have something no one in your family has ever had.</p>
+      <div class="hero-meta">
+        <div class="hero-stat"><span class="hero-stat-num">52</span><span class="hero-stat-label">Weekly sessions</span></div>
+        <div class="hero-stat"><span class="hero-stat-num">12</span><span class="hero-stat-label">Life chapters</span></div>
+        <div class="hero-stat"><span class="hero-stat-num">200+</span><span class="hero-stat-label">Follow-up prompts</span></div>
+        <div class="hero-stat"><span class="hero-stat-num">30</span><span class="hero-stat-label">Minutes per session</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="how-to no-print">
+    <div class="how-to-inner">
+      <h3>How to use this question bank</h3>
+      <div class="how-to-grid">
+        <div class="how-to-item">
+          <div class="how-to-num">01</div>
+          <div class="how-to-title">One question per session</div>
+          <p class="how-to-body">Each week focuses on one main question. Don't rush through them. One rich conversation is worth more than ten surface-level ones.</p>
+        </div>
+        <div class="how-to-item">
+          <div class="how-to-num">02</div>
+          <div class="how-to-title">Follow the follow-ups</div>
+          <p class="how-to-body">The follow-up prompts are where the real stories live. When your subject answers, go deeper with them — don't move on until you've exhausted what they have to say.</p>
+        </div>
+        <div class="how-to-item">
+          <div class="how-to-num">03</div>
+          <div class="how-to-title">Let silence breathe</div>
+          <p class="how-to-body">The most powerful interviewing technique is silence. After they answer, wait. Count to five. The story that comes after the pause is almost always the one they've never told.</p>
+        </div>
+        <div class="how-to-item">
+          <div class="how-to-num">04</div>
+          <div class="how-to-title">Skip order freely</div>
+          <p class="how-to-body">If they're in a mood to talk about childhood, do childhood. If they're feeling reflective about legacy, go there. The order is a guide, not a rule.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <nav class="chapter-nav no-print">
+    <div class="chapter-nav-inner">
+      <a href="#ch1" class="chapter-pill">Roots</a>
+      <a href="#ch2" class="chapter-pill">Childhood</a>
+      <a href="#ch3" class="chapter-pill">Family</a>
+      <a href="#ch4" class="chapter-pill">Coming of Age</a>
+      <a href="#ch5" class="chapter-pill">Love & Marriage</a>
+      <a href="#ch6" class="chapter-pill">Work & Purpose</a>
+      <a href="#ch7" class="chapter-pill">Parenthood</a>
+      <a href="#ch8" class="chapter-pill">Faith & Belief</a>
+      <a href="#ch9" class="chapter-pill">Hardship</a>
+      <a href="#ch10" class="chapter-pill">Joy & Gratitude</a>
+      <a href="#ch11" class="chapter-pill">Wisdom</a>
+      <a href="#ch12" class="chapter-pill">Legacy</a>
+    </div>
+  </nav>
+
+  <div class="main">
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 1: ROOTS & ORIGINS -->
+    <!-- ============================================================ -->
+    <div class="chapter" id="ch1">
+      <div class="chapter-header">
+        <span class="chapter-num-label">Chapter 01 · Weeks 1–4</span>
+        <h2 class="chapter-title">Roots &amp; <em>Origins</em></h2>
+        <p class="chapter-desc">Before your subject's life began, there was a world that shaped everything. These questions surface the history, culture, and family origins that formed the foundation of who they are.</p>
+        <span class="chapter-weeks">Weeks 1 — 4</span>
+      </div>
+      <div class="questions">
+        <div class="question-item">
+          <div class="week-num"><span class="week-label">Week</span><span class="week-number">1</span></div>
+          <div class="question-body">
+            <div class="question-main">Where did your family come from — and what brought them here?</div>
+            <p class="question-follow"><span>Where were your grandparents born?</span><span>What do you know about why your family moved or stayed?</span><span>Was there ever a story of hardship that brought your family to where you grew up?</span><span>What language did your grandparents speak at home?</span></p>
+          </div>
+        </div>
+        <div class="question-item">
+          <div class="week-num"><span class="week-label">Week</span><span class="week-number">2</span></div>
+          <div class="question-body">
+            <div class="question-main">What do you know about your grandparents — and what do you wish you knew?</div>
+            <p class="question-follow"><span>What did your grandparents do for work?</span><span>What do you remember about how they lived?</span><span>Was there a grandparent you were especially close to?</span><span>Is there a story about them you've told many times?</span><span>What question do you wish you'd asked them before they died?</span></p>
+            <span class="question-tip">This question often opens deeply emotional territory. Give them space.</span>
+          </div>
+        </div>
+        <div class="question-item">
+          <div class="week-num"><span class="week-label">Week</span><span class="week-number">3</span></div>
+          <div class="question-body">
+            <div class="question-main">What was your family's name, and is there a story behind it?</div>
+            <p class="question-follow"><span>Was the family name ever changed?</span><span>Do you know what it means or where it comes from?</span><span>Were there family nicknames passed down through generations?</span><span>What did it mean to carry that name when you were growing up?</span></p>
+          </div>
+        </div>
+        <div class="question-item">
+          <div class="week-num"><span class="week-label">Week</span><span class="week-number">4</span></div>
+          <div class="question-body">
+            <div class="question-main">What family traditions, foods, or customs came from your heritage — and which ones did you carry forward?</div>
+            <p class="question-follow"><span>Were there specific holiday traditions tied to your cultural background?</span><span>Were there foods your family made that no one else seemed to make?</span><span>Is there a tradition you kept? One you let go?</span><span>What did your heritage mean to you growing up?</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 2: CHILDHOOD -->
+    <!-- ============================================================ -->
+    <div class="chapter" id="ch2">
+      <div class="chapter-header">
+        <span class="chapter-num-label">Chapter 02 · Weeks 5–9</span>
+        <h2 class="chapter-title"><em>Childhood</em> &amp; Early Years</h2>
+        <p class="chapter-desc">The years that formed them. These questions go beyond "where did you grow up" to uncover the texture of daily life, the neighborhood, the friends, the fears, and the small joys that most people never think to mention.</p>
+        <span class="chapter-weeks">Weeks 5 — 9</span>
+      </div>
+      <div class="questions">
+        <div class="question-item">
+          <div class="week-num"><span class="week-label">Week</span><span class="week-number">5</span></div>
+          <div class="question-body">
+            <div class="question-main">Describe the house or home you grew up in — room by room, if you can.</div>
+            <p class="question-follow"><span>What did it smell like?</span><span>Which room do you remember most clearly?</span><span>Was there a spot in the house that was yours — a corner, a step, a tree outside?</span><span>What sounds do you remember from that house?</span></p>
+            <span class="question-tip">Sensory details unlock vivid memories. Ask about smells, sounds, textures.</span>
+          </div>
+        </div>
+        <div class="question-item">
+          <div class="week-num"><span class="week-label">Week</span><span class="week-number">6</span></div>
+          <div class="question-body">
+            <div class="question-main">What was your neighborhood like — and who were the people who shaped it?</div>
+            <p class="question-follow"><span>Who were your neighbors?</span><span>Where did the kids hang out?</span><span>Were there characters in your neighborhood everyone knew?</span><span>What games did you play and where did you play them?</span><span>What was dangerous, off-limits, or forbidden?</span></p>
+          </div>
+        </div>
+        <div class="question-item">
+          <div class="week-num"><span class="week-label">Week</span><span class="week-number">7</span></div>
+          <div class="question-body">
+            <div class="question-main">What was school like for you — not the grades, but the experience?</div>
+            <p class="question-follow"><span>Who was your favorite teacher and why?</span><span>What subject did you love? Which one did you dread?</span><span>Were you popular, a loner, somewhere in between?</span><span>What's a memory from school that you've never forgotten?</span><span>Did you ever get in real trouble?</span></p>
+          </div>
+        </div>
+        <div class="question-item">
+          <div class="week-num"><span class="week-label">Week</span><span class="week-number">8</span></div>
+          <div class="question-body">
+            <div class="question-main">Who were your closest friends growing up — and what happened to them?</div>
+            <p class="question-follow"><span>What made that friendship special?</span><span>What did you get into together?</span><span>Did you stay friends? Lose touch? Fall out?</span><span>Is there a friend from childhood you think about and wonder about?</span></p>
+          </div>
+        </div>
+        <div class="question-item">
+          <div class="week-num"><span class="week-label">Week</span><span class="week-number">9</span></div>
+          <div class="question-body">
+            <div class="question-main">What were you afraid of as a child — and what made you feel safe?</div>
+            <p class="question-follow"><span>Was there something that genuinely frightened you?</span><span>Who did you go to when you were scared or upset?</span><span>Was there a comfort — a person, a place, an object — that always helped?</span><span>What worries did you carry that you never told anyone?</span></p>
+            <span class="question-tip">This question reveals the emotional interior of their childhood. Be patient and gentle.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 3: FAMILY -->
+    <!-- ============================================================ -->
+    <div class="chapter" id="ch3">
+      <div class="chapter-header">
+        <span class="chapter-num-label">Chapter 03 · Weeks 10–13</span>
+        <h2 class="chapter-title">Family &amp; <em>the People Who Raised You</em></h2>
+        <p class="chapter-desc">The relationships that formed them — parents, siblings, the family table, the fights, the love, the silence. These questions go into the heart of what family actually felt like from the inside.</p>
+        <span class="chapter-weeks">Weeks 10 — 13</span>
+      </div>
+      <div class="questions">
+        <div class="question-item">
+          <div class="week-num"><span class="week-label">Week</span><span class="week-number">10</span></div>
+          <div class="question-body">
+            <div class="question-main">Tell me about your mother — not who she was to the world, but who she was to you.</div>
+            <p class="question-follow"><span>What did she look like when you picture her?</span><span>What was her laugh like?</span><span>What did she do when she was happy? When she was angry?</span><span>What did she sacrifice that you only understood later?</span><span>What do you wish you'd said to her?</span></p>
+            <span class="question-tip">Have tissues nearby. This question almost always brings tears.</span>
+          </div>
+        </div>
+        <div class="question-item">
+          <div class="week-num"><span class="week-label">Week</span><span class="week-number">11</span></div>
+          <div class="question-body">
+            <div class="question-main">Tell me about your father — what kind of man was he, and how did that shape you?</div>
+            <p class="question-follow"><span>Was he a man of many words or few?</span><span>How did he show love?</span><span>What did you learn from him — about work, about being a person?</span><span>Was there a tension between you? Did it ever resolve?</span><span>What is the most important thing he ever told you?</span></p>
+          </div>
+        </div>
+        <div class="question-item">
+          <div class="week-num"><span class="week-label">Week</span><span class="week-number">12</span></div>
+          <div class="question-body">
+            <div class="question-main">What was the family dinner table like — and what do you miss most about it?</div>
+            <p class="question-follow"><span>Who sat where?</span><span>What was the food like?</span><span>What got talked about? What was never mentioned?</span><span>Were there rules at the table?</span><span>What would you give to sit at that table one more time?</span></p>
+          </div>
+        </div>
+        <div class="question-item">
+          <div class="week-num"><span class="week-label">Week</span><span class="week-number">13</span></div>
+          <div class="question-body">
+            <div class="question-main">What were your siblings like — and how did growing up together shape both of you?</div>
+            <p class="question-follow"><span>Were you close? Competitive? Both?</span><span>What did you fight about?</span><span>What did you protect each other from?</span><span>What is your relationship like now compared to then?</span><span>What is something you love about them that you've never said out loud?</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 4: COMING OF AGE -->
+    <!-- ============================================================ -->
+    <div class="chapter" id="ch4">
+      <div class="chapter-header">
+        <span class="chapter-num-label">Chapter 04 · Weeks 14–17</span>
+        <h2 class="chapter-title">Coming of <em>Age</em></h2>
+        <p class="chapter-desc">The years between childhood and adulthood — the first time they chose something for themselves, the first heartbreak, the first real failure, the moment they started to understand who they were becoming.</p>
+        <span class="chapter-weeks">Weeks 14 — 17</span>
+      </div>
+      <div class="questions">
+        <div class="question-item">
+          <div class="week-num"><span class="week-label">Week</span><span class="week-number">14</span></div>
+          <div class="question-body">
+            <div class="question-main">What did you want to be when you grew up — and how did that change over time?</div>
+            <p class="question-follow"><span>What was your earliest dream for yourself?</span><span>At what point did that dream change?</span><span>Was there a moment you gave something up?</span><span>Is there a version of your life you imagined that never happened — and do you still think about it?</span></p>
+          </div>
+        </div>
+        <div class="question-item">
+          <div class="week-num"><span class="week-label">Week</span><span class="week-number">15</span></div>
+          <div class="question-body">
+            <div class="question-main">What was your first real heartbreak — and what did it teach you?</div>
+            <p class="question-follow"><span>Was it romantic, or was it something else — a loss, a betrayal, a failure?</span><span>How did you get through it?</span><span>Who helped you?</span><span>What do you understand about that time now that you didn't then?</span></p>
+            <span class="question-tip">Heartbreak questions can surface profound self-knowledge. Don't rush past the answer.</span>
+          </div>
+        </div>
+        <div class="question-item">
+          <div class="week-num"><span class="week-label">Week</span><span class="week-number">16</span></div>
+          <div class="question-body">
+            <div class="question-main">What was the bravest thing you did when you were young?</div>
+            <p class="question-follow"><span>Was it something others saw, or something only you knew about?</span><span>Were you afraid?</span><span>What made you do it anyway?</span><span>How did it change how you saw yourself?</span></p>
+          </div>
+        </div>
+        <div class="question-item">
+          <div class="week-num"><span class="week-label">Week</span><span class="week-number">17</span></div>
+          <div class="question-body">
+            <div class="question-main">What was the moment you felt like you'd finally become an adult?</div>
+            <p class="question-follow"><span>Was it a specific event, or a slow realization?</span><span>Did it feel like freedom, weight, or both?</span><span>What responsibility did you take on that you hadn't carried before?</span><span>Were you ready?</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 5: LOVE & MARRIAGE -->
+    <!-- ============================================================ -->
+    <div class="chapter" id="ch5">
+      <div class="chapter-header">
+        <span class="chapter-num-label">Chapter 05 · Weeks 18–21</span>
+        <h2 class="chapter-title">Love, <em>Marriage</em> &amp; Partnership</h2>
+        <p class="chapter-desc">The most intimate chapter. How they found the person they built a life with, what that love has looked like over decades, and what they've learned about partnership that they wish they'd known at the beginning.</p>
+        <span class="chapter-weeks">Weeks 18 — 21</span>
+      </div>
+      <div class="questions">
+        <div class="question-item">
+          <div class="week-num"><span class="week-label">Week</span><span class="week-number">18</span></div>
+          <div class="question-body">
+            <div class="question-main">How did you meet the person you built your life with — and what was it about them?</div>
+            <p class="question-follow"><span>What did they look like when you first saw them?</span><span>What was it that drew you in?</span><span>When did you know they were the one?</span><span>What did other people think of them at first?</span></p>
+            <span class="question-tip">This is often a joyful session. Let them take their time and relish the memory.</span>
+          </div>
+        </div>
+        <div class="question-item">
+          <div class="week-num"><span class="week-label">Week</span><span class="week-number">19</span></div>
+          <div class="question-body">
+            <div class="question-main">What has been the hardest season of your marriage — and how did you come through it?</div>
+            <p class="question-follow"><span>Was there a point where you weren't sure you'd make it?</span><span>What held you together?</span><span>What did you learn about your partner in that season that you didn't know before?</span><span>What do you wish you'd done differently?</span></p>
+          </div>
+        </div>
+        <div class="question-item">
+          <div class="week-num"><span class="week-label">Week</span><span class="week-number">20</span></div>
+          <div class="question-body">
+            <div class="question-main">What does love look like after all these years — not the feeling, but the daily practice of it?</div>
+            <p class="question-follow"><span>How has the way you love each other changed?</span><span>What small things do you do for each other without thinking?</span><span>What do you still not know about your partner that surprises you?</span><span>What have they taught you about yourself?</span></p>
+          </div>
+        </div>
+        <div class="question-item">
+          <div class="week-num"><span class="week-label">Week</span><span class="week-number">21</span></div>
+          <div class="question-body">
+            <div class="question-main">What advice would you give someone just starting out in marriage or partnership?</div>
+            <p class="question-follow"><span>What do you know now that would have helped you in the early years?</span><span>What is the one thing you never compromise on?</span><span>What is the one thing you've learned to let go of?</span><span>If you could say one thing to your partner right now, what would it be?</span></p>
+            <span class="question-tip">Consider filming this session with the partner present if possible.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 6: WORK & PURPOSE -->
+    <!-- ============================================================ -->
+    <div class="chapter" id="ch6">
+      <div class="chapter-header">
+        <span class="chapter-num-label">Chapter 06 · Weeks 22–25</span>
+        <h2 class="chapter-title">Work, <em>Purpose</em> &amp; Calling</h2>
+        <p class="chapter-desc">What they did with their days — but more importantly, why. These questions go beyond job title to uncover what work meant to them, what drove them, and what they built.</p>
+        <span class="chapter-weeks">Weeks 22 — 25</span>
+      </div>
+      <div class="questions">
+        <div class="question-item">
+          <div class="week-num"><span class="week-label">Week</span><span class="week-number">22</span></div>
+          <div class="question-body">
+            <div class="question-main">What was your first real job — and what did it teach you?</div>
+            <p class="question-follow"><span>How did you get it?</span><span>What was hard about it?</span><span>What did you learn about work that you've carried ever since?</span><span>Who was your first boss — and were they a good one?</span></p>
+          </div>
+        </div>
+        <div class="question-item">
+          <div class="week-num"><span class="week-label">Week</span><span class="week-number">23</span></div>
+          <div class="question-body">
+            <div class="question-main">What work are you most proud of in your life — and why does it matter to you?</div>
+            <p class="question-follow"><span>Was it something you were paid for, or something else entirely?</span><span>Did other people recognize it, or was it quiet work?</span><span>What did building that thing cost you?</span><span>Who helped you?</span></p>
+          </div>
+        </div>
+        <div class="question-item">
+          <div class="week-num"><span class="week-label">Week</span><span class="week-number">24</span></div>
+          <div class="question-body">
+            <div class="question-main">Was there a career path you didn't take — and do you wonder about it?</div>
+            <p class="question-follow"><span>What was the road not taken?</span><span>What made you choose the path you did?</span><span>Do you have regrets, or do you think it worked out as it should have?</span><span>What would you tell your younger self about that choice?</span></p>
+          </div>
+        </div>
+        <div class="question-item">
+          <div class="week-num"><span class="week-label">Week</span><span class="week-number">25</span></div>
+          <div class="question-body">
+            <div class="question-main">What did you want to accomplish in your life — and how do you feel about what you achieved?</div>
+            <p class="question-follow"><span>Did your definition of success change over time?</span><span>Is there something you haven't done that you still want to?</span><span>What does a life well-lived look like to you?</span><span>What would you want written on your tombstone?</span></p>
+            <span class="question-tip">This often surfaces unexpected honesty. Be ready to sit with silence.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 7: PARENTHOOD -->
+    <!-- ============================================================ -->
+    <div class="chapter" id="ch7">
+      <div class="chapter-header">
+        <span class="chapter-num-label">Chapter 07 · Weeks 26–29</span>
+        <h2 class="chapter-title">Parenthood &amp; <em>the Children You Raised</em></h2>
+        <p class="chapter-desc">The most transformative role most people ever play. These questions invite your subject to reflect on what it meant to be a parent — the love, the fear, the mistakes, and the pride they carry.</p>
+        <span class="chapter-weeks">Weeks 26 — 29</span>
+      </div>
+      <div class="questions">
+        <div class="question-item">
+          <div class="week-num"><span class="week-label">Week</span><span class="week-number">26</span></div>
+          <div class="question-body">
+            <div class="question-main">What was it like the moment you first held your child — what did you feel that you didn't expect?</div>
+            <p class="question-follow"><span>What did they look like?</span><span>What were you afraid of?</span><span>What did you promise yourself in that moment?</span><span>Did anything surprise you about the feeling?</span></p>
+          </div>
+        </div>
+        <div class="question-item">
+          <div class="week-num"><span class="week-label">Week</span><span class="week-number">27</span></div>
+          <div class="question-body">
+            <div class="question-main">What kind of parent did you want to be — and what kind of parent do you think you were?</div>
+            <p class="question-follow"><span>What did you consciously try to do differently from your own parents?</span><span>What did you repeat without meaning to?</span><span>What are you most proud of as a parent?</span><span>What would you do differently?</span></p>
+            <span class="question-tip">This question often holds the most private feelings parents carry. Approach it gently.</span>
+          </div>
+        </div>
+        <div class="question-item">
+          <div class="week-num"><span class="week-label">Week</span><span class="week-number">28</span></div>
+          <div class="question-body">
+            <div class="question-main">What is your proudest moment as a parent — and what did it feel like?</div>
+            <p class="question-follow"><span>Was it a big moment, or something small that nobody else would understand?</span><span>Did you tell them how proud you were?</span><span>Is there something you're proud of that they don't know about?</span></p>
+          </div>
+        </div>
+        <div class="question-item">
+          <div class="week-num"><span class="week-label">Week</span><span class="week-number">29</span></div>
+          <div class="question-body">
+            <div class="question-main">What do you want your children to know about you that they might not — and what do you want them to know about themselves?</div>
+            <p class="question-follow"><span>Is there something about your own life they don't fully understand?</span><span>Is there something you see in them that you've never told them?</span><span>What do you hope they carry forward from your family?</span><span>What do you hope they leave behind?</span></p>
+            <span class="question-tip">Consider sharing this session's recording directly with the children when it's done.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 8: FAITH & BELIEF -->
+    <!-- ============================================================ -->
+    <div class="chapter" id="ch8">
+      <div class="chapter-header">
+        <span class="chapter-num-label">Chapter 08 · Weeks 30–32</span>
+        <h2 class="chapter-title">Faith, <em>Belief</em> &amp; the Inner Life</h2>
+        <p class="chapter-desc">What they believe about life, death, God, and meaning. These questions go beyond religious affiliation to uncover the deepest convictions your subject carries — whether they've spoken them aloud or kept them private for decades.</p>
+        <span class="chapter-weeks">Weeks 30 — 32</span>
+      </div>
+      <div class="questions">
+        <div class="question-item">
+          <div class="week-num"><span class="week-label">Week</span><span class="week-number">30</span></div>
+          <div class="question-body">
+            <div class="question-main">What did you grow up believing — and how has that changed over time?</div>
+            <p class="question-follow"><span>What was your family's relationship to faith or religion?</span><span>Did you embrace it, question it, or leave it behind?</span><span>Was there a moment that challenged what you believed?</span><span>What do you believe now that you didn't before?</span></p>
+          </div>
+        </div>
+        <div class="question-item">
+          <div class="week-num"><span class="week-label">Week</span><span class="week-number">31</span></div>
+          <div class="question-body">
+            <div class="question-main">What do you believe happens after we die?</div>
+            <p class="question-follow"><span>Has that belief changed over the course of your life?</span><span>Does it bring you comfort or something else?</span><span>What do you hope for?</span><span>Is there someone who has died that you believe you'll see again?</span></p>
+            <span class="question-tip">One of the most profound questions in the whole bank. Don't rush it.</span>
+          </div>
+        </div>
+        <div class="question-item">
+          <div class="week-num"><span class="week-label">Week</span><span class="week-number">32</span></div>
+          <div class="question-body">
+            <div class="question-main">What is the one thing you believe most deeply — about life, about people, about what matters?</div>
+            <p class="question-follow"><span>Has life confirmed this belief or tested it?</span><span>Where did it come from?</span><span>Is it something you've said out loud, or carried quietly?</span><span>What would you want your grandchildren to believe?</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 9: HARDSHIP & RESILIENCE -->
+    <!-- ============================================================ -->
+    <div class="chapter" id="ch9">
+      <div class="chapter-header">
+        <span class="chapter-num-label">Chapter 09 · Weeks 33–36</span>
+        <h2 class="chapter-title">Hardship &amp; <em>Resilience</em></h2>
+        <p class="chapter-desc">Every life contains suffering. These questions don't shy away from it — they ask your subject to share the hardest seasons, the losses that changed everything, and what they found inside themselves when things fell apart.</p>
+        <span class="chapter-weeks">Weeks 33 — 36</span>
+      </div>
+      <div class="questions">
+        <div class="question-item">
+          <div class="week-num"><span class="week-label">Week</span><span class="week-number">33</span></div>
+          <div class="question-body">
+            <div class="question-main">What is the hardest thing you have ever been through?</div>
+            <p class="question-follow"><span>What was it like at the time?</span><span>Who was there with you?</span><span>What got you through it?</span><span>What did you discover about yourself in that season that you didn't know before?</span></p>
+            <span class="question-tip">Be present, not clinical. If they cry, let them. Don't rush to the next question.</span>
+          </div>
+        </div>
+        <div class="question-item">
+          <div class="week-num"><span class="week-label">Week</span><span class="week-number">34</span></div>
+          <div class="question-body">
+            <div class="question-main">Who have you lost that you still grieve — and what do you miss most about them?</div>
+            <p class="question-follow"><span>When you think of them, what do you see?</span><span>What's something about them that only you remember?</span><span>What would you tell them if you could?</span><span>How has their absence shaped the person you've become?</span></p>
+          </div>
+        </div>
+        <div class="question-item">
+          <div class="week-num"><span class="week-label">Week</span><span class="week-number">35</span></div>
+          <div class="question-body">
+            <div class="question-main">Was there a time in your life when you were genuinely lost — and how did you find your way back?</div>
+            <p class="question-follow"><span>What did lost feel like for you?</span><span>Was there a person, a moment, or an idea that helped you turn around?</span><span>What would you tell someone going through something similar?</span></p>
+          </div>
+        </div>
+        <div class="question-item">
+          <div class="week-num"><span class="week-label">Week</span><span class="week-number">36</span></div>
+          <div class="question-body">
+            <div class="question-main">What is the mistake you've made that you've had the hardest time forgiving yourself for?</div>
+            <p class="question-follow"><span>Have you been able to forgive yourself?</span><span>Did you make it right? Could you?</span><span>What would you want someone to know about carrying that kind of weight?</span></p>
+            <span class="question-tip">This is deeply personal. Assure them they can share as much or as little as they want.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 10: JOY & GRATITUDE -->
+    <!-- ============================================================ -->
+    <div class="chapter" id="ch10">
+      <div class="chapter-header">
+        <span class="chapter-num-label">Chapter 10 · Weeks 37–41</span>
+        <h2 class="chapter-title">Joy, <em>Gratitude</em> &amp; the Best of It</h2>
+        <p class="chapter-desc">After the hardship chapters, these sessions invite lightness. What made them laugh, what they savored, the small pleasures and the great ones — the parts of life that made it worth living.</p>
+        <span class="chapter-weeks">Weeks 37 — 41</span>
+      </div>
+      <div class="questions">
+        <div class="question-item">
+          <div class="week-num"><span class="week-label">Week</span><span class="week-number">37</span></div>
+          <div class="question-body">
+            <div class="question-main">What has made you laugh harder than almost anything in your life?</div>
+            <p class="question-follow"><span>Tell me the whole story.</span><span>Who was there?</span><span>Can you still laugh about it now?</span><span>What was it about that moment that got you so completely?</span></p>
+            <span class="question-tip">Keep the camera rolling no matter what. Laughter is the best thing you'll capture all year.</span>
+          </div>
+        </div>
+        <div class="question-item">
+          <div class="week-num"><span class="week-label">Week</span><span class="week-number">38</span></div>
+          <div class="question-body">
+            <div class="question-main">What is the most beautiful place you have ever been — and what made it feel that way?</div>
+            <p class="question-follow"><span>Was it somewhere you traveled, or somewhere close to home?</span><span>Were you alone or with someone?</span><span>What did it feel like to be there?</span><span>Do you ever go back — in memory or in person?</span></p>
+          </div>
+        </div>
+        <div class="question-item">
+          <div class="week-num"><span class="week-label">Week</span><span class="week-number">39</span></div>
+          <div class="question-body">
+            <div class="question-main">What are the small, ordinary pleasures of your life that you treasure most?</div>
+            <p class="question-follow"><span>The morning ritual. The favorite food. The small habit nobody knows about.</span><span>What does a perfect day look like for you?</span><span>What do you look forward to every week?</span><span>What would you miss most if it were gone?</span></p>
+          </div>
+        </div>
+        <div class="question-item">
+          <div class="week-num"><span class="week-label">Week</span><span class="week-number">40</span></div>
+          <div class="question-body">
+            <div class="question-main">What are you most grateful for — not in the abstract, but specifically?</div>
+            <p class="question-follow"><span>Name the specific people, moments, and gifts.</span><span>Is there something you're grateful for that you never properly thanked someone for?</span><span>What do you have that you almost didn't?</span></p>
+          </div>
+        </div>
+        <div class="question-item">
+          <div class="week-num"><span class="week-label">Week</span><span class="week-number">41</span></div>
+          <div class="question-body">
+            <div class="question-main">What has surprised you most about the life you've lived?</div>
+            <p class="question-follow"><span>What turned out better than you expected?</span><span>What didn't?</span><span>What has life given you that you didn't ask for and turned out to be a gift?</span><span>What do you know now that would have astonished your younger self?</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 11: WISDOM -->
+    <!-- ============================================================ -->
+    <div class="chapter" id="ch11">
+      <div class="chapter-header">
+        <span class="chapter-num-label">Chapter 11 · Weeks 42–47</span>
+        <h2 class="chapter-title">Wisdom &amp; <em>What You Know Now</em></h2>
+        <p class="chapter-desc">The distilled knowledge of a lifetime. These questions ask your subject to share what they've learned — about people, about choices, about what matters and what doesn't. The wisdom in these sessions is often what families treasure most.</p>
+        <span class="chapter-weeks">Weeks 42 — 47</span>
+      </div>
+      <div class="questions">
+        <div class="question-item">
+          <div class="week-num"><span class="week-label">Week</span><span class="week-number">42</span></div>
+          <div class="question-body">
+            <div class="question-main">What is the most important lesson your life has taught you?</div>
+            <p class="question-follow"><span>Did someone teach it to you, or did you learn it the hard way?</span><span>When did you know it was true?</span><span>How would you put it in one sentence for a grandchild?</span></p>
+          </div>
+        </div>
+        <div class="question-item">
+          <div class="week-num"><span class="week-label">Week</span><span class="week-number">43</span></div>
+          <div class="question-body">
+            <div class="question-main">What do you know about people now that you wish you'd known at 25?</div>
+            <p class="question-follow"><span>What took you the longest to understand about human nature?</span><span>What do you see in people now that you missed when you were young?</span><span>What kind of person should someone avoid — and what kind should they hold close?</span></p>
+          </div>
+        </div>
+        <div class="question-item">
+          <div class="week-num"><span class="week-label">Week</span><span class="week-number">44</span></div>
+          <div class="question-body">
+            <div class="question-main">What do you believe about money — and has that belief served you well?</div>
+            <p class="question-follow"><span>What did money mean in your family growing up?</span><span>What did you learn about it the hard way?</span><span>What would you tell a young person about money that took you decades to understand?</span><span>What can't money buy that people think it can?</span></p>
+          </div>
+        </div>
+        <div class="question-item">
+          <div class="week-num"><span class="week-label">Week</span><span class="week-number">45</span></div>
+          <div class="question-body">
+            <div class="question-main">What do you know about health — the body, the mind — that you wish you'd taken seriously earlier?</div>
+            <p class="question-follow"><span>What did you take for granted when you were young?</span><span>What habits do you wish you'd built earlier?</span><span>What does getting older actually feel like from the inside?</span><span>What surprised you about aging?</span></p>
+          </div>
+        </div>
+        <div class="question-item">
+          <div class="week-num"><span class="week-label">Week</span><span class="week-number">46</span></div>
+          <div class="question-body">
+            <div class="question-main">What do you believe about friendship — what makes a good friend, and what have yours meant to you?</div>
+            <p class="question-follow"><span>Who is the oldest friend you still have?</span><span>What is it about a person that makes you trust them?</span><span>Have you ever had a friendship end — and what did that teach you?</span><span>What would you want someone to know about being a good friend?</span></p>
+          </div>
+        </div>
+        <div class="question-item">
+          <div class="week-num"><span class="week-label">Week</span><span class="week-number">47</span></div>
+          <div class="question-body">
+            <div class="question-main">If you could go back and give your younger self one piece of advice, what would it be?</div>
+            <p class="question-follow"><span>At what age would you give it?</span><span>Do you think your younger self would have listened?</span><span>What do you think would have changed if you had?</span></p>
+            <span class="question-tip">The answer to this question is often the most quotable moment in the entire year of sessions.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 12: LEGACY -->
+    <!-- ============================================================ -->
+    <div class="chapter" id="ch12">
+      <div class="chapter-header">
+        <span class="chapter-num-label">Chapter 12 · Weeks 48–52</span>
+        <h2 class="chapter-title"><em>Legacy</em> &amp; What Remains</h2>
+        <p class="chapter-desc">The final chapter. These questions ask your subject to look at the whole of their life and speak directly to the people who will carry them forward. These sessions often become the most watched of everything you film.</p>
+        <span class="chapter-weeks">Weeks 48 — 52</span>
+      </div>
+      <div class="questions">
+        <div class="question-item">
+          <div class="week-num"><span class="week-label">Week</span><span class="week-number">48</span></div>
+          <div class="question-body">
+            <div class="question-main">How do you want to be remembered — not by the world, but by the people who loved you?</div>
+            <p class="question-follow"><span>What do you hope they say about you at your funeral?</span><span>What do you hope they remember when they think of you years from now?</span><span>Is there something you want remembered that might be forgotten?</span></p>
+          </div>
+        </div>
+        <div class="question-item">
+          <div class="week-num"><span class="week-label">Week</span><span class="week-number">49</span></div>
+          <div class="question-body">
+            <div class="question-main">What do you want your grandchildren — and your grandchildren's children — to know about who you were?</div>
+            <p class="question-follow"><span>Speak directly to them if you'd like.</span><span>What do you want them to know about where they came from?</span><span>What do you hope they inherited from you?</span><span>What do you hope they do better?</span></p>
+            <span class="question-tip">Invite them to speak directly to the camera as if the grandchildren were watching. They often are.</span>
+          </div>
+        </div>
+        <div class="question-item">
+          <div class="week-num"><span class="week-label">Week</span><span class="week-number">50</span></div>
+          <div class="question-body">
+            <div class="question-main">What is the story from your life that you most want preserved — the one that would be lost without this?</div>
+            <p class="question-follow"><span>Why this one?</span><span>Have you ever told it fully before?</span><span>Who needs to hear it?</span></p>
+            <span class="question-tip">Give this session as long as it needs. This is what the whole year has been building toward.</span>
+          </div>
+        </div>
+        <div class="question-item">
+          <div class="week-num"><span class="week-label">Week</span><span class="week-number">51</span></div>
+          <div class="question-body">
+            <div class="question-main">What has your life been about — what is the through-line, the thread that runs through all of it?</div>
+            <p class="question-follow"><span>If your life were a story, what would it be about?</span><span>What were you always moving toward, even when you didn't know it?</span><span>What are you still becoming?</span></p>
+          </div>
+        </div>
+        <div class="question-item">
+          <div class="week-num"><span class="week-label">Week</span><span class="week-number">52</span></div>
+          <div class="question-body">
+            <div class="question-main">Is there anything you've never said that you want to say now — to anyone, about anything?</div>
+            <p class="question-follow"><span>To a specific person?</span><span>To the family watching this someday?</span><span>To yourself?</span><span>Take as long as you need. We're listening.</span></p>
+            <span class="question-tip">The final session. Don't say anything after they finish speaking. Let it land.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end .main -->
+
+  <section class="closing no-print">
+    <div class="closing-inner">
+      <h2>You made it.<br><em>So did their story.</em></h2>
+      <p>52 weeks. 52 sessions. A complete portrait of a life — in their own voice, on film, forever. Your family will watch this for generations. Now it's time to edit, organize, and share what you've captured.</p>
+      <a href="kit.html" class="btn-closing">Back to Story Starter →</a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>© 2026 LegacyWorks · Capture. Preserve. Remember. · This document is for Story Starter members only.</p>
+  </footer>
+
+</body>
+</html>

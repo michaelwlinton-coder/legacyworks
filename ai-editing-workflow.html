@@ -1,0 +1,949 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>AI Editing Workflow Guide — LegacyWorks Story Starter</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%231a1a1a'/><text x='50%25' y='58%25' text-anchor='middle' fill='%23c9a961' font-family='Georgia,serif' font-size='20' font-style='italic'>L</text></svg>" />
+  <style>
+    :root {
+      --charcoal: #1a1a1a;
+      --ink: #111111;
+      --cream: #f5efe6;
+      --cream-deep: #ebe2d2;
+      --cream-soft: #faf6ee;
+      --gold: #c9a961;
+      --gold-deep: #a88842;
+      --gold-soft: #e0c898;
+      --muted: #6b6258;
+      --green: #2d7a4f;
+      --green-light: #e8f5ee;
+      --amber: #b45309;
+      --amber-light: #fffbeb;
+      --red: #c0392b;
+      --red-light: #fdf0ee;
+      --blue: #1a5a8a;
+      --blue-light: #e8f2fb;
+      --purple: #6d28d9;
+      --purple-light: #f5f3ff;
+      --font-display: "Cormorant Garamond", Georgia, serif;
+      --font-body: "Inter", -apple-system, sans-serif;
+      --font-mono: "SF Mono", "Fira Code", Consolas, monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body { font-family: var(--font-body); font-size: 16px; line-height: 1.75; color: var(--ink); background: var(--cream-soft); }
+    a { color: var(--gold-deep); }
+    p { margin-bottom: 1em; }
+    p:last-child { margin-bottom: 0; }
+    @media print { .no-print { display: none !important; } body { background: white; } }
+
+    /* NAV */
+    .nav { background: var(--charcoal); padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
+    .nav-brand { font-family: var(--font-display); font-size: 1.3rem; letter-spacing: 0.15em; text-transform: uppercase; color: #fff; }
+    .nav-brand span { color: var(--gold); }
+    .nav-right { display: flex; gap: 1rem; align-items: center; }
+    .nav-back { font-size: 0.72rem; color: rgba(255,255,255,0.45); letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; }
+    .btn-print { font-size: 0.72rem; color: var(--gold); border: 1px solid rgba(201,169,97,0.35); padding: 0.35rem 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; background: none; font-family: var(--font-body); }
+
+    /* HERO */
+    .hero { background: var(--charcoal); padding: 5rem 2rem 4rem; position: relative; overflow: hidden; }
+    .hero::before { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse at 15% 55%, rgba(201,169,97,0.12), transparent 50%), radial-gradient(ellipse at 85% 15%, rgba(109,40,217,0.08), transparent 50%); }
+    .hero-inner { max-width: 860px; margin: 0 auto; position: relative; z-index: 1; }
+    .hero-eyebrow { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 1.25rem; }
+    .hero h1 { font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 300; line-height: 1.1; color: var(--cream); margin-bottom: 1.25rem; }
+    .hero h1 em { font-style: italic; color: var(--gold-soft); }
+    .hero-sub { font-size: 1rem; color: rgba(245,239,230,0.62); max-width: 580px; line-height: 1.7; margin-bottom: 2.5rem; }
+    .level-pills { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+    .level-pill { padding: 0.45rem 1rem; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; border: 1px solid; text-decoration: none; }
+    .pill-beginner { border-color: var(--green); color: #6ee7b7; background: rgba(45,122,79,0.15); }
+    .pill-intermediate { border-color: var(--gold); color: var(--gold); background: rgba(201,169,97,0.1); }
+    .pill-expert { border-color: #a78bfa; color: #a78bfa; background: rgba(109,40,217,0.1); }
+
+    /* SKILL TRACKER */
+    .skill-tracker { background: var(--cream-deep); border-bottom: 1px solid rgba(201,169,97,0.15); padding: 1.5rem 2rem; }
+    .skill-inner { max-width: 860px; margin: 0 auto; }
+    .skill-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; }
+    .skill-track { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .skill-box { padding: 0.85rem 1rem; background: #fff; border-top: 3px solid; }
+    .skill-box.beginner { border-color: var(--green); }
+    .skill-box.intermediate { border-color: var(--gold); }
+    .skill-box.expert { border-color: var(--purple); }
+    .skill-box-title { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.35rem; }
+    .skill-box.beginner .skill-box-title { color: var(--green); }
+    .skill-box.intermediate .skill-box-title { color: var(--gold-deep); }
+    .skill-box.expert .skill-box-title { color: var(--purple); }
+    .skill-box-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.45; }
+    .skill-box-time { font-size: 0.72rem; color: var(--muted); margin-top: 0.4rem; font-style: italic; }
+
+    /* TOOL COMPARISON */
+    .tool-strip { background: var(--charcoal); padding: 2rem; }
+    .tool-inner { max-width: 860px; margin: 0 auto; }
+    .tool-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.25rem; }
+    .tool-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.06); }
+    .tool-card { background: var(--charcoal); padding: 1.25rem; }
+    .tool-name { font-family: var(--font-display); font-size: 1.4rem; font-weight: 500; margin-bottom: 0.3rem; }
+    .tool-name.capcut { color: #60a5fa; }
+    .tool-name.descript { color: var(--gold-soft); }
+    .tool-name.riverside { color: #a78bfa; }
+    .tool-best { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.75rem; }
+    .tool-card p { font-size: 0.83rem; color: rgba(245,239,230,0.55); line-height: 1.55; margin-bottom: 0.75rem; }
+    .tool-tag { display: inline-block; font-size: 0.65rem; font-weight: 600; padding: 2px 8px; border-radius: 2px; margin-right: 4px; margin-bottom: 4px; }
+    .tag-free { background: rgba(45,122,79,0.25); color: #6ee7b7; }
+    .tag-paid { background: rgba(201,169,97,0.15); color: var(--gold); }
+    .tag-beginner { background: rgba(45,122,79,0.2); color: #6ee7b7; }
+    .tag-inter { background: rgba(201,169,97,0.15); color: var(--gold); }
+    .tag-expert { background: rgba(109,40,217,0.2); color: #a78bfa; }
+
+    /* MAIN */
+    .main { max-width: 860px; margin: 0 auto; padding: 3rem 2rem 6rem; }
+
+    /* LEVEL HEADERS */
+    .level-header { padding: 2rem; margin-bottom: 0; position: relative; overflow: hidden; }
+    .level-header.beginner { background: var(--green-light); border-left: 5px solid var(--green); }
+    .level-header.intermediate { background: rgba(201,169,97,0.1); border-left: 5px solid var(--gold); }
+    .level-header.expert { background: var(--purple-light); border-left: 5px solid var(--purple); }
+    .level-badge { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; display: inline-block; padding: 0.2rem 0.75rem; margin-bottom: 0.6rem; }
+    .beginner .level-badge { background: var(--green); color: #fff; }
+    .intermediate .level-badge { background: var(--gold-deep); color: #fff; }
+    .expert .level-badge { background: var(--purple); color: #fff; }
+    .level-title { font-family: var(--font-display); font-size: clamp(1.75rem, 3.5vw, 2.5rem); font-weight: 400; line-height: 1.15; margin-bottom: 0.5rem; }
+    .beginner .level-title { color: #1a4a30; }
+    .intermediate .level-title { color: var(--charcoal); }
+    .expert .level-title { color: #3b0764; }
+    .level-title em { font-style: italic; }
+    .level-desc { font-size: 0.9rem; line-height: 1.6; max-width: 55ch; }
+    .beginner .level-desc { color: #2d5a40; }
+    .intermediate .level-desc { color: var(--muted); }
+    .expert .level-desc { color: #5b21b6; }
+    .level-goal { font-size: 0.8rem; font-weight: 600; margin-top: 0.75rem; }
+    .beginner .level-goal { color: var(--green); }
+    .intermediate .level-goal { color: var(--gold-deep); }
+    .expert .level-goal { color: var(--purple); }
+
+    /* STEPS */
+    .steps-block { margin-bottom: 4rem; }
+    .steps-body { background: #fff; border: 1px solid rgba(0,0,0,0.06); }
+    .step-row { display: grid; grid-template-columns: 3.5rem 1fr; border-bottom: 1px solid rgba(0,0,0,0.05); }
+    .step-row:last-child { border-bottom: none; }
+    .step-num-col { background: rgba(0,0,0,0.02); border-right: 1px solid rgba(0,0,0,0.05); display: flex; align-items: flex-start; justify-content: center; padding: 1.25rem 0.5rem 1.25rem; }
+    .step-num { width: 26px; height: 26px; border: 1.5px solid; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; flex-shrink: 0; }
+    .beginner-steps .step-num { border-color: var(--green); color: var(--green); }
+    .intermediate-steps .step-num { border-color: var(--gold-deep); color: var(--gold-deep); }
+    .expert-steps .step-num { border-color: var(--purple); color: var(--purple); }
+    .step-content { padding: 1.25rem 1.5rem; }
+    .step-h { font-weight: 600; font-size: 0.95rem; color: var(--ink); margin-bottom: 0.35rem; }
+    .step-p { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
+    .step-p strong { color: var(--ink); font-weight: 600; }
+
+    /* CODE / MENU PATHS */
+    .menu-path { font-family: var(--font-mono); font-size: 0.78rem; background: rgba(0,0,0,0.06); padding: 0.2rem 0.5rem; border-radius: 3px; color: var(--charcoal); display: inline; }
+    .key { font-family: var(--font-mono); font-size: 0.75rem; background: var(--charcoal); color: var(--cream); padding: 0.15rem 0.45rem; border-radius: 3px; display: inline; }
+
+    /* VISUAL DIAGRAMS */
+    .timeline-visual { background: var(--charcoal); padding: 1.5rem; margin: 1rem 0; border-radius: 0; overflow-x: auto; }
+    .timeline-track { display: flex; align-items: stretch; gap: 0; min-width: 500px; }
+    .tl-block { flex: 1; text-align: center; position: relative; }
+    .tl-block + .tl-block::before { content: "→"; position: absolute; left: -8px; top: 50%; transform: translateY(-50%); color: rgba(255,255,255,0.2); font-size: 0.8rem; z-index: 1; }
+    .tl-inner { padding: 0.75rem 0.5rem; border: 1px solid rgba(255,255,255,0.08); margin: 0 4px; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.3rem; }
+    .tl-icon { font-size: 1.25rem; }
+    .tl-label { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.4); }
+    .tl-time { font-size: 0.68rem; color: var(--gold); font-style: italic; }
+
+    /* BEFORE/AFTER */
+    .before-after { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; margin: 1rem 0; background: rgba(0,0,0,0.08); }
+    .ba-panel { padding: 1.25rem; }
+    .ba-before { background: var(--red-light); }
+    .ba-after { background: var(--green-light); }
+    .ba-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.6rem; display: block; }
+    .ba-before .ba-label { color: var(--red); }
+    .ba-after .ba-label { color: var(--green); }
+    .ba-text { font-family: var(--font-mono); font-size: 0.78rem; line-height: 1.6; }
+    .ba-before .ba-text { color: #6a1a12; }
+    .ba-after .ba-text { color: #1a4a30; }
+    .del { text-decoration: line-through; opacity: 0.5; }
+    .keep { font-weight: 600; }
+    .add { background: rgba(45,122,79,0.2); }
+
+    /* CALLOUTS */
+    .callout { padding: 1rem 1.25rem; margin: 1rem 0; display: flex; gap: 0.9rem; align-items: flex-start; }
+    .callout-tip { background: var(--green-light); border-left: 3px solid var(--green); }
+    .callout-warn { background: var(--amber-light); border-left: 3px solid var(--amber); }
+    .callout-pro { background: var(--purple-light); border-left: 3px solid var(--purple); }
+    .callout-info { background: var(--blue-light); border-left: 3px solid var(--blue); }
+    .callout-icon { font-size: 1rem; flex-shrink: 0; margin-top: 2px; }
+    .callout-title { font-weight: 600; font-size: 0.82rem; margin-bottom: 0.2rem; }
+    .callout-tip .callout-title { color: var(--green); }
+    .callout-warn .callout-title { color: var(--amber); }
+    .callout-pro .callout-title { color: var(--purple); }
+    .callout-info .callout-title { color: var(--blue); }
+    .callout-text { font-size: 0.83rem; line-height: 1.55; }
+    .callout-tip .callout-text { color: #1a4a30; }
+    .callout-warn .callout-text { color: #5a3a08; }
+    .callout-pro .callout-text { color: #3b0764; }
+    .callout-info .callout-text { color: #0f2d4a; }
+
+    /* SETTINGS TABLE */
+    .settings-table { width: 100%; border-collapse: collapse; background: #fff; font-size: 0.85rem; margin: 1rem 0; }
+    .settings-table th { text-align: left; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); padding: 0.75rem 1rem; border-bottom: 2px solid rgba(0,0,0,0.08); }
+    .settings-table td { padding: 0.75rem 1rem; border-bottom: 1px solid rgba(0,0,0,0.05); vertical-align: top; }
+    .settings-table td:first-child { font-weight: 600; color: var(--ink); width: 35%; }
+    .settings-table td:nth-child(2) { font-family: var(--font-mono); font-size: 0.78rem; color: var(--gold-deep); }
+    .settings-table td:nth-child(3) { color: var(--muted); font-size: 0.82rem; }
+    .settings-table tr:last-child td { border-bottom: none; }
+
+    /* EXPORT SPECS */
+    .export-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: rgba(0,0,0,0.08); margin: 1rem 0; }
+    .export-card { background: #fff; padding: 1.25rem; }
+    .export-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.5rem; }
+    .export-val { font-family: var(--font-mono); font-size: 1rem; font-weight: 700; color: var(--charcoal); margin-bottom: 0.2rem; }
+    .export-why { font-size: 0.78rem; color: var(--muted); }
+
+    /* WORKFLOW DIAGRAM */
+    .workflow { background: var(--charcoal); padding: 2rem; margin: 1.5rem 0; }
+    .workflow-title { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.25rem; }
+    .wf-row { display: flex; align-items: stretch; gap: 0; flex-wrap: wrap; }
+    .wf-step { flex: 1; min-width: 120px; }
+    .wf-box { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); padding: 1rem; height: 100%; }
+    .wf-num { font-family: var(--font-display); font-size: 2rem; color: rgba(201,169,97,0.3); line-height: 1; margin-bottom: 0.4rem; }
+    .wf-label { font-size: 0.78rem; font-weight: 600; color: rgba(255,255,255,0.8); margin-bottom: 0.3rem; }
+    .wf-sub { font-size: 0.7rem; color: rgba(255,255,255,0.35); line-height: 1.4; }
+    .wf-arrow { display: flex; align-items: center; color: rgba(255,255,255,0.15); font-size: 1.2rem; padding: 0 0.3rem; flex-shrink: 0; }
+
+    /* PRO TIPS SECTION */
+    .pro-tips { background: var(--charcoal); padding: 3rem 2rem; margin-top: 3rem; }
+    .pro-tips-inner { max-width: 860px; margin: 0 auto; }
+    .pro-tips h2 { font-family: var(--font-display); font-size: 2.5rem; font-weight: 300; color: var(--cream); margin-bottom: 0.5rem; }
+    .pro-tips h2 em { color: var(--gold); font-style: italic; }
+    .pro-tips-sub { color: rgba(245,239,230,0.5); font-size: 0.9rem; margin-bottom: 2.5rem; max-width: 50ch; }
+    .tips-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(255,255,255,0.05); }
+    .tip-card { background: rgba(255,255,255,0.03); padding: 1.5rem; }
+    .tip-num { font-family: var(--font-display); font-size: 2.5rem; color: rgba(201,169,97,0.2); line-height: 1; margin-bottom: 0.5rem; }
+    .tip-title { font-weight: 600; font-size: 0.9rem; color: var(--gold-soft); margin-bottom: 0.5rem; }
+    .tip-text { font-size: 0.83rem; color: rgba(245,239,230,0.5); line-height: 1.6; }
+
+    /* QUICK REFERENCE */
+    .quick-ref { background: var(--cream-deep); padding: 2.5rem; margin-top: 3rem; }
+    .quick-ref h2 { font-family: var(--font-display); font-size: 2rem; font-weight: 400; margin-bottom: 1.5rem; color: var(--charcoal); }
+    .shortcut-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .shortcut-item { display: flex; justify-content: space-between; align-items: center; padding: 0.6rem 0; border-bottom: 1px solid rgba(0,0,0,0.07); }
+    .shortcut-item:last-child { border-bottom: none; }
+    .shortcut-action { font-size: 0.85rem; color: var(--ink); }
+    .shortcut-keys { display: flex; gap: 0.3rem; }
+
+    /* NEXT STEPS */
+    .next-bar { background: var(--charcoal); color: var(--cream); padding: 2.5rem 2rem; text-align: center; margin-top: 0; }
+    .next-bar h3 { font-family: var(--font-display); font-size: 2rem; font-weight: 300; margin-bottom: 0.75rem; }
+    .next-bar h3 em { color: var(--gold); font-style: italic; }
+    .next-bar p { color: rgba(245,239,230,0.55); font-size: 0.9rem; margin-bottom: 2rem; }
+    .next-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-dark { display: inline-block; background: var(--gold); color: var(--charcoal); padding: 0.85rem 1.75rem; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; }
+    .btn-outline { background: transparent; border: 1px solid rgba(245,239,230,0.2); color: rgba(245,239,230,0.6); }
+
+    .footer { background: #111; color: rgba(255,255,255,0.3); padding: 1.5rem 2rem; text-align: center; font-size: 0.78rem; }
+
+    @media (max-width: 640px) {
+      .skill-track { grid-template-columns: 1fr; }
+      .tool-grid { grid-template-columns: 1fr; }
+      .before-after { grid-template-columns: 1fr; }
+      .tips-grid { grid-template-columns: 1fr; }
+      .shortcut-grid { grid-template-columns: 1fr; }
+      .wf-arrow { display: none; }
+      .next-btns { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav no-print">
+    <div class="nav-brand">Legacy<span>Works</span></div>
+    <div class="nav-right">
+      <a href="kit.html" class="nav-back">← Story Starter</a>
+      <button class="btn-print" onclick="window.print()">Print / PDF</button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <span class="hero-eyebrow">Story Starter · Kit Resource · Members Only</span>
+      <h1>From raw footage<br>to <em>finished film.</em></h1>
+      <p class="hero-sub">This guide teaches you how to edit your interview recordings using AI tools. It has three levels. Start at Beginner — you can start editing today with zero experience. Work through Intermediate and Expert as you get comfortable. By the end, you'll edit like a professional.</p>
+      <div class="level-pills">
+        <a href="#beginner" class="level-pill pill-beginner">Beginner — Start here</a>
+        <a href="#intermediate" class="level-pill pill-intermediate">Intermediate — Level up</a>
+        <a href="#expert" class="level-pill pill-expert">Expert — Full control</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILL ROADMAP -->
+  <div class="skill-tracker no-print">
+    <div class="skill-inner">
+      <div class="skill-label">Your editing journey — three levels</div>
+      <div class="skill-track">
+        <div class="skill-box beginner">
+          <div class="skill-box-title">Beginner</div>
+          <p class="skill-box-desc">Upload, auto-edit, export. Done. Using CapCut's AI tools to turn raw footage into a watchable video in under 1 hour.</p>
+          <div class="skill-box-time">Sessions 1–8 · ~45–60 min per episode</div>
+        </div>
+        <div class="skill-box intermediate">
+          <div class="skill-box-title">Intermediate</div>
+          <p class="skill-box-desc">Edit by reading words instead of scrubbing video. Using Descript to cut, clean, and caption with precision.</p>
+          <div class="skill-box-time">Sessions 9–20 · ~30–45 min per episode</div>
+        </div>
+        <div class="skill-box expert">
+          <div class="skill-box-title">Expert</div>
+          <p class="skill-box-desc">Multi-track editing, color grading, sound design, cinematic story structure. Professional-quality output every time.</p>
+          <div class="skill-box-time">Sessions 21+ · ~20–30 min per episode</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOOLS OVERVIEW -->
+  <div class="tool-strip no-print">
+    <div class="tool-inner">
+      <div class="tool-label">The three tools you'll use — and when</div>
+      <div class="tool-grid">
+        <div class="tool-card">
+          <div class="tool-name capcut">CapCut</div>
+          <div class="tool-best" style="color: #6ee7b7;">Best for: Beginners</div>
+          <p>Free, simple, and powered by AI. Removes silence, adds captions, and exports a clean video automatically. Works on phone or desktop.</p>
+          <span class="tool-tag tag-free">Free</span>
+          <span class="tool-tag tag-beginner">Beginner</span>
+        </div>
+        <div class="tool-card">
+          <div class="tool-name descript">Descript</div>
+          <div class="tool-best" style="color: var(--gold);">Best for: Intermediate</div>
+          <p>Edit your video by editing text. Delete a word from the transcript — Descript cuts it from the video. Revolutionary for non-editors.</p>
+          <span class="tool-tag tag-free">Free tier</span>
+          <span class="tool-tag tag-paid">$24/mo full</span>
+          <span class="tool-tag tag-inter">Intermediate</span>
+        </div>
+        <div class="tool-card">
+          <div class="tool-name riverside">Riverside AI</div>
+          <div class="tool-best" style="color: #a78bfa;">Best for: Expert</div>
+          <p>Built into Riverside. Auto-generates highlights, clips, chapters, and social cuts from your recordings with one click.</p>
+          <span class="tool-tag tag-paid">$19–$29/mo</span>
+          <span class="tool-tag tag-expert">Expert</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="main">
+
+    <!-- ════════════════════════════════════════════════════
+         BEGINNER LEVEL — CAPCUT
+    ════════════════════════════════════════════════════ -->
+    <div class="steps-block" id="beginner">
+      <div class="level-header beginner">
+        <span class="level-badge">Level 1 — Beginner</span>
+        <div class="level-title">CapCut: <em>your first edited video</em></div>
+        <p class="level-desc">You just finished your first Riverside session. You have a raw video file that's 45 minutes long, full of pauses, "umms," and moments where nothing happens. This section takes you from that raw file to a polished 15–20 minute episode — using CapCut's AI tools to do most of the work for you.</p>
+        <div class="level-goal">🎯 Goal: A watchable, captioned 15–20 min episode ready to upload to YouTube</div>
+      </div>
+
+      <div class="steps-body beginner-steps">
+
+        <div class="step-row">
+          <div class="step-num-col"><div class="step-num">1</div></div>
+          <div class="step-content">
+            <div class="step-h">Download and open CapCut</div>
+            <p class="step-p">Go to <strong>capcut.com</strong> on your computer and download the free desktop app. Install it like any other program — open the downloaded file, click through the installer, and launch CapCut. It's free with no credit card required.<br><br>
+            If you prefer to edit on your phone, download the CapCut app from the App Store or Google Play. The phone version works identically.</p>
+            <div class="callout callout-tip">
+              <span class="callout-icon">💡</span>
+              <div class="callout-content">
+                <div class="callout-title">Desktop is easier for this</div>
+                <p class="callout-text">While CapCut works on phones, editing a 45-minute interview is much easier on a desktop or laptop where you have a larger screen and a keyboard.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-row">
+          <div class="step-num-col"><div class="step-num">2</div></div>
+          <div class="step-content">
+            <div class="step-h">Start a new project and import your recording</div>
+            <p class="step-p">Open CapCut and click <strong>"New Project"</strong>. A window will appear asking you to add media. Click <strong>"Import"</strong> or drag your video file from your downloads folder directly into the window.<br><br>
+            Your Riverside recording is usually saved in your <strong>Downloads</strong> folder or on your Desktop. It will be a file ending in <span class="menu-path">.mp4</span> or <span class="menu-path">.mov</span>. Drag it in or click to find it.</p>
+          </div>
+        </div>
+
+        <div class="step-row">
+          <div class="step-num-col"><div class="step-num">3</div></div>
+          <div class="step-content">
+            <div class="step-h">Add the video to your timeline</div>
+            <p class="step-p">After importing, your video appears in the top left panel. Click the <strong>"+"</strong> button on it, or drag it down to the timeline at the bottom of the screen. The timeline is the long horizontal strip — this is where all your editing happens. You should now see your video as a colored bar in the timeline.</p>
+          </div>
+        </div>
+
+        <div class="step-row">
+          <div class="step-num-col"><div class="step-num">4</div></div>
+          <div class="step-content">
+            <div class="step-h">Use Smart Cut AI to remove all silence automatically</div>
+            <p class="step-p">This is the single most powerful thing CapCut can do for you. In the left sidebar, look for <strong>"Smart Tools"</strong> or click on your video in the timeline and look for <strong>"Smart Cut"</strong> in the top toolbar. Click it.<br><br>
+            CapCut will analyze your entire video and automatically find and remove all the silent gaps — the pauses where nobody is talking, the moments where the interviewee is thinking, the dead air at the beginning and end. This alone cuts most 45-minute interviews down to 25–30 minutes.</p>
+            <div class="before-after">
+              <div class="ba-panel ba-before">
+                <span class="ba-label">Before Smart Cut</span>
+                <div class="ba-text">
+                  "Well... <span class="del">[4 second pause]</span> my grandmother... <span class="del">[2 seconds]</span> she was born in <span class="del">[long pause]</span> 1932..."
+                </div>
+              </div>
+              <div class="ba-panel ba-after">
+                <span class="ba-label">After Smart Cut</span>
+                <div class="ba-text">
+                  <span class="keep">"Well... my grandmother... she was born in 1932..."</span>
+                </div>
+              </div>
+            </div>
+            <div class="callout callout-warn">
+              <span class="callout-icon">⚠️</span>
+              <div class="callout-content">
+                <div class="callout-title">Review before accepting</div>
+                <p class="callout-text">Smart Cut sometimes removes meaningful pauses — the 3-second silence after an emotional answer is part of the story. Before clicking "Apply," review the suggested cuts and uncheck any pauses that feel important to keep.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-row">
+          <div class="step-num-col"><div class="step-num">5</div></div>
+          <div class="step-content">
+            <div class="step-h">Manually trim the beginning and end</div>
+            <p class="step-p">Find the very beginning of your timeline. Before your subject actually starts talking, there's usually 30–60 seconds of setup — you saying "okay let's start" or your subject adjusting their camera. Hover over the left edge of your video clip in the timeline until you see a double-headed arrow, then drag it to the right to trim off that dead time.<br><br>
+            Do the same at the end — trim off any time after the conversation naturally ends.</p>
+          </div>
+        </div>
+
+        <div class="step-row">
+          <div class="step-num-col"><div class="step-num">6</div></div>
+          <div class="step-content">
+            <div class="step-h">Add auto-captions in one click</div>
+            <p class="step-p">In the left sidebar, click <strong>"Captions"</strong> then <strong>"Auto Captions"</strong>. Select the language (English) and click <strong>"Start"</strong>. CapCut will transcribe every word spoken in your video and place animated subtitles on screen.<br><br>
+            This takes 2–5 minutes for a 30-minute video. When it's done, captions appear as blocks on a separate track in your timeline. Family members who are hard of hearing can now read along. And families who share the video with relatives who don't speak the same language can read it too.</p>
+            <div class="callout callout-tip">
+              <span class="callout-icon">💡</span>
+              <div class="callout-content">
+                <div class="callout-title">Fix any caption errors</div>
+                <p class="callout-text">AI transcription is 90–95% accurate. Click on any caption block in the timeline to edit the text. Names, places, and unusual words are the most likely to need fixing. Spend 5 minutes reviewing — it's worth it.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-row">
+          <div class="step-num-col"><div class="step-num">7</div></div>
+          <div class="step-content">
+            <div class="step-h">Add a simple title at the beginning</div>
+            <p class="step-p">Click <strong>"Text"</strong> in the left sidebar, then <strong>"Default Text"</strong>. A text box appears on your video. Type something like: <strong>"Mom's Story — Week 1: Where We Came From"</strong>.<br><br>
+            Drag this text clip in the timeline to the very beginning so it appears for the first 5 seconds. Change the font and color to something clean — white text on the dark background of your video works perfectly.</p>
+          </div>
+        </div>
+
+        <div class="step-row">
+          <div class="step-num-col"><div class="step-num">8</div></div>
+          <div class="step-content">
+            <div class="step-h">Export your finished episode</div>
+            <p class="step-p">Click the <strong>"Export"</strong> button in the top right corner. Use these exact settings:</p>
+            <div class="export-grid">
+              <div class="export-card">
+                <div class="export-label">Resolution</div>
+                <div class="export-val">1080p</div>
+                <div class="export-why">Full HD — crisp on any screen</div>
+              </div>
+              <div class="export-card">
+                <div class="export-label">Frame rate</div>
+                <div class="export-val">30fps</div>
+                <div class="export-why">Standard for interviews</div>
+              </div>
+              <div class="export-card">
+                <div class="export-label">Format</div>
+                <div class="export-val">MP4</div>
+                <div class="export-why">Works everywhere</div>
+              </div>
+              <div class="export-card">
+                <div class="export-label">Quality</div>
+                <div class="export-val">High</div>
+                <div class="export-why">Worth the larger file size</div>
+              </div>
+            </div>
+            <p class="step-p" style="margin-top: 1rem;">Click <strong>"Export"</strong> and wait. A 30-minute video takes about 10–15 minutes to export. Do not close CapCut while it's exporting.</p>
+          </div>
+        </div>
+
+        <div class="step-row">
+          <div class="step-num-col"><div class="step-num">9</div></div>
+          <div class="step-content">
+            <div class="step-h">Upload to your family's private YouTube channel</div>
+            <p class="step-p">Once exported, go to <strong>youtube.com</strong>, sign in to the family account, and click the <strong>"+"</strong> icon or <strong>"Upload video"</strong>. Select your exported file. While it uploads, fill in:<br><br>
+            <strong>Title:</strong> "Week 1 — Roots &amp; Origins — [Name]'s Story"<br>
+            <strong>Description:</strong> A brief sentence about what this session covered<br>
+            <strong>Visibility:</strong> Click <strong>"Unlisted"</strong> (only people with the link can watch) or <strong>"Private"</strong> (only people you specifically invite)</p>
+            <div class="callout callout-tip">
+              <span class="callout-icon">🎉</span>
+              <div class="callout-content">
+                <div class="callout-title">You just produced your first episode</div>
+                <p class="callout-text">Share the YouTube link with your family. Their reaction to hearing their parent or grandparent's voice on screen for the first time is something you'll never forget.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════════════
+         INTERMEDIATE LEVEL — DESCRIPT
+    ════════════════════════════════════════════════════ -->
+    <div class="steps-block" id="intermediate">
+      <div class="level-header intermediate">
+        <span class="level-badge">Level 2 — Intermediate</span>
+        <div class="level-title">Descript: <em>edit words, cut video</em></div>
+        <p class="level-desc">Descript is the most powerful thing that's ever happened to non-editors. Instead of scrubbing through video looking for the right moment, you read the transcript like a document and delete the parts you don't want. The video cuts itself. This section teaches you to edit faster, cleaner, and with more creative control than CapCut alone.</p>
+        <div class="level-goal">🎯 Goal: Professional, tightly edited episodes with clean audio — in half the time</div>
+      </div>
+
+      <div class="steps-body intermediate-steps">
+
+        <div class="step-row">
+          <div class="step-num-col"><div class="step-num">1</div></div>
+          <div class="step-content">
+            <div class="step-h">Create your free Descript account</div>
+            <p class="step-p">Go to <strong>descript.com</strong> and click <strong>"Get started free"</strong>. Sign up with your email. The free plan gives you 1 hour of transcription per month — enough for 1–2 sessions. When you're ready to process more, upgrade to the $24/month Creator plan for unlimited transcription.</p>
+          </div>
+        </div>
+
+        <div class="step-row">
+          <div class="step-num-col"><div class="step-num">2</div></div>
+          <div class="step-content">
+            <div class="step-h">Create a new project and import your Riverside recording</div>
+            <p class="step-p">Click <strong>"New Project"</strong> then <strong>"Import file"</strong>. Navigate to your Riverside recording and select it. Descript will upload the video and begin transcribing it automatically — this takes 3–8 minutes depending on video length.<br><br>
+            While it transcribes, you'll see a progress bar. When it's done, you'll see your video on the left and a full text transcript on the right.</p>
+          </div>
+        </div>
+
+        <div class="step-row">
+          <div class="step-num-col"><div class="step-num">3</div></div>
+          <div class="step-content">
+            <div class="step-h">Understand the Descript interface</div>
+            <p class="step-p">The Descript screen has two main parts:<br><br>
+            <strong>Left side:</strong> Your video preview — you can watch your footage here<br>
+            <strong>Right side:</strong> Your transcript — every word spoken, in order, highlighted as the video plays<br><br>
+            The magic: whatever you do to the transcript happens to the video. Delete a sentence of text — that sentence disappears from the video. It's that simple.</p>
+            <div class="callout callout-info">
+              <span class="callout-icon">ℹ️</span>
+              <div class="callout-content">
+                <div class="callout-title">The most important thing to understand</div>
+                <p class="callout-text">You are NOT editing video. You are editing a document. Think of it like deleting paragraphs from a Word document — except those paragraphs are video. This is why Descript is so powerful for people who've never edited video before.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-row">
+          <div class="step-num-col"><div class="step-num">4</div></div>
+          <div class="step-content">
+            <div class="step-h">Remove filler words in one click</div>
+            <p class="step-p">Go to <span class="menu-path">Edit → Remove filler words</span>. Descript will find every "um," "uh," "like," "you know," and "sort of" in your video and highlight them. Review the list and click <strong>"Remove all"</strong> or go through them one by one. This alone makes your subject sound 40% more articulate and confident on screen.</p>
+            <div class="before-after">
+              <div class="ba-panel ba-before">
+                <span class="ba-label">Raw transcript</span>
+                <div class="ba-text">"So, <span class="del">um</span>, my grandfather was, <span class="del">uh</span>, you know, he was <span class="del">like</span> a farmer and, <span class="del">um</span>, I think..."</div>
+              </div>
+              <div class="ba-panel ba-after">
+                <span class="ba-label">After filler removal</span>
+                <div class="ba-text"><span class="keep">"So, my grandfather was a farmer and I think..."</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-row">
+          <div class="step-num-col"><div class="step-num">5</div></div>
+          <div class="step-content">
+            <div class="step-h">Delete the parts you don't want — just like a document</div>
+            <p class="step-p">Read through the transcript like you're reading an article. When you see a section that doesn't add anything — a false start, a long digression, a moment where the subject went off-topic — just <strong>highlight that text</strong> and press <span class="key">Delete</span> on your keyboard. That part of the video is instantly removed.<br><br>
+            You're looking to cut:<br>
+            • False starts ("I was going to say — actually, never mind...")<br>
+            • Long digressions that go nowhere<br>
+            • Technical moments ("hold on, my phone is ringing")<br>
+            • Anything longer than 30 seconds that doesn't add to the story</p>
+            <div class="callout callout-warn">
+              <span class="callout-icon">⚠️</span>
+              <div class="callout-content">
+                <div class="callout-title">You can always undo</div>
+                <p class="callout-text">Press <span class="key">Cmd+Z</span> (Mac) or <span class="key">Ctrl+Z</span> (Windows) to undo any cut. Don't be afraid to experiment — nothing is permanent until you export.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-row">
+          <div class="step-num-col"><div class="step-num">6</div></div>
+          <div class="step-content">
+            <div class="step-h">Apply Studio Sound to clean the audio</div>
+            <p class="step-p">This is Descript's most impressive feature. Click on your video clip, then find <strong>"Studio Sound"</strong> in the right panel (or go to <span class="menu-path">Effects → Studio Sound</span>). Turn it on with one click.<br><br>
+            Studio Sound uses AI to remove background noise, reduce echo, equalize the voice, and make your subject sound like they recorded in a professional studio — even if they were in their kitchen. The difference is remarkable.</p>
+            <div class="callout callout-tip">
+              <span class="callout-icon">💡</span>
+              <div class="callout-content">
+                <div class="callout-title">A/B test before committing</div>
+                <p class="callout-text">Toggle Studio Sound on and off while the video plays to hear the difference. If it makes the voice sound slightly robotic, reduce the "Enhancement level" slider to 70% instead of 100%.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-row">
+          <div class="step-num-col"><div class="step-num">7</div></div>
+          <div class="step-content">
+            <div class="step-h">Add captions from the transcript</div>
+            <p class="step-p">Since Descript already transcribed your video, adding captions is instant. Go to <span class="menu-path">Captions → Add captions</span>. The captions are automatically synced to the words in your video because they come from the same transcript you just edited.<br><br>
+            Choose a caption style — the default "Clean" style (white text, dark background) works well. You can customize font, size, and position in the right panel.</p>
+          </div>
+        </div>
+
+        <div class="step-row">
+          <div class="step-num-col"><div class="step-num">8</div></div>
+          <div class="step-content">
+            <div class="step-h">Export your finished video</div>
+            <p class="step-p">Click <strong>"Export"</strong> in the top right. Choose <strong>"Video"</strong> as the format. Use these settings:</p>
+            <table class="settings-table">
+              <thead><tr><th>Setting</th><th>Value</th><th>Why</th></tr></thead>
+              <tbody>
+                <tr><td>Resolution</td><td>1080p</td><td>Full HD — crisp on any screen</td></tr>
+                <tr><td>Format</td><td>MP4</td><td>Universal — plays everywhere</td></tr>
+                <tr><td>Quality</td><td>High</td><td>Worth the larger file</td></tr>
+                <tr><td>Captions</td><td>Burned in</td><td>Always visible, no separate file needed</td></tr>
+              </tbody>
+            </table>
+            <p class="step-p">Click Export and wait. Upload the finished file to your YouTube family channel.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════════════
+         EXPERT LEVEL — ADVANCED TECHNIQUES
+    ════════════════════════════════════════════════════ -->
+    <div class="steps-block" id="expert">
+      <div class="level-header expert">
+        <span class="level-badge">Level 3 — Expert</span>
+        <div class="level-title">Cinematic quality <em>every time</em></div>
+        <p class="level-desc">You've edited 10+ sessions. You know the basics. Now you want your episodes to look and sound like something from a documentary series — not just "good for a home video." These techniques are what separate a polished legacy film from a recorded Zoom call.</p>
+        <div class="level-goal">🎯 Goal: Documentary-quality episodes that look like they were made by professionals</div>
+      </div>
+
+      <div class="steps-body expert-steps">
+
+        <div class="step-row">
+          <div class="step-num-col"><div class="step-num">1</div></div>
+          <div class="step-content">
+            <div class="step-h">Use Riverside AI's Magic Clips to find the best moments first</div>
+            <p class="step-p">Before editing the full session, go back to Riverside and click <strong>"Magic Clips"</strong> on your recording. Riverside's AI reads the transcript and automatically identifies the most emotionally resonant, most interesting, and most shareable moments — usually 3–8 clips of 30 seconds to 3 minutes each.<br><br>
+            Watch these clips first. They tell you where the heart of the session is. Then build your full edit around those moments — don't bury them in the middle, start with the most compelling clip as your cold open.</p>
+            <div class="callout callout-pro">
+              <span class="callout-icon">✨</span>
+              <div class="callout-content">
+                <div class="callout-title">The cold open technique</div>
+                <p class="callout-text">Start your episode with 60 seconds of the most emotional or surprising moment from the session — before the title card. This hooks family members immediately and makes them want to watch the whole thing. Documentaries do this. Now you do too.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-row">
+          <div class="step-num-col"><div class="step-num">2</div></div>
+          <div class="step-content">
+            <div class="step-h">Build a three-act structure for every episode</div>
+            <p class="step-p">Even a 20-minute interview episode needs structure. The best documentary episodes follow this pattern:<br><br>
+            <strong>Act 1 — Hook (0:00–2:00):</strong> The most compelling clip. Drops the viewer directly into the story.<br>
+            <strong>Title card (2:00–2:10):</strong> Episode name, week number, date.<br>
+            <strong>Act 2 — The story (2:10–17:00):</strong> The interview in chronological order. This is the bulk of the episode.<br>
+            <strong>Act 3 — The resonant close (17:00–20:00):</strong> End on something meaningful — a piece of wisdom, a moment of emotion, or a line that will stay with the viewer.</p>
+            <div class="workflow">
+              <div class="workflow-title">Episode structure — the documentary template</div>
+              <div class="wf-row">
+                <div class="wf-step">
+                  <div class="wf-box">
+                    <div class="wf-num">1</div>
+                    <div class="wf-label">Cold open</div>
+                    <div class="wf-sub">Best 60 sec clip — drop viewer mid-story</div>
+                  </div>
+                </div>
+                <div class="wf-arrow">→</div>
+                <div class="wf-step">
+                  <div class="wf-box">
+                    <div class="wf-num">2</div>
+                    <div class="wf-label">Title card</div>
+                    <div class="wf-sub">Name, week, subject</div>
+                  </div>
+                </div>
+                <div class="wf-arrow">→</div>
+                <div class="wf-step">
+                  <div class="wf-box">
+                    <div class="wf-num">3</div>
+                    <div class="wf-label">The story</div>
+                    <div class="wf-sub">Interview in order, tightly cut</div>
+                  </div>
+                </div>
+                <div class="wf-arrow">→</div>
+                <div class="wf-step">
+                  <div class="wf-box">
+                    <div class="wf-num">4</div>
+                    <div class="wf-label">The close</div>
+                    <div class="wf-sub">Most resonant final line</div>
+                  </div>
+                </div>
+                <div class="wf-arrow">→</div>
+                <div class="wf-step">
+                  <div class="wf-box">
+                    <div class="wf-num">5</div>
+                    <div class="wf-label">End card</div>
+                    <div class="wf-sub">LegacyWorks brand + next week teaser</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-row">
+          <div class="step-num-col"><div class="step-num">3</div></div>
+          <div class="step-content">
+            <div class="step-h">Add B-roll — family photos woven into the story</div>
+            <p class="step-p">B-roll is footage or images that play over the interview audio while you hear the subject's voice but don't see their face. In documentary filmmaking, this is how you bring a story to life visually.<br><br>
+            For family stories, your B-roll is family photos. When your subject says <em>"My father worked on the railroad"</em> — cut to an old photo of their father. When they describe their childhood home — show a photo of it.<br><br>
+            In CapCut or Descript: import your family photos, drag them above the interview video in the timeline, and set them to appear at the exact moment the subject mentions them. 3–5 seconds per photo is ideal. The result feels like Ken Burns.</p>
+            <div class="callout callout-pro">
+              <span class="callout-icon">✨</span>
+              <div class="callout-content">
+                <div class="callout-title">The Ken Burns effect</div>
+                <p class="callout-text">In CapCut, select a photo in your timeline, click "Animation," and apply a slow zoom-in or pan effect. This gently moving still image over spoken audio is one of the most emotionally effective techniques in documentary filmmaking. Ken Burns has used it for 40 years. Now so do you.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-row">
+          <div class="step-num-col"><div class="step-num">4</div></div>
+          <div class="step-content">
+            <div class="step-h">Add background music — very quietly</div>
+            <p class="step-p">Subtle music transforms the emotional feel of an episode. The key word is <strong>subtle</strong> — if the viewer can clearly hear the music, it's too loud. Music should be felt, not heard.<br><br>
+            <strong>Where to find free music:</strong><br>
+            • <strong>YouTube Audio Library</strong> (free, no copyright issues): studio.youtube.com → Audio Library<br>
+            • <strong>Pixabay Music</strong> (pixabay.com/music) — free, licensed for any use<br>
+            • <strong>CapCut's built-in library</strong> — search "gentle" or "nostalgic"<br><br>
+            <strong>Music settings:</strong> Import the music track, place it below your video in the timeline. Set the volume to 5–10% of your voice track. Test by watching 30 seconds — you should barely be aware the music is there.</p>
+            <table class="settings-table">
+              <thead><tr><th>Mood you want</th><th>Search term</th><th>Example feel</th></tr></thead>
+              <tbody>
+                <tr><td>Warm, nostalgic</td><td>"nostalgic acoustic guitar"</td><td>Remembering childhood</td></tr>
+                <tr><td>Gentle, emotional</td><td>"soft piano documentary"</td><td>Loss and love chapters</td></tr>
+                <tr><td>Uplifting, joyful</td><td>"uplifting folk acoustic"</td><td>Joy and gratitude sessions</td></tr>
+                <tr><td>Reflective, wise</td><td>"cinematic ambient strings"</td><td>Legacy and wisdom chapters</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="step-row">
+          <div class="step-num-col"><div class="step-num">5</div></div>
+          <div class="step-content">
+            <div class="step-h">Color correct for a warm, cinematic look</div>
+            <p class="step-p">Raw webcam footage looks flat and slightly cold. A simple color correction makes it look cinematic. In CapCut, click on your video clip and find <strong>"Adjust"</strong> in the right panel. Apply these settings:</p>
+            <table class="settings-table">
+              <thead><tr><th>Setting</th><th>Adjustment</th><th>Effect</th></tr></thead>
+              <tbody>
+                <tr><td>Brightness</td><td>+5 to +10</td><td>Lifts shadows, face looks more present</td></tr>
+                <tr><td>Contrast</td><td>+5 to +10</td><td>Makes image feel more cinematic</td></tr>
+                <tr><td>Saturation</td><td>-5 to -10</td><td>Slightly desaturated = more documentary feel</td></tr>
+                <tr><td>Warmth / Temperature</td><td>+10 to +15</td><td>Warmer tones = more intimate, human feel</td></tr>
+                <tr><td>Sharpen</td><td>+5</td><td>Crisps up slightly soft webcam footage</td></tr>
+              </tbody>
+            </table>
+            <div class="callout callout-pro">
+              <span class="callout-icon">✨</span>
+              <div class="callout-content">
+                <div class="callout-title">Consistency across episodes</div>
+                <p class="callout-text">Once you find color settings that look great, save them as a preset in CapCut. Apply the same preset to every episode so your series has a consistent, professional visual identity.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-row">
+          <div class="step-num-col"><div class="step-num">6</div></div>
+          <div class="step-content">
+            <div class="step-h">Create a 60-second highlight clip for sharing</div>
+            <p class="step-p">Every episode should have a short shareable version — 60 seconds or less — that you can share on iMessage, WhatsApp, or send to family members who might not watch the full episode.<br><br>
+            Use Riverside's Magic Clips to find the single best 60-second moment. Export it as a vertical 9:16 video (portrait orientation) for phones, or keep it at 16:9 for horizontal sharing. Add a simple caption at the bottom — just the subject's name and the year.<br><br>
+            This 60-second clip is what gets sent to cousins, shown at family dinners, and shared on birthdays. It's the gateway drug that makes everyone want to watch the full episode.</p>
+          </div>
+        </div>
+
+        <div class="step-row">
+          <div class="step-num-col"><div class="step-num">7</div></div>
+          <div class="step-content">
+            <div class="step-h">Export at maximum quality for the family archive</div>
+            <p class="step-p">In addition to your standard YouTube upload, export a master copy at the highest quality possible. This is for the archive — the copy that will still exist and look great in 50 years.</p>
+            <div class="export-grid">
+              <div class="export-card">
+                <div class="export-label">Resolution</div>
+                <div class="export-val">4K</div>
+                <div class="export-why">Maximum quality archive</div>
+              </div>
+              <div class="export-card">
+                <div class="export-label">Format</div>
+                <div class="export-val">MP4 (H.264)</div>
+                <div class="export-why">Most compatible long-term</div>
+              </div>
+              <div class="export-card">
+                <div class="export-label">Bitrate</div>
+                <div class="export-val">High</div>
+                <div class="export-why">Preserves quality</div>
+              </div>
+              <div class="export-card">
+                <div class="export-label">Audio</div>
+                <div class="export-val">AAC 320kbps</div>
+                <div class="export-why">Audiophile-quality voice</div>
+              </div>
+            </div>
+            <p class="step-p" style="margin-top: 1rem;">Back this master file up to Google Drive, iCloud, and an external hard drive. The YouTube version is for watching. The master file is for keeping forever.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div><!-- end .main -->
+
+  <!-- PRO TIPS -->
+  <section class="pro-tips no-print">
+    <div class="pro-tips-inner">
+      <h2>The things that make the <em>real difference</em></h2>
+      <p class="pro-tips-sub">These are the principles that professional documentary editors use. Apply them and your episodes will feel different from anything your family has ever seen.</p>
+      <div class="tips-grid">
+        <div class="tip-card">
+          <div class="tip-num">01</div>
+          <div class="tip-title">Always end on the best line — not the last line</div>
+          <p class="tip-text">The last thing people hear is what they remember. Scan your entire transcript for the single most powerful sentence your subject said. End there, even if it happened in the middle of the session. Cut everything that came after it.</p>
+        </div>
+        <div class="tip-card">
+          <div class="tip-num">02</div>
+          <div class="tip-title">Cut to the next shot 0.5 seconds early</div>
+          <p class="tip-text">When cutting between clips or photos, trim the end of the outgoing clip by half a second. This creates a snappy, confident rhythm that makes editing feel professional. Viewers never notice — they just feel the pace is right.</p>
+        </div>
+        <div class="tip-card">
+          <div class="tip-num">03</div>
+          <div class="tip-title">The quieter the music, the more emotional the impact</div>
+          <p class="tip-text">Counterintuitively, turning music down makes it more powerful. When the viewer has to lean in to notice the music, it works on them subconsciously. If they can hear it clearly, it becomes a distraction from the voice — which is the only thing that matters.</p>
+        </div>
+        <div class="tip-card">
+          <div class="tip-num">04</div>
+          <div class="tip-title">Keep every raw file forever — and back it up twice</div>
+          <p class="tip-text">Never delete your original Riverside recordings. Storage is cheap; your grandfather's voice is irreplaceable. Keep a copy on your computer, one on Google Drive or iCloud, and one on an external hard drive. Name the files clearly: "Week_01_Roots_RAW_2026-01-14.mp4"</p>
+        </div>
+        <div class="tip-card">
+          <div class="tip-num">05</div>
+          <div class="tip-title">Edit when you're emotionally neutral — not right after recording</div>
+          <p class="tip-text">You just spent 45 minutes listening to your mother's childhood. You're emotional. Don't edit right now — you'll either cut too much (trying to protect yourself from the hard parts) or too little (keeping everything because it all feels precious). Wait a day, then edit with fresh eyes.</p>
+        </div>
+        <div class="tip-card">
+          <div class="tip-num">06</div>
+          <div class="tip-title">Watch your edit once all the way through before exporting</div>
+          <p class="tip-text">Every time. No exceptions. Your ears catch things your eyes miss when you're in editing mode. Watch it like a family member watching it for the first time. The moment you cringe or get bored — that's the part that needs one more cut.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUICK REFERENCE -->
+  <section class="quick-ref no-print">
+    <div style="max-width: 860px; margin: 0 auto;">
+      <h2>Keyboard shortcuts — memorize these and you edit 3× faster</h2>
+      <div class="shortcut-grid">
+        <div>
+          <div style="font-size: 0.7rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.75rem;">CapCut</div>
+          <div class="shortcut-item">
+            <span class="shortcut-action">Split clip at playhead</span>
+            <div class="shortcut-keys"><span class="key">Ctrl+B</span></div>
+          </div>
+          <div class="shortcut-item">
+            <span class="shortcut-action">Undo last action</span>
+            <div class="shortcut-keys"><span class="key">Ctrl+Z</span></div>
+          </div>
+          <div class="shortcut-item">
+            <span class="shortcut-action">Play / Pause</span>
+            <div class="shortcut-keys"><span class="key">Space</span></div>
+          </div>
+          <div class="shortcut-item">
+            <span class="shortcut-action">Delete selected clip</span>
+            <div class="shortcut-keys"><span class="key">Delete</span></div>
+          </div>
+          <div class="shortcut-item">
+            <span class="shortcut-action">Jump forward 5 seconds</span>
+            <div class="shortcut-keys"><span class="key">→</span></div>
+          </div>
+          <div class="shortcut-item">
+            <span class="shortcut-action">Jump back 5 seconds</span>
+            <div class="shortcut-keys"><span class="key">←</span></div>
+          </div>
+        </div>
+        <div>
+          <div style="font-size: 0.7rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.75rem;">Descript</div>
+          <div class="shortcut-item">
+            <span class="shortcut-action">Play / Pause</span>
+            <div class="shortcut-keys"><span class="key">Space</span></div>
+          </div>
+          <div class="shortcut-item">
+            <span class="shortcut-action">Delete selected text / video</span>
+            <div class="shortcut-keys"><span class="key">Delete</span></div>
+          </div>
+          <div class="shortcut-item">
+            <span class="shortcut-action">Undo</span>
+            <div class="shortcut-keys"><span class="key">Cmd+Z</span></div>
+          </div>
+          <div class="shortcut-item">
+            <span class="shortcut-action">Find text in transcript</span>
+            <div class="shortcut-keys"><span class="key">Cmd+F</span></div>
+          </div>
+          <div class="shortcut-item">
+            <span class="shortcut-action">Select all text between two points</span>
+            <div class="shortcut-keys"><span class="key">Click + Shift+Click</span></div>
+          </div>
+          <div class="shortcut-item">
+            <span class="shortcut-action">Export</span>
+            <div class="shortcut-keys"><span class="key">Cmd+Shift+E</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEXT STEPS -->
+  <section class="next-bar">
+    <h3>You now know how to edit.<br><em>Go make something.</em></h3>
+    <p>Come back to this guide whenever you need it. The skills compound — each episode you edit, you get faster and better. By session 10, you won't need this guide at all.</p>
+    <div class="next-btns">
+      <a href="52-week-questions.html" class="btn-dark">Open the question bank →</a>
+      <a href="riverside-setup-tutorial.html" class="btn-dark btn-outline">Riverside setup guide</a>
+      <a href="kit.html" class="btn-dark btn-outline">Back to kit</a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>© 2026 LegacyWorks · Capture. Preserve. Remember. · This document is for Story Starter members only · <a href="mailto:mike@aspirex.org" style="color:rgba(255,255,255,0.3)">mike@aspirex.org</a></p>
+  </footer>
+
+</body>
+</html>

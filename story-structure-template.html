@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Story Structure Template — LegacyWorks Story Starter</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%231a1a1a'/><text x='50%25' y='58%25' text-anchor='middle' fill='%23c9a961' font-family='Georgia,serif' font-size='20' font-style='italic'>L</text></svg>" />
+  <style>
+    :root {
+      --charcoal: #1a1a1a; --ink: #111111; --cream: #f5efe6; --cream-deep: #ebe2d2; --cream-soft: #faf6ee;
+      --gold: #c9a961; --gold-deep: #a88842; --gold-soft: #e0c898; --muted: #6b6258;
+      --green: #2d7a4f; --green-light: #e8f5ee; --amber: #b45309; --amber-light: #fffbeb;
+      --blue: #1a5a8a; --blue-light: #e8f2fb;
+      --font-display: "Cormorant Garamond", Georgia, serif;
+      --font-body: "Inter", -apple-system, sans-serif;
+      --font-mono: "SF Mono", Consolas, monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body { font-family: var(--font-body); font-size: 16px; line-height: 1.75; color: var(--ink); background: var(--cream-soft); }
+    a { color: var(--gold-deep); }
+    p { margin-bottom: 1em; } p:last-child { margin-bottom: 0; }
+    @media print { .no-print { display: none !important; } body { background: white; } }
+
+    .nav { background: var(--charcoal); padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
+    .nav-brand { font-family: var(--font-display); font-size: 1.3rem; letter-spacing: 0.15em; text-transform: uppercase; color: #fff; }
+    .nav-brand span { color: var(--gold); }
+    .nav-right { display: flex; gap: 1rem; align-items: center; }
+    .nav-back { font-size: 0.72rem; color: rgba(255,255,255,0.45); letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; }
+    .btn-print { font-size: 0.72rem; color: var(--gold); border: 1px solid rgba(201,169,97,0.35); padding: 0.35rem 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; background: none; font-family: var(--font-body); }
+
+    .hero { background: var(--charcoal); padding: 5rem 2rem 4rem; position: relative; overflow: hidden; }
+    .hero::before { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse at 20% 60%, rgba(201,169,97,0.12), transparent 50%), radial-gradient(ellipse at 85% 15%, rgba(139,111,71,0.08), transparent 50%); }
+    .hero-inner { max-width: 860px; margin: 0 auto; position: relative; z-index: 1; }
+    .hero-eyebrow { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 1.25rem; }
+    .hero h1 { font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 300; line-height: 1.1; color: var(--cream); margin-bottom: 1.25rem; }
+    .hero h1 em { font-style: italic; color: var(--gold-soft); }
+    .hero-sub { font-size: 1rem; color: rgba(245,239,230,0.62); max-width: 580px; line-height: 1.7; }
+
+    .main { max-width: 860px; margin: 0 auto; padding: 3rem 2rem 5rem; }
+
+    .intro-block { background: var(--blue-light); border-left: 4px solid var(--blue); padding: 1.5rem 2rem; margin-bottom: 3rem; }
+    .intro-title { font-weight: 600; font-size: 0.9rem; color: var(--blue); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.06em; }
+    .intro-text { font-size: 0.9rem; color: #0f2d4a; line-height: 1.6; }
+
+    .section-h { font-family: var(--font-display); font-size: clamp(1.75rem, 3.5vw, 2.75rem); font-weight: 400; line-height: 1.15; margin: 3.5rem 0 0.5rem; }
+    .section-h em { font-style: italic; color: var(--gold-deep); }
+    .section-sub { font-size: 0.95rem; color: var(--muted); margin-bottom: 2rem; max-width: 60ch; }
+
+    /* THREE FORMATS */
+    .formats { display: grid; grid-template-columns: 1fr; gap: 1px; background: rgba(0,0,0,0.06); border: 1px solid rgba(0,0,0,0.06); }
+    .format { background: #fff; padding: 1.75rem; display: grid; grid-template-columns: auto 1fr; gap: 1.5rem; align-items: start; }
+    .format-icon { width: 56px; height: 56px; background: var(--charcoal); color: var(--gold); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0; }
+    .format-name { font-family: var(--font-display); font-size: 1.5rem; font-weight: 500; margin-bottom: 0.2rem; }
+    .format-meta { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold-deep); margin-bottom: 0.75rem; }
+    .format-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
+    .format-desc strong { color: var(--ink); }
+
+    /* CHAPTER ARC MAP */
+    .arc-map { background: var(--charcoal); padding: 2rem; margin: 1.5rem 0; }
+    .arc-title { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
+    .arc-flow { display: flex; flex-direction: column; gap: 0; }
+    .arc-act { border-left: 2px solid rgba(201,169,97,0.3); padding: 0 0 1.5rem 1.5rem; position: relative; }
+    .arc-act:last-child { padding-bottom: 0; }
+    .arc-act::before { content: ""; position: absolute; left: -7px; top: 2px; width: 12px; height: 12px; background: var(--gold); border-radius: 50%; }
+    .arc-act-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; }
+    .arc-act-title { font-family: var(--font-display); font-size: 1.3rem; color: var(--cream); font-weight: 500; margin-bottom: 0.4rem; }
+    .arc-act-chapters { font-size: 0.8rem; color: rgba(245,239,230,0.5); line-height: 1.5; }
+    .arc-act-why { font-size: 0.78rem; color: rgba(245,239,230,0.4); font-style: italic; margin-top: 0.4rem; }
+
+    /* TEMPLATE TABLE */
+    .tmpl-table { width: 100%; border-collapse: collapse; background: #fff; font-size: 0.85rem; margin: 1rem 0; border: 1px solid rgba(0,0,0,0.06); }
+    .tmpl-table th { text-align: left; font-size: 0.66rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); padding: 0.85rem 1rem; border-bottom: 2px solid rgba(0,0,0,0.08); background: rgba(0,0,0,0.02); }
+    .tmpl-table td { padding: 0.85rem 1rem; border-bottom: 1px solid rgba(0,0,0,0.05); vertical-align: top; }
+    .tmpl-table td:first-child { font-weight: 600; color: var(--gold-deep); font-family: var(--font-display); font-size: 1.1rem; width: 4rem; }
+    .tmpl-table tr:last-child td { border-bottom: none; }
+    .tmpl-segment { font-weight: 600; color: var(--ink); }
+    .tmpl-time { font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted); }
+
+    /* FILL-IN TEMPLATE */
+    .fillin { background: #fff; border: 1px solid rgba(0,0,0,0.1); padding: 0; margin: 1.5rem 0; }
+    .fillin-header { background: var(--cream-deep); padding: 1.25rem 1.5rem; border-bottom: 1px solid rgba(0,0,0,0.08); }
+    .fillin-title { font-family: var(--font-display); font-size: 1.4rem; font-weight: 500; }
+    .fillin-sub { font-size: 0.8rem; color: var(--muted); }
+    .fillin-row { padding: 1rem 1.5rem; border-bottom: 1px solid rgba(0,0,0,0.05); }
+    .fillin-row:last-child { border-bottom: none; }
+    .fillin-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold-deep); margin-bottom: 0.5rem; }
+    .fillin-blank { border: 1px dashed rgba(0,0,0,0.2); background: rgba(0,0,0,0.015); padding: 0.75rem 1rem; min-height: 2.5rem; font-size: 0.85rem; color: var(--muted); font-style: italic; }
+    .fillin-hint { font-size: 0.78rem; color: var(--muted); margin-top: 0.4rem; line-height: 1.5; }
+
+    /* CALLOUTS */
+    .callout { padding: 1rem 1.25rem; margin: 1.25rem 0; display: flex; gap: 0.9rem; align-items: flex-start; }
+    .callout-tip { background: var(--green-light); border-left: 3px solid var(--green); }
+    .callout-warn { background: var(--amber-light); border-left: 3px solid var(--amber); }
+    .callout-icon { font-size: 1rem; flex-shrink: 0; margin-top: 2px; }
+    .callout-title { font-weight: 600; font-size: 0.82rem; margin-bottom: 0.2rem; }
+    .callout-tip .callout-title { color: var(--green); }
+    .callout-warn .callout-title { color: var(--amber); }
+    .callout-text { font-size: 0.83rem; line-height: 1.55; }
+    .callout-tip .callout-text { color: #1a4a30; }
+    .callout-warn .callout-text { color: #5a3a08; }
+
+    /* PRINCIPLES */
+    .principles { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(0,0,0,0.06); border: 1px solid rgba(0,0,0,0.06); margin: 1.5rem 0; }
+    .principle { background: #fff; padding: 1.5rem; }
+    .principle-num { font-family: var(--font-display); font-size: 2rem; color: rgba(201,169,97,0.3); line-height: 1; margin-bottom: 0.5rem; }
+    .principle-title { font-weight: 600; font-size: 0.92rem; margin-bottom: 0.4rem; color: var(--ink); }
+    .principle-text { font-size: 0.83rem; color: var(--muted); line-height: 1.55; }
+
+    .next-bar { background: var(--charcoal); color: var(--cream); padding: 2.5rem 2rem; text-align: center; margin-top: 3rem; }
+    .next-bar h3 { font-family: var(--font-display); font-size: 2rem; font-weight: 300; margin-bottom: 0.75rem; }
+    .next-bar h3 em { color: var(--gold); font-style: italic; }
+    .next-bar p { color: rgba(245,239,230,0.55); font-size: 0.9rem; margin-bottom: 2rem; }
+    .next-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-dark { display: inline-block; background: var(--gold); color: var(--charcoal); padding: 0.85rem 1.75rem; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; }
+    .btn-outline { background: transparent; border: 1px solid rgba(245,239,230,0.2); color: rgba(245,239,230,0.6); }
+
+    .footer { background: #111; color: rgba(255,255,255,0.3); padding: 1.5rem 2rem; text-align: center; font-size: 0.78rem; }
+
+    @media (max-width: 640px) {
+      .format { grid-template-columns: 1fr; }
+      .principles { grid-template-columns: 1fr; }
+      .next-btns { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav no-print">
+    <div class="nav-brand">Legacy<span>Works</span></div>
+    <div class="nav-right">
+      <a href="kit.html" class="nav-back">← Story Starter</a>
+      <button class="btn-print" onclick="window.print()">Print / PDF</button>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <span class="hero-eyebrow">Story Starter · Kit Resource · Members Only</span>
+      <h1>52 sessions.<br>One <em>story</em>.</h1>
+      <p class="hero-sub">You've recorded a year of interviews. Now you have hours of footage — and the hardest question of all: how do you turn it into something your family will actually watch? This template gives you the structure. It's the same framework professional documentary editors use to shape a life into a story.</p>
+    </div>
+  </section>
+
+  <div class="main">
+
+    <div class="intro-block">
+      <div class="intro-title">The problem this solves</div>
+      <p class="intro-text">A pile of raw interviews is an archive, not a story. Nobody sits down to watch 20 hours of footage. The difference between a recording that gets watched once and a film that gets watched for generations is structure. This template shows you exactly how to organize what you captured into something that holds people's attention from beginning to end.</p>
+    </div>
+
+    <!-- THREE WAYS TO ASSEMBLE -->
+    <h2 class="section-h">Three ways to <em>assemble</em> your footage</h2>
+    <p class="section-sub">You don't have to do all three. Pick the one that fits your family — or do the weekly episodes as you go and assemble the highlight film at the end.</p>
+
+    <div class="formats">
+      <div class="format">
+        <div class="format-icon">📺</div>
+        <div>
+          <div class="format-name">Weekly Episodes</div>
+          <div class="format-meta">Easiest · Do it as you go · 52 short films</div>
+          <p class="format-desc">Edit each session into its own 15–20 minute episode, one per week, and upload them to your family's private YouTube channel. <strong>This is the recommended approach for most families.</strong> It's manageable, it spreads the work out, and your family gets to watch the story unfold in real time over the year.</p>
+        </div>
+      </div>
+      <div class="format">
+        <div class="format-icon">🎬</div>
+        <div>
+          <div class="format-name">The Highlight Film</div>
+          <div class="format-meta">Most cinematic · Assemble at the end · 30–60 min</div>
+          <p class="format-desc">After all 52 sessions are recorded, pull the single best moment from each chapter and weave them into one 30–60 minute film that captures the whole arc of their life. <strong>This is the version you screen at the 80th birthday.</strong> It takes the most work but creates the most powerful single artifact.</p>
+        </div>
+      </div>
+      <div class="format">
+        <div class="format-icon">📖</div>
+        <div>
+          <div class="format-name">Chapter Films</div>
+          <div class="format-meta">A middle path · 12 themed films</div>
+          <p class="format-desc">Group the 52 sessions into their 12 life chapters and edit one film per chapter — "Childhood," "Love &amp; Marriage," "Legacy," and so on. <strong>This gives you 12 substantial 20–30 minute films</strong> organized by theme, which families love for revisiting specific parts of a life.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- THE LIFE ARC -->
+    <h2 class="section-h">The <em>life arc</em> — how to order a life</h2>
+    <p class="section-sub">Whether you're making weekly episodes or a single highlight film, the underlying structure is the same. A life story, like any story, has acts. Here's how the 12 chapters map onto a classic narrative arc.</p>
+
+    <div class="arc-map">
+      <div class="arc-title">The four-act life structure</div>
+      <div class="arc-flow">
+        <div class="arc-act">
+          <div class="arc-act-label">Act 1 — The Foundation</div>
+          <div class="arc-act-title">Where they came from</div>
+          <div class="arc-act-chapters">Chapters 1–3: Roots &amp; Origins · Childhood · Family</div>
+          <div class="arc-act-why">Establishes who they are and the world that made them. This is the "once upon a time."</div>
+        </div>
+        <div class="arc-act">
+          <div class="arc-act-label">Act 2 — The Becoming</div>
+          <div class="arc-act-title">Who they chose to be</div>
+          <div class="arc-act-chapters">Chapters 4–7: Coming of Age · Love &amp; Marriage · Work &amp; Purpose · Parenthood</div>
+          <div class="arc-act-why">The decisions, the love, the work, the family. The bulk of a life — and the bulk of your film.</div>
+        </div>
+        <div class="arc-act">
+          <div class="arc-act-label">Act 3 — The Depths</div>
+          <div class="arc-act-title">What tested and shaped them</div>
+          <div class="arc-act-chapters">Chapters 8–9: Faith &amp; Belief · Hardship &amp; Resilience</div>
+          <div class="arc-act-why">Every meaningful story has a darkness. This is where the character's depth is revealed.</div>
+        </div>
+        <div class="arc-act">
+          <div class="arc-act-label">Act 4 — The Resolution</div>
+          <div class="arc-act-title">What they learned and leave behind</div>
+          <div class="arc-act-chapters">Chapters 10–12: Joy &amp; Gratitude · Wisdom · Legacy</div>
+          <div class="arc-act-why">The story comes to rest on meaning. This is the emotional payoff — and where you end.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout callout-tip">
+      <span class="callout-icon">💡</span>
+      <div class="callout-content">
+        <div class="callout-title">Why this order works</div>
+        <p class="callout-text">It moves from the external (where they came from) to the internal (what they believe and what they've learned). A story that ends on wisdom and legacy leaves the viewer with meaning — not just facts. Always save the most emotionally resonant material for the end.</p>
+      </div>
+    </div>
+
+    <!-- EPISODE STRUCTURE -->
+    <h2 class="section-h">The <em>single episode</em> template</h2>
+    <p class="section-sub">Every weekly episode should follow this internal structure. Whether the episode is 10 minutes or 25, these segments keep it watchable from start to finish.</p>
+
+    <table class="tmpl-table">
+      <thead>
+        <tr><th>Segment</th><th>What goes here</th><th>Length</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td><span class="tmpl-segment">Cold open</span><br>The single most compelling moment from this session — drop the viewer right into it before anything else.</td>
+          <td class="tmpl-time">30–60 sec</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td><span class="tmpl-segment">Title card</span><br>"[Name]'s Story · Week [X] · [Chapter title]" on a clean background.</td>
+          <td class="tmpl-time">5–10 sec</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td><span class="tmpl-segment">The conversation</span><br>The interview itself, edited tight. Filler removed, silences trimmed, off-topic moments cut. Family photos woven in as B-roll where relevant.</td>
+          <td class="tmpl-time">10–20 min</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td><span class="tmpl-segment">The resonant close</span><br>End on the most meaningful line from the session — a piece of wisdom, an emotional moment, a perfect sentence. Even if it happened mid-session, move it here.</td>
+          <td class="tmpl-time">30–90 sec</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td><span class="tmpl-segment">End card</span><br>"LegacyWorks · Every life remembered" + optional teaser for next week's chapter.</td>
+          <td class="tmpl-time">5–10 sec</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- FILL-IN PLANNER -->
+    <h2 class="section-h">Your episode <em>planner</em></h2>
+    <p class="section-sub">Before you edit each session, fill this out. Five minutes of planning saves an hour of aimless editing. Print one of these for every session.</p>
+
+    <div class="fillin">
+      <div class="fillin-header">
+        <div class="fillin-title">Episode Planning Sheet</div>
+        <div class="fillin-sub">Week ______ · Chapter ____________________ · Date recorded ____________</div>
+      </div>
+      <div class="fillin-row">
+        <div class="fillin-label">1. The cold open — what's the single best moment?</div>
+        <div class="fillin-blank">Write the timestamp and a one-line description of the most gripping 60 seconds...</div>
+        <div class="fillin-hint">Look for: the most surprising thing they said, the most emotional moment, or the funniest story.</div>
+      </div>
+      <div class="fillin-row">
+        <div class="fillin-label">2. The through-line — what is this episode really about?</div>
+        <div class="fillin-blank">In one sentence: this episode is about...</div>
+        <div class="fillin-hint">Every episode needs a single theme. If you can't name it in one sentence, the edit will feel scattered.</div>
+      </div>
+      <div class="fillin-row">
+        <div class="fillin-label">3. The cuts — what 3–5 things should be removed?</div>
+        <div class="fillin-blank">Timestamps of digressions, false starts, or dead moments to cut...</div>
+        <div class="fillin-hint">Be ruthless. Anything that doesn't serve the through-line should go.</div>
+      </div>
+      <div class="fillin-row">
+        <div class="fillin-label">4. The photos — which family photos belong here?</div>
+        <div class="fillin-blank">List photos to add as B-roll and where they go...</div>
+        <div class="fillin-hint">When they mention a person, place, or event — show a photo of it if you have one.</div>
+      </div>
+      <div class="fillin-row">
+        <div class="fillin-label">5. The closing line — what's the perfect ending?</div>
+        <div class="fillin-blank">The single best sentence to end on (timestamp + the words)...</div>
+        <div class="fillin-hint">This is the most important decision. The last line is what the viewer carries with them.</div>
+      </div>
+    </div>
+
+    <!-- THE HIGHLIGHT FILM -->
+    <h2 class="section-h">Building the <em>highlight film</em></h2>
+    <p class="section-sub">If you're making the single capstone film at the end of the year, here's how to compress 52 sessions into one unforgettable 30–60 minute piece.</p>
+
+    <table class="tmpl-table">
+      <thead><tr><th>Part</th><th>What goes here</th><th>Length</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td><span class="tmpl-segment">Opening montage</span><br>A 90-second sequence of the most beautiful, joyful, and emotional moments from across the whole year — set to music, no single conversation, just glimpses. This is the trailer for their life.</td><td class="tmpl-time">~90 sec</td></tr>
+        <tr><td>2</td><td><span class="tmpl-segment">Act 1 — Foundation</span><br>The best 3–4 minutes from Roots, Childhood, and Family chapters.</td><td class="tmpl-time">5–8 min</td></tr>
+        <tr><td>3</td><td><span class="tmpl-segment">Act 2 — Becoming</span><br>The best moments from Coming of Age, Love, Work, and Parenthood. This is the heart.</td><td class="tmpl-time">10–18 min</td></tr>
+        <tr><td>4</td><td><span class="tmpl-segment">Act 3 — Depths</span><br>The most moving moments from Faith and Hardship. The emotional core.</td><td class="tmpl-time">5–10 min</td></tr>
+        <tr><td>5</td><td><span class="tmpl-segment">Act 4 — Resolution</span><br>Joy, Wisdom, and Legacy. End on their direct message to future generations.</td><td class="tmpl-time">5–10 min</td></tr>
+        <tr><td>6</td><td><span class="tmpl-segment">The final word</span><br>Close on Week 52 — the answer to "is there anything you've never said?" Let it land in silence.</td><td class="tmpl-time">1–3 min</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout callout-warn">
+      <span class="callout-icon">⚠️</span>
+      <div class="callout-content">
+        <div class="callout-title">Resist including everything</div>
+        <p class="callout-text">The hardest part of the highlight film is leaving things out. You'll want to keep every precious moment — but a 3-hour film won't get watched, and a tight 45-minute film will be watched a hundred times. Keep the full episodes for the archive. Make the highlight film ruthlessly short.</p>
+      </div>
+    </div>
+
+    <!-- STORYTELLING PRINCIPLES -->
+    <h2 class="section-h">Six <em>storytelling principles</em></h2>
+    <p class="section-sub">These are the rules professional documentary editors live by. Apply them and your film will feel like a story, not a recording.</p>
+
+    <div class="principles">
+      <div class="principle">
+        <div class="principle-num">01</div>
+        <div class="principle-title">Emotion over chronology</div>
+        <p class="principle-text">When in doubt, order moments by emotional impact, not by date. A film that builds to its most powerful moment beats one that just lists events in order.</p>
+      </div>
+      <div class="principle">
+        <div class="principle-num">02</div>
+        <div class="principle-title">Show, then tell</div>
+        <p class="principle-text">When they mention a photo, a place, or a person — show it. The viewer should see what the storyteller is describing whenever possible. This is what B-roll is for.</p>
+      </div>
+      <div class="principle">
+        <div class="principle-num">03</div>
+        <div class="principle-title">One theme per episode</div>
+        <p class="principle-text">Every episode should be about one thing. If a session wandered across five topics, consider splitting it into two focused episodes rather than one scattered one.</p>
+      </div>
+      <div class="principle">
+        <div class="principle-num">04</div>
+        <div class="principle-title">Start strong, end stronger</div>
+        <p class="principle-text">The first 30 seconds decide whether someone keeps watching. The last 30 seconds decide whether they remember it. Spend the most editing care on these two moments.</p>
+      </div>
+      <div class="principle">
+        <div class="principle-num">05</div>
+        <div class="principle-title">Leave space for silence</div>
+        <p class="principle-text">Not every pause is dead air. The silence after someone says something profound is part of the story. Cut the empty silences; keep the meaningful ones.</p>
+      </div>
+      <div class="principle">
+        <div class="principle-num">06</div>
+        <div class="principle-title">Let them be the narrator</div>
+        <p class="principle-text">Resist the urge to add your own voiceover explaining things. The most powerful life films are told entirely in the subject's own voice. Their words are enough.</p>
+      </div>
+    </div>
+
+    <!-- FILE ORGANIZATION -->
+    <h2 class="section-h">Keeping it <em>organized</em></h2>
+    <p class="section-sub">A clear folder structure makes editing — and the eventual highlight film — far easier. Set this up before you start.</p>
+
+    <table class="tmpl-table">
+      <thead><tr><th>Folder</th><th>What goes inside</th><th>Why</th></tr></thead>
+      <tbody>
+        <tr><td style="font-family: var(--font-mono); font-size: 0.8rem;">01_RAW</td><td>Every original Riverside recording, untouched, named by week.</td><td class="tmpl-time">Never edit these — they're your masters</td></tr>
+        <tr><td style="font-family: var(--font-mono); font-size: 0.8rem;">02_PHOTOS</td><td>Scanned family photos, organized by chapter or person.</td><td class="tmpl-time">Your B-roll library</td></tr>
+        <tr><td style="font-family: var(--font-mono); font-size: 0.8rem;">03_EDITED</td><td>Your finished episodes, ready to upload.</td><td class="tmpl-time">What goes to YouTube</td></tr>
+        <tr><td style="font-family: var(--font-mono); font-size: 0.8rem;">04_CLIPS</td><td>The 60-second highlight clips for sharing.</td><td class="tmpl-time">For texting to family</td></tr>
+        <tr><td style="font-family: var(--font-mono); font-size: 0.8rem;">05_MUSIC</td><td>Background music tracks you've downloaded.</td><td class="tmpl-time">Reuse across episodes for consistency</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout callout-tip">
+      <span class="callout-icon">📁</span>
+      <div class="callout-content">
+        <div class="callout-title">Name files clearly and consistently</div>
+        <p class="callout-text">Use a format like <strong>Week_03_Family_EDITED_2026-02-04.mp4</strong>. When you're assembling the highlight film 11 months from now, you'll thank yourself for being able to find exactly what you need instantly.</p>
+      </div>
+    </div>
+
+  </div><!-- end main -->
+
+  <section class="next-bar">
+    <h3>You have the structure.<br><em>Now shape the story.</em></h3>
+    <p>Print the episode planner, fill one out before each edit, and trust the arc. By the end of the year, you'll have something no one in your family has ever had.</p>
+    <div class="next-btns">
+      <a href="ai-editing-workflow.html" class="btn-dark">AI editing guide →</a>
+      <a href="52-week-questions.html" class="btn-dark btn-outline">Question bank</a>
+      <a href="kit.html" class="btn-dark btn-outline">Back to kit</a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>© 2026 LegacyWorks · Capture. Preserve. Remember. · For Story Starter members only · <a href="mailto:mike@aspirex.org" style="color:rgba(255,255,255,0.3)">mike@aspirex.org</a></p>
+  </footer>
+
+</body>
+</html>

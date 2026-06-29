@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Your Story Starter Kit — LegacyWorks</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%231a1a1a'/><text x='50%25' y='58%25' text-anchor='middle' fill='%23c9a961' font-family='Georgia,serif' font-size='20' font-style='italic'>L</text></svg>" />
+  <style>
+    :root {
+      --charcoal: #1a1a1a; --ink: #111111; --cream: #f5efe6; --cream-deep: #ebe2d2; --cream-soft: #faf6ee;
+      --gold: #c9a961; --gold-deep: #a88842; --gold-soft: #e0c898; --muted: #6b6258;
+      --green: #2d7a4f;
+      --font-display: "Cormorant Garamond", Georgia, serif;
+      --font-body: "Inter", -apple-system, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body { font-family: var(--font-body); font-size: 16px; line-height: 1.7; color: var(--ink); background: var(--cream-soft); }
+    a { color: inherit; text-decoration: none; }
+
+    .nav { background: var(--charcoal); padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; }
+    .nav-brand { font-family: var(--font-display); font-size: 1.3rem; letter-spacing: 0.15em; text-transform: uppercase; color: #fff; }
+    .nav-brand span { color: var(--gold); }
+    .nav-tag { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); border: 1px solid rgba(201,169,97,0.4); padding: 0.3rem 0.8rem; }
+
+    .hero { background: var(--charcoal); padding: 5rem 2rem 4rem; text-align: center; position: relative; overflow: hidden; }
+    .hero::before { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 0%, rgba(201,169,97,0.18), transparent 60%); }
+    .hero-inner { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; }
+    .welcome-badge { display: inline-block; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--charcoal); background: var(--gold); padding: 0.4rem 1rem; margin-bottom: 1.5rem; }
+    .hero h1 { font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 300; line-height: 1.1; color: var(--cream); margin-bottom: 1.25rem; }
+    .hero h1 em { font-style: italic; color: var(--gold-soft); }
+    .hero-sub { color: rgba(245,239,230,0.65); font-size: 1.05rem; max-width: 540px; margin: 0 auto; line-height: 1.7; }
+
+    .main { max-width: 980px; margin: 0 auto; padding: 3rem 2rem 5rem; }
+
+    /* QUICK START */
+    .quickstart { background: var(--cream-deep); border-left: 4px solid var(--gold); padding: 1.75rem 2rem; margin-bottom: 3rem; }
+    .quickstart-title { font-family: var(--font-display); font-size: 1.5rem; font-weight: 500; margin-bottom: 1rem; }
+    .quickstart-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1.25rem; }
+    .qs-item { display: flex; gap: 0.75rem; align-items: flex-start; }
+    .qs-num { width: 24px; height: 24px; background: var(--gold); color: var(--charcoal); font-size: 0.8rem; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .qs-text { font-size: 0.85rem; color: var(--muted); line-height: 1.5; }
+    .qs-text strong { color: var(--ink); }
+
+    .section-label { font-family: var(--font-display); font-size: 2rem; font-weight: 400; margin: 2.5rem 0 0.5rem; }
+    .section-sub { color: var(--muted); font-size: 0.92rem; margin-bottom: 2rem; }
+
+    /* KIT GRID */
+    .kit-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.25rem; }
+    .kit-card { background: #fff; border: 1px solid rgba(0,0,0,0.07); padding: 1.75rem; display: flex; flex-direction: column; transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s; position: relative; overflow: hidden; }
+    .kit-card:hover { transform: translateY(-4px); border-color: var(--gold); box-shadow: 0 12px 30px rgba(0,0,0,0.08); }
+    .kit-card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform 0.3s; }
+    .kit-card:hover::before { transform: scaleX(1); }
+    .kit-num { font-family: var(--font-display); font-size: 2.5rem; color: rgba(201,169,97,0.25); line-height: 1; margin-bottom: 0.75rem; }
+    .kit-icon { font-size: 1.75rem; margin-bottom: 0.75rem; }
+    .kit-name { font-family: var(--font-display); font-size: 1.5rem; font-weight: 500; margin-bottom: 0.5rem; line-height: 1.15; }
+    .kit-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.55; flex-grow: 1; margin-bottom: 1.25rem; }
+    .kit-link { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold-deep); display: flex; align-items: center; gap: 0.4rem; }
+    .kit-link::after { content: "→"; transition: transform 0.2s; }
+    .kit-card:hover .kit-link::after { transform: translateX(4px); }
+    .kit-meta { font-size: 0.72rem; color: var(--muted); margin-top: 0.5rem; font-style: italic; }
+
+    /* SUPPORT */
+    .support { background: var(--charcoal); color: var(--cream); padding: 3rem 2rem; text-align: center; margin-top: 3rem; }
+    .support h3 { font-family: var(--font-display); font-size: 2rem; font-weight: 300; margin-bottom: 0.75rem; }
+    .support h3 em { color: var(--gold); font-style: italic; }
+    .support p { color: rgba(245,239,230,0.6); font-size: 0.92rem; margin-bottom: 1.5rem; max-width: 480px; margin-left: auto; margin-right: auto; }
+    .support a { color: var(--gold); border-bottom: 1px solid rgba(201,169,97,0.4); }
+
+    .footer { background: #111; color: rgba(255,255,255,0.3); padding: 1.5rem 2rem; text-align: center; font-size: 0.78rem; }
+
+    @media (max-width: 600px) { .kit-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-brand">Legacy<span>Works</span></div>
+    <div class="nav-tag">Member Access</div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <span class="welcome-badge">Welcome — you're in</span>
+      <h1>Your Story Starter <em>Kit</em></h1>
+      <p class="hero-sub">Everything you need to capture your loved one's story is right here. Work through it in order, or jump to whatever you need. Take your time — this is a year-long journey, and it begins now.</p>
+    </div>
+  </section>
+
+  <div class="main">
+
+    <!-- QUICK START -->
+    <div class="quickstart">
+      <div class="quickstart-title">New here? Start in this order.</div>
+      <div class="quickstart-steps">
+        <div class="qs-item"><div class="qs-num">1</div><div class="qs-text"><strong>Pick your gear</strong> from the equipment guide — or use what you own.</div></div>
+        <div class="qs-item"><div class="qs-num">2</div><div class="qs-text"><strong>Set up Riverside</strong> following the step-by-step tutorial.</div></div>
+        <div class="qs-item"><div class="qs-num">3</div><div class="qs-text"><strong>Open Week 1</strong> in the question bank and record your first session.</div></div>
+        <div class="qs-item"><div class="qs-num">4</div><div class="qs-text"><strong>Edit &amp; share</strong> using the editing guide and YouTube setup.</div></div>
+      </div>
+    </div>
+
+    <!-- THE KIT -->
+    <h2 class="section-label">Everything in your kit</h2>
+    <p class="section-sub">Six complete resources. Bookmark this page — it's your home base for the whole journey.</p>
+
+    <div class="kit-grid">
+
+      <a href="story-starter-equipment-tiers.html" class="kit-card">
+        <div class="kit-num">01</div>
+        <div class="kit-icon">🎥</div>
+        <div class="kit-name">Equipment Guide</div>
+        <div class="kit-desc">Four budget tiers — Good, Better, Best, and Pro — with the exact gear LegacyWorks has tested, Amazon links, and prices. Start with what you own, upgrade when ready.</div>
+        <span class="kit-link">Open guide</span>
+        <span class="kit-meta">Good ($0) · Better · Best · Pro</span>
+      </a>
+
+      <a href="riverside-setup-tutorial.html" class="kit-card">
+        <div class="kit-num">02</div>
+        <div class="kit-icon">🎬</div>
+        <div class="kit-name">Riverside Setup</div>
+        <div class="kit-desc">A complete beginner's tutorial for the recording software. Written for someone who has never recorded video. You'll be ready to record in about 20 minutes.</div>
+        <span class="kit-link">Open tutorial</span>
+        <span class="kit-meta">6 steps · ~20 min setup</span>
+      </a>
+
+      <a href="52-week-questions.html" class="kit-card">
+        <div class="kit-num">03</div>
+        <div class="kit-icon">📖</div>
+        <div class="kit-name">52-Week Question Bank</div>
+        <div class="kit-desc">A full year of guided interview questions across 12 chapters of a life — from roots and childhood to wisdom and legacy. 200+ follow-up prompts and coaching tips included.</div>
+        <span class="kit-link">Open questions</span>
+        <span class="kit-meta">52 weeks · 12 chapters</span>
+      </a>
+
+      <a href="ai-editing-workflow.html" class="kit-card">
+        <div class="kit-num">04</div>
+        <div class="kit-icon">✂️</div>
+        <div class="kit-name">AI Editing Workflow</div>
+        <div class="kit-desc">From total beginner to expert. Use AI tools (CapCut, Descript, Riverside AI) to turn raw footage into a polished episode — in under an hour, even with zero editing experience.</div>
+        <span class="kit-link">Open guide</span>
+        <span class="kit-meta">Beginner → Expert · 3 levels</span>
+      </a>
+
+      <a href="story-structure-template.html" class="kit-card">
+        <div class="kit-num">05</div>
+        <div class="kit-icon">🎞️</div>
+        <div class="kit-name">Story Structure Template</div>
+        <div class="kit-desc">Turn 52 raw interviews into something your family will actually watch. The documentary framework for shaping a life into a story, with a printable episode planner.</div>
+        <span class="kit-link">Open template</span>
+        <span class="kit-meta">Episode + highlight film blueprints</span>
+      </a>
+
+      <a href="youtube-channel-setup.html" class="kit-card">
+        <div class="kit-num">06</div>
+        <div class="kit-icon">📺</div>
+        <div class="kit-name">Private YouTube Setup</div>
+        <div class="kit-desc">Create your family's private video archive — accessible to everyone you choose, forever, for free. A complete beginner's guide to setting up a private channel safely.</div>
+        <span class="kit-link">Open guide</span>
+        <span class="kit-meta">5 steps · ~15 min</span>
+      </a>
+
+    </div>
+
+    <!-- SUPPORT -->
+    <div class="support">
+      <h3>Stuck on anything? <em>We're here.</em></h3>
+      <p>This kit is designed so you never feel alone in the process. If you hit a wall, have a question, or just want to share what you're making — reach out anytime.</p>
+      <a href="mailto:mike@aspirex.org">mike@aspirex.org</a>
+    </div>
+
+  </div>
+
+  <footer class="footer">
+    <p>© 2026 LegacyWorks · Capture. Preserve. Remember. · This page is for Story Starter members. Please don't share this link.</p>
+  </footer>
+
+</body>
+</html>
