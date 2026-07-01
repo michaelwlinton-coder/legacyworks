@@ -169,42 +169,83 @@
     </div>
   </section>
 
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div>
-          <div class="footer-brand">LegacyWorks</div>
-          <p class="footer-tagline">Every life remembered.</p>
-          <p style="margin-top: 1.25rem; font-size: 0.92rem;">A premium life-story studio capturing voices, wisdom, and histories for the families who love them.</p>
-        </div>
-        <div>
-          <h4>Tiers</h4>
-          <ul>
-            <li><a href="story-starter.html">Story Starter — $995</a></li>
-            <li><a href="story-keeper.html">Story Keeper — $2,500&ndash;$4,995</a></li>
-            <li><a href="story-legacy.html">Story Legacy — $25K&ndash;$100K</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4>Company</h4>
-          <ul>
-            <li><a href="about.html">Our story</a></li>
-            <li><a href="contact.html">Contact</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4>Connect</h4>
-          <ul>
-            <li><a href="mailto:mike@aspirex.org">mike@aspirex.org</a></li>
-            <li><a href="contact.html">Book a discovery call</a></li>
-          </ul>
-        </div>
+  <footer class="lw-footer">
+
+    <!-- TOP: brand statement + email capture -->
+    <div class="lw-foot-top">
+      <div>
+        <p class="lw-statement">The next generation should never have to wonder <em>what their grandmother sounded like.</em></p>
+        <p class="lw-statement-sub">LegacyWorks captures the voices, the wisdom, and the small unrepeatable moments that make a life &mdash; before they&rsquo;re lost. At every budget, for every family.</p>
       </div>
-      <div class="footer-bottom">
-        <span>&copy; 2026 LegacyWorks. Capture. Preserve. Remember.</span>
-        <span class="serif italic">Every life remembered.</span>
+      <div>
+        <span class="lw-signup-label">Stay close to the work</span>
+        <p class="lw-signup-copy">A quiet letter, now and then &mdash; on capturing a life well, and the families we&rsquo;ve helped remember theirs. No noise.</p>
+        <!-- TODO: wire this form to an email provider (Mailchimp / ConvertKit). Currently does nothing. -->
+        <form class="lw-signup-form" onsubmit="return false;">
+          <div class="lw-input-row">
+            <input type="email" placeholder="Your email address" aria-label="Email address" />
+            <button type="submit">Subscribe</button>
+          </div>
+          <p class="lw-signup-fine">We send rarely and never share your email. Unsubscribe anytime.</p>
+        </form>
       </div>
     </div>
+
+    <!-- MIDDLE: brand + navigation columns -->
+    <div class="lw-foot-mid">
+      <div class="lw-brand-col">
+        <div class="lw-brandmark">Legacy<span>Works</span></div>
+        <p class="lw-brand-desc">A premium life-story studio capturing voices, wisdom, and histories for the families who love them.</p>
+        <div class="lw-socials">
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.81 3.81 0 0 1-1.38-.9 3.81 3.81 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zm0 1.62c-3.15 0-3.5.01-4.74.07-.95.04-1.47.2-1.81.34-.46.18-.78.39-1.12.73-.34.34-.55.66-.73 1.12-.14.34-.3.86-.34 1.81-.06 1.24-.07 1.59-.07 4.74s.01 3.5.07 4.74c.04.95.2 1.47.34 1.81.18.46.39.78.73 1.12.34.34.66.55 1.12.73.34.14.86.3 1.81.34 1.24.06 1.59.07 4.74.07s3.5-.01 4.74-.07c.95-.04 1.47-.2 1.81-.34.46-.18.78-.39 1.12-.73.34-.34.55-.66.73-1.12.14-.34.3-.86.34-1.81.06-1.24.07-1.59.07-4.74s-.01-3.5-.07-4.74c-.04-.95-.2-1.47-.34-1.81a3.02 3.02 0 0 0-.73-1.12 3.02 3.02 0 0 0-1.12-.73c-.34-.14-.86-.3-1.81-.34-1.24-.06-1.59-.07-4.74-.07zm0 2.76a5.46 5.46 0 1 1 0 10.92 5.46 5.46 0 0 1 0-10.92zm0 9a3.54 3.54 0 1 0 0-7.08 3.54 3.54 0 0 0 0 7.08zm6.95-9.22a1.28 1.28 0 1 1-2.56 0 1.28 1.28 0 0 1 2.56 0z"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.5 6.2a3.02 3.02 0 0 0-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.51A3.02 3.02 0 0 0 .5 6.2C0 8.07 0 12 0 12s0 3.93.5 5.8a3.02 3.02 0 0 0 2.12 2.14c1.88.51 9.38.51 9.38.51s7.5 0 9.38-.51a3.02 3.02 0 0 0 2.12-2.14C24 15.93 24 12 24 12s0-3.93-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zm1.78 13.02H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg></a>
+        </div>
+      </div>
+      <div class="lw-col">
+        <h4>The Tiers</h4>
+        <ul>
+          <li><a href="story-starter.html">Story Starter<span class="lw-tier-price">From $100 &middot; DIY kit</span></a></li>
+          <li><a href="story-keeper.html">Story Keeper<span class="lw-tier-price">$2,500&ndash;$4,995 &middot; Coached</span></a></li>
+          <li><a href="story-legacy.html">Story Legacy<span class="lw-tier-price">$25K&ndash;$100K &middot; Cinematic</span></a></li>
+        </ul>
+      </div>
+      <div class="lw-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">Our story</a></li>
+          <li><a href="contact.html">Book a call</a></li>
+          <li><a href="contact.html">Partnerships</a></li>
+          <li><a href="mailto:mike@aspirex.org">Press</a></li>
+        </ul>
+      </div>
+      <div class="lw-col">
+        <h4>Get in touch</h4>
+        <ul>
+          <li><a href="mailto:mike@aspirex.org">mike@aspirex.org</a></li>
+          <li><a href="contact.html">Schedule a discovery call</a></li>
+          <li><a href="contact.html">For funeral homes &amp; advisors</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- SIGNATURE: monumental sign-off -->
+    <div class="lw-signature" aria-hidden="true">
+      <div class="lw-signature-text">Every life remembered.</div>
+    </div>
+
+    <!-- BOTTOM BAR -->
+    <div class="lw-foot-bottom">
+      <div class="lw-foot-bottom-inner">
+        <span class="lw-copy">&copy; 2026 LegacyWorks &middot; Capture. Preserve. Remember.</span>
+        <nav class="lw-foot-legal">
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+      </div>
+    </div>
+
   </footer>
 
   <script src="assets/main.js"></script>

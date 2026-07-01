@@ -703,3 +703,240 @@ em, .italic { font-style: italic; font-family: var(--font-display); }
   .tier-card { padding: 2.5rem 1.75rem; }
   .nav { padding: 0.75rem 0; }
 }
+
+
+
+.lw-footer {
+  background: var(--charcoal);
+  color: var(--cream);
+  position: relative;
+  overflow: hidden;
+}
+.lw-footer::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(201,169,97,0.10), transparent 70%);
+  pointer-events: none;
+}
+
+/* TOP: brand statement + newsletter */
+.lw-foot-top {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 5rem 2.5rem 3.5rem;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 4rem;
+  align-items: start;
+  border-bottom: 1px solid rgba(245,239,230,0.08);
+}
+.lw-statement {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(1.75rem, 3vw, 2.6rem);
+  line-height: 1.2;
+  color: var(--cream);
+  letter-spacing: -0.01em;
+}
+.lw-statement em { font-style: italic; color: var(--gold-soft); }
+.lw-statement-sub {
+  margin-top: 1.5rem;
+  font-size: 0.92rem;
+  line-height: 1.7;
+  color: rgba(245,239,230,0.55);
+  max-width: 42ch;
+  font-family: var(--font-body);
+}
+.lw-signup-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1rem;
+  display: block;
+}
+.lw-signup-copy {
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: rgba(245,239,230,0.6);
+  margin-bottom: 1.5rem;
+}
+.lw-signup-form { display: flex; flex-direction: column; gap: 0.75rem; }
+.lw-input-row {
+  display: flex;
+  border: 1px solid rgba(245,239,230,0.18);
+  background: rgba(245,239,230,0.03);
+  transition: border-color 0.25s ease;
+}
+.lw-input-row:focus-within { border-color: var(--gold); }
+.lw-input-row input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 0.95rem 1.1rem;
+  color: var(--cream);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  letter-spacing: 0.01em;
+}
+.lw-input-row input::placeholder { color: rgba(245,239,230,0.35); }
+.lw-input-row button {
+  background: var(--gold);
+  color: var(--charcoal);
+  border: none;
+  padding: 0 1.5rem;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.25s ease;
+  white-space: nowrap;
+}
+.lw-input-row button:hover { background: var(--gold-soft); }
+.lw-signup-fine {
+  font-size: 0.72rem;
+  color: rgba(245,239,230,0.35);
+  line-height: 1.5;
+}
+
+/* MIDDLE: link columns */
+.lw-foot-mid {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3.5rem 2.5rem;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 3rem;
+  border-bottom: 1px solid rgba(245,239,230,0.08);
+}
+.lw-brand-col .lw-brandmark {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--cream);
+  margin-bottom: 1.25rem;
+}
+.lw-brand-col .lw-brandmark span { color: var(--gold); }
+.lw-brand-desc {
+  font-size: 0.85rem;
+  line-height: 1.7;
+  color: rgba(245,239,230,0.5);
+  max-width: 32ch;
+  margin-bottom: 1.75rem;
+}
+.lw-socials { display: flex; gap: 0.6rem; }
+.lw-socials a {
+  width: 38px; height: 38px;
+  border: 1px solid rgba(245,239,230,0.15);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(245,239,230,0.6);
+  transition: all 0.25s ease;
+  text-decoration: none;
+}
+.lw-socials a:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+.lw-socials svg { width: 16px; height: 16px; fill: currentColor; }
+
+.lw-col h4 {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.4rem;
+}
+.lw-col ul { list-style: none; margin: 0; padding: 0; }
+.lw-col li { margin-bottom: 0.85rem; }
+.lw-col a {
+  color: rgba(245,239,230,0.62);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.2s ease, padding-left 0.2s ease;
+  display: inline-block;
+}
+.lw-col a:hover { color: var(--cream); padding-left: 4px; }
+.lw-col .lw-tier-price {
+  display: block;
+  font-size: 0.72rem;
+  color: rgba(245,239,230,0.35);
+  margin-top: 1px;
+  letter-spacing: 0.03em;
+}
+
+/* SIGNATURE */
+.lw-signature {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2.5rem 2.5rem 0;
+  text-align: center;
+  overflow: hidden;
+}
+.lw-signature-text {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(2.5rem, 9vw, 7rem);
+  line-height: 1;
+  letter-spacing: 0.01em;
+  background: linear-gradient(180deg, rgba(201,169,97,0.22) 0%, rgba(201,169,97,0.02) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  user-select: none;
+  white-space: nowrap;
+}
+
+/* BOTTOM BAR */
+.lw-foot-bottom {
+  position: relative;
+  border-top: 1px solid rgba(245,239,230,0.08);
+  margin-top: 2.5rem;
+}
+.lw-foot-bottom-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.75rem 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+.lw-foot-bottom-inner .lw-copy {
+  font-size: 0.78rem;
+  color: rgba(245,239,230,0.4);
+  letter-spacing: 0.02em;
+}
+.lw-foot-legal { display: flex; gap: 1.75rem; flex-wrap: wrap; }
+.lw-foot-legal a {
+  font-size: 0.78rem;
+  color: rgba(245,239,230,0.4);
+  text-decoration: none;
+  transition: color 0.2s ease;
+  letter-spacing: 0.02em;
+}
+.lw-foot-legal a:hover { color: var(--gold); }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .lw-foot-top { grid-template-columns: 1fr; gap: 3rem; padding: 4rem 1.75rem 3rem; }
+  .lw-foot-mid { grid-template-columns: 1fr 1fr; gap: 2.5rem; padding: 3rem 1.75rem; }
+  .lw-brand-col { grid-column: 1 / -1; }
+}
+@media (max-width: 560px) {
+  .lw-foot-mid { grid-template-columns: 1fr; }
+  .lw-foot-bottom-inner { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .lw-signature { padding-top: 1.5rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lw-col a, .lw-socials a, .lw-input-row, .lw-input-row button { transition: none; }
+}
