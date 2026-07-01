@@ -1,0 +1,623 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Story Keeper — We Capture Their Story, So You Never Lose It | LegacyWorks</title>
+<meta name="description" content="A coached, done-for-you life story program. We interview your loved one, our team films and edits everything, and your family receives a video series, a hardcover book, and a Legacy Highlight Film. Book a free 20-minute call." />
+<meta name="theme-color" content="#1a1a1a" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%231a1a1a'/><text x='50%25' y='58%25' text-anchor='middle' fill='%23c9a961' font-family='Georgia,serif' font-size='20' font-style='italic'>L</text></svg>" />
+<style>
+  :root{
+    --charcoal:#1a1a1a; --charcoal-deep:#141414; --ink:#111; --cream:#f5efe6; --cream-deep:#ebe2d2;
+    --cream-soft:#faf6ee; --gold:#c9a961; --gold-deep:#a88842; --gold-soft:#e0c898; --muted:#6b6258;
+    --display:"Cormorant Garamond",Georgia,serif; --body:"Inter",-apple-system,sans-serif;
+  }
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+  body{font-family:var(--body);font-size:16px;line-height:1.7;color:var(--ink);background:var(--cream-soft)}
+  a{color:inherit;text-decoration:none}
+  em{font-style:italic}
+
+  /* ---- buttons ---- */
+  .btn{display:inline-flex;align-items:center;gap:.6rem;font-family:var(--body);font-size:.82rem;font-weight:600;
+    letter-spacing:.12em;text-transform:uppercase;padding:1.05rem 2.2rem;cursor:pointer;border:none;transition:all .25s ease}
+  .btn-gold{background:var(--gold);color:var(--charcoal)}
+  .btn-gold:hover{background:var(--gold-soft);transform:translateY(-2px)}
+  .btn-ghost{background:transparent;color:var(--cream);border:1px solid rgba(245,239,230,.3)}
+  .btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+  .btn-arrow::after{content:"→";transition:transform .2s ease}
+  .btn-arrow:hover::after{transform:translateX(4px)}
+
+  /* ---- sticky nav ---- */
+  .nav{position:sticky;top:0;z-index:100;background:rgba(26,26,26,.92);backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(201,169,97,.12)}
+  .nav-inner{max-width:1180px;margin:0 auto;padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between}
+  .brand{font-family:var(--display);font-size:1.35rem;letter-spacing:.14em;text-transform:uppercase;color:#fff}
+  .brand span{color:var(--gold)}
+  .nav-cta{font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--charcoal);
+    background:var(--gold);padding:.6rem 1.25rem;transition:background .2s ease}
+  .nav-cta:hover{background:var(--gold-soft)}
+
+  /* ---- HERO ---- */
+  .hero{position:relative;background:var(--charcoal);color:var(--cream);overflow:hidden;
+    padding:6.5rem 2rem 6rem}
+  .hero::before{content:"";position:absolute;inset:0;
+    background:radial-gradient(ellipse 70% 60% at 25% 30%,rgba(201,169,97,.16),transparent 60%),
+      radial-gradient(ellipse 60% 50% at 90% 90%,rgba(139,111,71,.12),transparent 60%)}
+  .hero-inner{position:relative;z-index:1;max-width:900px;margin:0 auto;text-align:center}
+  .hero-eyebrow{font-size:.72rem;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);
+    display:block;margin-bottom:1.75rem}
+  .hero h1{font-family:var(--display);font-weight:300;font-size:clamp(2.6rem,6vw,4.75rem);line-height:1.08;
+    letter-spacing:-.01em;margin-bottom:1.75rem}
+  .hero h1 em{font-style:italic;color:var(--gold-soft)}
+  .hero-sub{font-size:1.12rem;line-height:1.7;color:rgba(245,239,230,.72);max-width:620px;margin:0 auto 2.75rem}
+  .hero-cta-row{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:1.5rem}
+  .hero-reassure{font-size:.82rem;color:rgba(245,239,230,.45);letter-spacing:.02em}
+  .hero-reassure strong{color:var(--gold-soft);font-weight:500}
+
+  /* ---- emotional opener ---- */
+  .opener{background:var(--cream-soft);padding:6rem 2rem;text-align:center}
+  .opener-inner{max-width:760px;margin:0 auto}
+  .opener p{font-family:var(--display);font-size:clamp(1.6rem,3.4vw,2.5rem);font-weight:300;line-height:1.35;
+    color:var(--ink)}
+  .opener p em{font-style:italic;color:var(--gold-deep)}
+  .opener .small{font-family:var(--body);font-size:1rem;line-height:1.75;color:var(--muted);margin-top:2rem;
+    max-width:600px;margin-left:auto;margin-right:auto}
+
+  /* ---- the problem / turn ---- */
+  .turn{background:var(--charcoal);color:var(--cream);padding:5.5rem 2rem}
+  .turn-inner{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+  .turn-eyebrow{font-size:.72rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);
+    display:block;margin-bottom:1.25rem}
+  .turn h2{font-family:var(--display);font-weight:300;font-size:clamp(2rem,4vw,3rem);line-height:1.15;margin-bottom:1.5rem}
+  .turn h2 em{font-style:italic;color:var(--gold-soft)}
+  .turn p{color:rgba(245,239,230,.66);margin-bottom:1.1rem;font-size:1rem;line-height:1.75}
+  .turn p:last-child{margin-bottom:0}
+  .turn-card{background:rgba(245,239,230,.04);border:1px solid rgba(201,169,97,.18);padding:2.5rem}
+  .turn-card .q{font-family:var(--display);font-style:italic;font-size:1.5rem;color:var(--gold-soft);line-height:1.4;
+    margin-bottom:1.25rem}
+  .turn-card .a{font-size:.95rem;color:rgba(245,239,230,.6);line-height:1.7}
+
+  /* ---- section scaffold ---- */
+  .section{padding:6rem 2rem}
+  .section-head{max-width:720px;margin:0 auto 3.5rem;text-align:center}
+  .eyebrow{font-size:.72rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-deep);
+    display:block;margin-bottom:1rem}
+  .section-head h2{font-family:var(--display);font-weight:300;font-size:clamp(2rem,4.2vw,3.1rem);line-height:1.14;
+    color:var(--ink)}
+  .section-head h2 em{font-style:italic;color:var(--gold-deep)}
+  .section-head p{color:var(--muted);font-size:1.02rem;margin-top:1.1rem;line-height:1.7}
+
+  /* ---- how it works (4 steps) ---- */
+  .steps{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}
+  .step{position:relative;padding-top:2rem}
+  .step-num{font-family:var(--display);font-size:3.25rem;font-weight:300;color:var(--gold);line-height:1;
+    opacity:.5;margin-bottom:.75rem}
+  .step h3{font-family:var(--display);font-size:1.5rem;font-weight:500;margin-bottom:.6rem;line-height:1.15}
+  .step p{font-size:.9rem;color:var(--muted);line-height:1.65}
+  .step::before{content:"";position:absolute;top:2.65rem;left:calc(-.75rem);width:1.5rem;height:1px;
+    background:rgba(201,169,97,.4)}
+  .step:first-child::before{display:none}
+
+  /* ---- deliverables ---- */
+  .deliver{background:var(--cream-deep)}
+  .deliver-grid{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:repeat(2,1fr);gap:1.25rem}
+  .deliver-card{background:var(--cream-soft);border:1px solid rgba(0,0,0,.06);padding:2rem;display:flex;gap:1.25rem;
+    align-items:flex-start;transition:transform .2s ease,box-shadow .2s ease}
+  .deliver-card:hover{transform:translateY(-3px);box-shadow:0 14px 34px rgba(0,0,0,.07)}
+  .deliver-icon{font-size:1.6rem;flex-shrink:0;line-height:1;margin-top:.15rem}
+  .deliver-card h3{font-family:var(--display);font-size:1.4rem;font-weight:500;margin-bottom:.4rem;line-height:1.2}
+  .deliver-card p{font-size:.9rem;color:var(--muted);line-height:1.6}
+
+  /* ---- SAMPLE FILM (placeholder) ---- */
+  .sample{background:var(--charcoal);color:var(--cream);text-align:center}
+  .sample-inner{max-width:900px;margin:0 auto}
+  .sample-frame{position:relative;margin-top:2.5rem;aspect-ratio:16/9;border:1px solid rgba(201,169,97,.25);
+    background:linear-gradient(135deg,#1f1f1f,#161616);display:flex;flex-direction:column;align-items:center;
+    justify-content:center;gap:1rem;overflow:hidden}
+  .sample-frame::before{content:"";position:absolute;inset:0;
+    background:radial-gradient(ellipse at center,rgba(201,169,97,.08),transparent 70%)}
+  .play-btn{position:relative;width:74px;height:74px;border-radius:50%;border:1.5px solid var(--gold);
+    display:flex;align-items:center;justify-content:center;transition:all .25s ease}
+  .play-btn::after{content:"";border-left:18px solid var(--gold);border-top:11px solid transparent;
+    border-bottom:11px solid transparent;margin-left:5px}
+  .sample-frame:hover .play-btn{background:rgba(201,169,97,.12);transform:scale(1.05)}
+  .sample-note{position:relative;font-size:.8rem;letter-spacing:.05em;color:rgba(245,239,230,.4)}
+  .placeholder-tag{display:inline-block;font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+    background:rgba(201,169,97,.15);color:var(--gold);padding:.3rem .7rem;border:1px dashed rgba(201,169,97,.4);
+    margin-top:1.5rem}
+
+  /* ---- TESTIMONIALS (placeholder) ---- */
+  .proof{background:var(--cream-soft)}
+  .proof-grid{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+  .quote-card{background:#fff;border:1px solid rgba(0,0,0,.06);padding:2.25rem;position:relative}
+  .quote-card::before{content:"\201C";position:absolute;top:.5rem;left:1.25rem;font-family:var(--display);
+    font-size:4.5rem;color:rgba(201,169,97,.25);line-height:1}
+  .quote-text{position:relative;font-family:var(--display);font-size:1.25rem;font-style:italic;line-height:1.5;
+    color:var(--ink);margin:1.5rem 0 1.75rem}
+  .quote-attr{display:flex;align-items:center;gap:.85rem}
+  .quote-avatar{width:44px;height:44px;border-radius:50%;background:var(--cream-deep);border:1px solid rgba(201,169,97,.3);
+    display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:1.1rem;color:var(--gold-deep);
+    flex-shrink:0}
+  .quote-name{font-weight:600;font-size:.9rem;color:var(--ink)}
+  .quote-role{font-size:.8rem;color:var(--muted)}
+  .proof-disclaimer{max-width:1080px;margin:2rem auto 0;text-align:center;font-size:.75rem;color:var(--muted);
+    font-style:italic}
+
+  /* ---- pricing ---- */
+  .pricing{background:var(--charcoal);color:var(--cream)}
+  .pricing .section-head h2{color:var(--cream)}
+  .pricing .section-head p{color:rgba(245,239,230,.6)}
+  .plans{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;align-items:stretch}
+  .plan{background:rgba(245,239,230,.04);border:1px solid rgba(245,239,230,.1);padding:2.5rem 2rem;display:flex;
+    flex-direction:column;position:relative}
+  .plan.featured{border-color:var(--gold);background:rgba(201,169,97,.06)}
+  .plan-badge{position:absolute;top:-.75rem;left:50%;transform:translateX(-50%);background:var(--gold);
+    color:var(--charcoal);font-size:.62rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+    padding:.35rem 1rem;white-space:nowrap}
+  .plan-name{font-family:var(--display);font-size:1.6rem;font-weight:500;margin-bottom:.35rem}
+  .plan-price{font-family:var(--display);font-size:2.75rem;font-weight:300;color:var(--gold-soft);line-height:1;
+    margin:.5rem 0}
+  .plan-price small{font-size:.9rem;color:rgba(245,239,230,.4)}
+  .plan-desc{font-size:.85rem;color:rgba(245,239,230,.55);margin-bottom:1.5rem;min-height:2.5rem}
+  .plan ul{list-style:none;margin:0 0 2rem;flex-grow:1}
+  .plan li{font-size:.88rem;color:rgba(245,239,230,.72);padding:.5rem 0 .5rem 1.5rem;position:relative;line-height:1.45}
+  .plan li::before{content:"✓";position:absolute;left:0;color:var(--gold);font-weight:700}
+  .plan .btn{width:100%;justify-content:center}
+  .pricing-note{max-width:1080px;margin:2rem auto 0;text-align:center;font-size:.85rem;color:rgba(245,239,230,.5)}
+
+  /* ---- guarantee / reassurance ---- */
+  .assure{background:var(--cream-deep);text-align:center}
+  .assure-inner{max-width:760px;margin:0 auto}
+  .assure-icon{font-size:2.25rem;margin-bottom:1rem}
+  .assure h2{font-family:var(--display);font-weight:300;font-size:clamp(1.8rem,3.5vw,2.6rem);line-height:1.2;
+    margin-bottom:1.25rem}
+  .assure h2 em{font-style:italic;color:var(--gold-deep)}
+  .assure p{color:var(--muted);font-size:1rem;line-height:1.75;max-width:600px;margin:0 auto}
+
+  /* ---- FAQ ---- */
+  .faq{background:var(--cream-soft)}
+  .faq-list{max-width:760px;margin:0 auto}
+  .faq-item{border-bottom:1px solid rgba(0,0,0,.09)}
+  .faq-q{width:100%;text-align:left;background:none;border:none;font-family:var(--body);cursor:pointer;
+    padding:1.5rem 2.5rem 1.5rem 0;font-size:1.08rem;font-weight:500;color:var(--ink);position:relative;
+    display:flex;justify-content:space-between;align-items:center;gap:1rem}
+  .faq-q::after{content:"+";position:absolute;right:0;font-size:1.5rem;color:var(--gold-deep);font-weight:300;
+    transition:transform .25s ease}
+  .faq-item.open .faq-q::after{transform:rotate(45deg)}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s ease;color:var(--muted);
+    font-size:.95rem;line-height:1.75}
+  .faq-item.open .faq-a{max-height:340px;padding:0 0 1.5rem}
+
+  /* ---- FINAL CTA ---- */
+  .final{background:var(--charcoal);color:var(--cream);text-align:center;padding:7rem 2rem;position:relative;overflow:hidden}
+  .final::before{content:"";position:absolute;inset:0;
+    background:radial-gradient(ellipse 60% 60% at 50% 0%,rgba(201,169,97,.16),transparent 65%)}
+  .final-inner{position:relative;z-index:1;max-width:720px;margin:0 auto}
+  .final h2{font-family:var(--display);font-weight:300;font-size:clamp(2.4rem,5vw,3.75rem);line-height:1.12;
+    margin-bottom:1.5rem}
+  .final h2 em{font-style:italic;color:var(--gold-soft)}
+  .final p{color:rgba(245,239,230,.68);font-size:1.08rem;line-height:1.7;margin-bottom:2.5rem;max-width:560px;
+    margin-left:auto;margin-right:auto}
+  .final .hero-reassure{margin-top:1.5rem}
+
+  /* ---- signature line ---- */
+  .signature{background:var(--charcoal-deep);text-align:center;padding:2.5rem 2rem;overflow:hidden}
+  .signature span{font-family:var(--display);font-style:italic;font-weight:300;font-size:clamp(1.75rem,5vw,3rem);
+    background:linear-gradient(180deg,rgba(201,169,97,.3),rgba(201,169,97,.04));-webkit-background-clip:text;
+    background-clip:text;-webkit-text-fill-color:transparent;color:transparent;user-select:none}
+
+  /* ---- responsive ---- */
+  @media(max-width:920px){
+    .turn-inner{grid-template-columns:1fr;gap:2.5rem}
+    .steps{grid-template-columns:1fr 1fr;gap:2rem}
+    .step::before{display:none}
+    .deliver-grid{grid-template-columns:1fr}
+    .proof-grid{grid-template-columns:1fr}
+    .plans{grid-template-columns:1fr;max-width:440px}
+    .plan.featured{order:-1}
+  }
+  @media(max-width:560px){
+    .steps{grid-template-columns:1fr}
+    .hero{padding:4.5rem 1.5rem 4rem}
+    .section{padding:4.5rem 1.5rem}
+    .hero-cta-row{flex-direction:column}
+    .hero-cta-row .btn{width:100%;justify-content:center}
+  }
+  @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+
+  /* ---- PREMIUM SITE FOOTER ---- */
+  .lw-footer{background:var(--charcoal);color:var(--cream);position:relative;overflow:hidden}
+  .lw-footer::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 80% 50% at 50% 0%,rgba(201,169,97,.10),transparent 70%);pointer-events:none}
+  .lw-foot-top{position:relative;max-width:1200px;margin:0 auto;padding:5rem 2.5rem 3.5rem;display:grid;grid-template-columns:1.1fr .9fr;gap:4rem;align-items:start;border-bottom:1px solid rgba(245,239,230,.08)}
+  .lw-statement{font-family:var(--display);font-weight:300;font-size:clamp(1.75rem,3vw,2.6rem);line-height:1.2;color:var(--cream);letter-spacing:-.01em}
+  .lw-statement em{font-style:italic;color:var(--gold-soft)}
+  .lw-statement-sub{margin-top:1.5rem;font-size:.92rem;line-height:1.7;color:rgba(245,239,230,.55);max-width:42ch;font-family:var(--body)}
+  .lw-signup-label{font-size:.7rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;display:block}
+  .lw-signup-copy{font-size:.9rem;line-height:1.65;color:rgba(245,239,230,.6);margin-bottom:1.5rem}
+  .lw-signup-form{display:flex;flex-direction:column;gap:.75rem}
+  .lw-input-row{display:flex;border:1px solid rgba(245,239,230,.18);background:rgba(245,239,230,.03);transition:border-color .25s ease}
+  .lw-input-row:focus-within{border-color:var(--gold)}
+  .lw-input-row input{flex:1;background:transparent;border:none;outline:none;padding:.95rem 1.1rem;color:var(--cream);font-family:var(--body);font-size:.9rem;letter-spacing:.01em}
+  .lw-input-row input::placeholder{color:rgba(245,239,230,.35)}
+  .lw-input-row button{background:var(--gold);color:var(--charcoal);border:none;padding:0 1.5rem;font-family:var(--body);font-size:.72rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;transition:background .25s ease;white-space:nowrap}
+  .lw-input-row button:hover{background:var(--gold-soft)}
+  .lw-signup-fine{font-size:.72rem;color:rgba(245,239,230,.35);line-height:1.5}
+  .lw-foot-mid{position:relative;max-width:1200px;margin:0 auto;padding:3.5rem 2.5rem;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:3rem;border-bottom:1px solid rgba(245,239,230,.08)}
+  .lw-brand-col .lw-brandmark{font-family:var(--display);font-size:1.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cream);margin-bottom:1.25rem}
+  .lw-brand-col .lw-brandmark span{color:var(--gold)}
+  .lw-brand-desc{font-size:.85rem;line-height:1.7;color:rgba(245,239,230,.5);max-width:32ch;margin-bottom:1.75rem}
+  .lw-socials{display:flex;gap:.6rem}
+  .lw-socials a{width:38px;height:38px;border:1px solid rgba(245,239,230,.15);border-radius:50%;display:flex;align-items:center;justify-content:center;color:rgba(245,239,230,.6);transition:all .25s ease;text-decoration:none}
+  .lw-socials a:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
+  .lw-socials svg{width:16px;height:16px;fill:currentColor}
+  .lw-col h4{font-size:.7rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:1.4rem}
+  .lw-col ul{list-style:none;margin:0;padding:0}
+  .lw-col li{margin-bottom:.85rem}
+  .lw-col a{color:rgba(245,239,230,.62);text-decoration:none;font-size:.9rem;transition:color .2s ease,padding-left .2s ease;display:inline-block}
+  .lw-col a:hover{color:var(--cream);padding-left:4px}
+  .lw-col .lw-tier-price{display:block;font-size:.72rem;color:rgba(245,239,230,.35);margin-top:1px;letter-spacing:.03em}
+  .lw-signature{position:relative;max-width:1200px;margin:0 auto;padding:2.5rem 2.5rem 0;text-align:center;overflow:hidden}
+  .lw-signature-text{font-family:var(--display);font-style:italic;font-weight:300;font-size:clamp(2.5rem,9vw,7rem);line-height:1;letter-spacing:.01em;background:linear-gradient(180deg,rgba(201,169,97,.22) 0%,rgba(201,169,97,.02) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;user-select:none;white-space:nowrap}
+  .lw-foot-bottom{position:relative;border-top:1px solid rgba(245,239,230,.08);margin-top:2.5rem}
+  .lw-foot-bottom-inner{max-width:1200px;margin:0 auto;padding:1.75rem 2.5rem;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap}
+  .lw-foot-bottom-inner .lw-copy{font-size:.78rem;color:rgba(245,239,230,.4);letter-spacing:.02em}
+  .lw-foot-legal{display:flex;gap:1.75rem;flex-wrap:wrap}
+  .lw-foot-legal a{font-size:.78rem;color:rgba(245,239,230,.4);text-decoration:none;transition:color .2s ease;letter-spacing:.02em}
+  .lw-foot-legal a:hover{color:var(--gold)}
+  @media(max-width:900px){.lw-foot-top{grid-template-columns:1fr;gap:3rem;padding:4rem 1.75rem 3rem}.lw-foot-mid{grid-template-columns:1fr 1fr;gap:2.5rem;padding:3rem 1.75rem}.lw-brand-col{grid-column:1/-1}}
+  @media(max-width:560px){.lw-foot-mid{grid-template-columns:1fr}.lw-foot-bottom-inner{flex-direction:column;align-items:flex-start;gap:1rem}.lw-signature{padding-top:1.5rem}}
+
+</style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="brand">Legacy<span>Works</span></a>
+      <a href="#book" class="nav-cta">Book a free call</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-inner">
+      <span class="hero-eyebrow">Story Keeper · Done for you</span>
+      <h1>One day, all that's left of them<br>will be what <em>someone thought to capture.</em></h1>
+      <p class="hero-sub">Story Keeper is the gift of being remembered. We interview your mother, your father, your grandparent — gently, over a few weeks — and hand your family a finished film, a hardcover book, and their voice, kept forever.</p>
+      <div class="hero-cta-row">
+        <a href="#book" class="btn btn-gold btn-arrow">Book a free 20-minute call</a>
+        <a href="#how" class="btn btn-ghost">See how it works</a>
+      </div>
+      <p class="hero-reassure">No pressure, no obligation · <strong>We do all the work</strong> · Starts within a week</p>
+    </div>
+  </header>
+
+  <!-- EMOTIONAL OPENER -->
+  <section class="opener">
+    <div class="opener-inner">
+      <p>When was the last time you heard your grandmother's voice? Not a photo of her — her <em>voice.</em> The way she paused before a story. The way she laughed at her own joke before the punchline.</p>
+      <p class="small">Most of us can't answer that. Not because we didn't love them — but because no one ever sat them down, pressed record, and asked. Story Keeper is us doing that for you, before the chance is gone.</p>
+    </div>
+  </section>
+
+  <!-- THE TURN -->
+  <section class="turn">
+    <div class="turn-inner">
+      <div>
+        <span class="turn-eyebrow">Why families wait — and then it's too late</span>
+        <h2>You've meant to do this <em>for years.</em></h2>
+        <p>Everyone intends to capture their parent's story. Almost no one does. The camera feels awkward. The right questions don't come. Life gets busy. And then one day the chance is simply gone — and what's left is a handful of photos and the ache of everything you didn't ask.</p>
+        <p>It's not a failure of love. It's that no one ever made it easy. That's the entire reason Story Keeper exists.</p>
+      </div>
+      <div class="turn-card">
+        <div class="q">"We didn't know how much we didn't know about Mom — until we finally sat down and asked."</div>
+        <div class="a">By week three, nearly every family tells us the same thing: they're hearing stories they'd never heard in a lifetime of Sunday dinners. That's what happens when someone who knows how to ask is the one asking.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section" id="how">
+    <div class="section-head">
+      <span class="eyebrow">How it works</span>
+      <h2>You do <em>nothing</em> but be there.</h2>
+      <p>No filming. No editing. No awkward questions. A trained Story Coach handles everything — you just help your loved one show up.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>We listen first</h3>
+        <p>A 60-minute call with your family to learn who your loved one is and design an interview arc around the life they've lived.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>We interview them</h3>
+        <p>Six to eight gentle, guided video conversations led by a trained Story Coach. Warm, unhurried, and richer than you'd believe.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>We craft it</h3>
+        <p>Our editors shape every session into a polished episode. Our designers turn transcripts and old photos into a hardcover book.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h3>You keep it forever</h3>
+        <p>A private film series, a printed Life Story Book, a USB keepsake, and a Legacy Highlight Film — delivered to your door.</p>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:3rem">
+      <a href="#book" class="btn btn-gold btn-arrow">Start with a free call</a>
+    </div>
+  </section>
+
+  <!-- DELIVERABLES -->
+  <section class="section deliver">
+    <div class="section-head">
+      <span class="eyebrow">What your family receives</span>
+      <h2>Not footage on a hard drive. A <em>finished heirloom.</em></h2>
+      <p>Everything is produced, printed, and delivered. Nothing for you to assemble, edit, or figure out.</p>
+    </div>
+    <div class="deliver-grid">
+      <div class="deliver-card">
+        <div class="deliver-icon">🎬</div>
+        <div><h3>A private film series</h3><p>Every interview edited into a beautiful episode, delivered to a private family channel only the people you choose can watch.</p></div>
+      </div>
+      <div class="deliver-card">
+        <div class="deliver-icon">📖</div>
+        <div><h3>A hardcover Life Story Book</h3><p>Their words and your family's photos, professionally designed into a printed keepsake you can hold — plus a digital edition.</p></div>
+      </div>
+      <div class="deliver-card">
+        <div class="deliver-icon">🎞️</div>
+        <div><h3>A Legacy Highlight Film</h3><p>A cinematic 15–20 minute short — the one you'll screen at birthdays, anniversaries, and one day, when they're gone.</p></div>
+      </div>
+      <div class="deliver-card">
+        <div class="deliver-icon">💾</div>
+        <div><h3>A USB keepsake archive</h3><p>Every finished film, every photo, and the raw footage — all in one place, yours to keep and pass down for generations.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SAMPLE FILM (PLACEHOLDER) -->
+  <section class="section sample">
+    <div class="sample-inner">
+      <span class="eyebrow" style="color:var(--gold)">See it for yourself</span>
+      <h2 style="font-family:var(--display);font-weight:300;font-size:clamp(2rem,4vw,3rem);line-height:1.15">A two-minute glimpse of a <em style="color:var(--gold-soft)">Legacy Highlight Film</em></h2>
+      <div class="sample-frame">
+        <div class="play-btn"></div>
+        <div class="sample-note">Sample film · 2 min 14 sec</div>
+      </div>
+      <span class="placeholder-tag">⚑ Frank — embed a real sample clip here (Vimeo/YouTube). This is the single highest-impact thing on the page.</span>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS (PLACEHOLDER) -->
+  <section class="section proof">
+    <div class="section-head">
+      <span class="eyebrow">What families say</span>
+      <h2>The families who did this <em>before it was too late.</em></h2>
+    </div>
+    <div class="proof-grid">
+      <div class="quote-card">
+        <div class="quote-text">[ Testimonial from your first Story Keeper family goes here — ideally about a moment they'd have lost. ]</div>
+        <div class="quote-attr">
+          <div class="quote-avatar">?</div>
+          <div><div class="quote-name">First name L.</div><div class="quote-role">Daughter · captured her mother's story</div></div>
+        </div>
+      </div>
+      <div class="quote-card">
+        <div class="quote-text">[ Second testimonial — a different angle: how easy it was, or how the grandkids reacted to seeing it. ]</div>
+        <div class="quote-attr">
+          <div class="quote-avatar">?</div>
+          <div><div class="quote-name">First name R.</div><div class="quote-role">Son · captured his father's story</div></div>
+        </div>
+      </div>
+      <div class="quote-card">
+        <div class="quote-text">[ Third testimonial — ideally one that mentions watching it after their loved one passed. ]</div>
+        <div class="quote-attr">
+          <div class="quote-avatar">?</div>
+          <div><div class="quote-name">First name M.</div><div class="quote-role">Granddaughter · a family heirloom</div></div>
+        </div>
+      </div>
+    </div>
+    <p class="proof-disclaimer">⚑ Frank — replace all three with real quotes from your first $100-launch and Story Keeper families. Real names + photos convert far better than initials.</p>
+  </section>
+
+  <!-- PRICING -->
+  <section class="section pricing" id="pricing">
+    <div class="section-head">
+      <span class="eyebrow">Investment</span>
+      <h2>Three ways to <em>begin.</em></h2>
+      <p>Every option includes the interviews, the editing, the book, and the highlight film. You're choosing how much of their story to capture.</p>
+    </div>
+    <div class="plans">
+      <div class="plan">
+        <div class="plan-name">Essential</div>
+        <div class="plan-price">$2,500</div>
+        <div class="plan-desc">For capturing the heart of a life.</div>
+        <ul>
+          <li>6 guided video interviews</li>
+          <li>Fully edited episode series</li>
+          <li>Softcover Life Story Book</li>
+          <li>Legacy Highlight Film</li>
+          <li>Private family channel</li>
+        </ul>
+        <a href="#book" class="btn btn-ghost">Choose Essential</a>
+      </div>
+      <div class="plan featured">
+        <div class="plan-badge">Most chosen</div>
+        <div class="plan-name">Signature</div>
+        <div class="plan-price">$3,500</div>
+        <div class="plan-desc">The full story, beautifully kept.</div>
+        <ul>
+          <li>8 guided video interviews</li>
+          <li>Fully edited episode series</li>
+          <li><strong>Hardcover</strong> Life Story Book</li>
+          <li>Legacy Highlight Film</li>
+          <li>Photo collection &amp; restoration</li>
+          <li>USB keepsake archive</li>
+        </ul>
+        <a href="#book" class="btn btn-gold">Choose Signature</a>
+      </div>
+      <div class="plan">
+        <div class="plan-name">Premier</div>
+        <div class="plan-price">$4,995</div>
+        <div class="plan-desc">Nothing left uncaptured.</div>
+        <ul>
+          <li>8 interviews + extended edit</li>
+          <li>Premium hardcover book</li>
+          <li>Extended Highlight Film</li>
+          <li>Full photo restoration</li>
+          <li>USB keepsake archive</li>
+          <li>Priority scheduling</li>
+        </ul>
+        <a href="#book" class="btn btn-ghost">Choose Premier</a>
+      </div>
+    </div>
+    <p class="pricing-note">Pricing is for one subject. Couples and multi-generation projects available — just ask on your call.</p>
+  </section>
+
+  <!-- ASSURANCE -->
+  <section class="section assure">
+    <div class="assure-inner">
+      <div class="assure-icon">🤍</div>
+      <h2>If the first interview isn't everything you hoped, <em>you owe nothing.</em></h2>
+      <p>We know this is precious, and we know it's a real investment. So the first session is our promise to you: if it doesn't feel warm, safe, and worth it, we part as friends and you pay nothing. That's how confident we are that your family will treasure this.</p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section faq">
+    <div class="section-head">
+      <span class="eyebrow">Before you book</span>
+      <h2>The questions families <em>always ask.</em></h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q">My parent is shy on camera. Will this even work?</button>
+        <div class="faq-a">It's the most common worry — and it disappears within the first ten minutes. Our Story Coaches are trained to make people forget the camera is there. Most subjects who "hate being filmed" end up not wanting the sessions to end.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">How much work is this for me?</button>
+        <div class="faq-a">Almost none. You help schedule the sessions and make sure your loved one is comfortable. We handle the questions, the filming, the editing, the book design, and the delivery. Your only real job is to be there.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">My loved one is in declining health. Can we start quickly?</button>
+        <div class="faq-a">Yes — and please tell us when you book. We can begin interviews within a week when time matters. This is exactly the situation Story Keeper was built for.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Do we have to be tech-savvy?</button>
+        <div class="faq-a">Not at all. The interviews happen over a simple video link we set up for you. If your loved one can answer a phone call, they can do this. We walk everyone through it.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">What if we live in different cities?</button>
+        <div class="faq-a">That's normal — most families do. Interviews are conducted remotely over video, so your loved one can be filmed comfortably in their own home while you join from anywhere in the world.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">How long does the whole process take?</button>
+        <div class="faq-a">Six to eight weeks from first interview to finished delivery. We pace the sessions weekly so memories have time to surface — the best stories rarely come out in a single sitting.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final" id="book">
+    <div class="final-inner">
+      <span class="hero-eyebrow" style="color:var(--gold)">The best time was years ago. The next best time is now.</span>
+      <h2>Let's capture their story <em>while we still can.</em></h2>
+      <p>Book a free, no-pressure 20-minute call. We'll talk about your loved one, answer every question, and help you decide if Story Keeper is right for your family. If it's not, we'll tell you honestly.</p>
+      <a href="contact.html" class="btn btn-gold btn-arrow">Book my free 20-minute call</a>
+      <p class="hero-reassure">Complimentary · No obligation · <strong>You'll know exactly what to do next</strong></p>
+    </div>
+  </section>
+
+  <!-- PREMIUM SITE FOOTER -->
+  <footer class="lw-footer">
+    <div class="lw-foot-top">
+      <div>
+        <p class="lw-statement">The next generation should never have to wonder <em>what their grandmother sounded like.</em></p>
+        <p class="lw-statement-sub">LegacyWorks captures the voices, the wisdom, and the small unrepeatable moments that make a life &mdash; before they&rsquo;re lost. At every budget, for every family.</p>
+      </div>
+      <div>
+        <span class="lw-signup-label">Stay close to the work</span>
+        <p class="lw-signup-copy">A quiet letter, now and then &mdash; on capturing a life well, and the families we&rsquo;ve helped remember theirs. No noise.</p>
+        <!-- TODO: wire this form to an email provider (Mailchimp / ConvertKit). Currently does nothing. -->
+        <form class="lw-signup-form" onsubmit="return false;">
+          <div class="lw-input-row">
+            <input type="email" placeholder="Your email address" aria-label="Email address" />
+            <button type="submit">Subscribe</button>
+          </div>
+          <p class="lw-signup-fine">We send rarely and never share your email. Unsubscribe anytime.</p>
+        </form>
+      </div>
+    </div>
+    <div class="lw-foot-mid">
+      <div class="lw-brand-col">
+        <div class="lw-brandmark">Legacy<span>Works</span></div>
+        <p class="lw-brand-desc">A premium life-story studio capturing voices, wisdom, and histories for the families who love them.</p>
+        <div class="lw-socials">
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.81 3.81 0 0 1-1.38-.9 3.81 3.81 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zm0 1.62c-3.15 0-3.5.01-4.74.07-.95.04-1.47.2-1.81.34-.46.18-.78.39-1.12.73-.34.34-.55.66-.73 1.12-.14.34-.3.86-.34 1.81-.06 1.24-.07 1.59-.07 4.74s.01 3.5.07 4.74c.04.95.2 1.47.34 1.81.18.46.39.78.73 1.12.34.34.66.55 1.12.73.34.14.86.3 1.81.34 1.24.06 1.59.07 4.74.07s3.5-.01 4.74-.07c.95-.04 1.47-.2 1.81-.34.46-.18.78-.39 1.12-.73.34-.34.55-.66.73-1.12.14-.34.3-.86.34-1.81.06-1.24.07-1.59.07-4.74s-.01-3.5-.07-4.74c-.04-.95-.2-1.47-.34-1.81a3.02 3.02 0 0 0-.73-1.12 3.02 3.02 0 0 0-1.12-.73c-.34-.14-.86-.3-1.81-.34-1.24-.06-1.59-.07-4.74-.07zm0 2.76a5.46 5.46 0 1 1 0 10.92 5.46 5.46 0 0 1 0-10.92zm0 9a3.54 3.54 0 1 0 0-7.08 3.54 3.54 0 0 0 0 7.08zm6.95-9.22a1.28 1.28 0 1 1-2.56 0 1.28 1.28 0 0 1 2.56 0z"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.5 6.2a3.02 3.02 0 0 0-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.51A3.02 3.02 0 0 0 .5 6.2C0 8.07 0 12 0 12s0 3.93.5 5.8a3.02 3.02 0 0 0 2.12 2.14c1.88.51 9.38.51 9.38.51s7.5 0 9.38-.51a3.02 3.02 0 0 0 2.12-2.14C24 15.93 24 12 24 12s0-3.93-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zm1.78 13.02H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg></a>
+        </div>
+      </div>
+      <div class="lw-col">
+        <h4>The Tiers</h4>
+        <ul>
+          <li><a href="story-starter.html">Story Starter<span class="lw-tier-price">From $100 &middot; DIY kit</span></a></li>
+          <li><a href="story-keeper.html">Story Keeper<span class="lw-tier-price">$2,500&ndash;$4,995 &middot; Coached</span></a></li>
+          <li><a href="story-legacy.html">Story Legacy<span class="lw-tier-price">$25K&ndash;$100K &middot; Cinematic</span></a></li>
+        </ul>
+      </div>
+      <div class="lw-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">Our story</a></li>
+          <li><a href="contact.html">Book a call</a></li>
+          <li><a href="contact.html">Partnerships</a></li>
+          <li><a href="mailto:mike@aspirex.org">Press</a></li>
+        </ul>
+      </div>
+      <div class="lw-col">
+        <h4>Get in touch</h4>
+        <ul>
+          <li><a href="mailto:mike@aspirex.org">mike@aspirex.org</a></li>
+          <li><a href="contact.html">Schedule a discovery call</a></li>
+          <li><a href="contact.html">For funeral homes &amp; advisors</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="lw-signature" aria-hidden="true">
+      <div class="lw-signature-text">Every life remembered.</div>
+    </div>
+    <div class="lw-foot-bottom">
+      <div class="lw-foot-bottom-inner">
+        <span class="lw-copy">&copy; 2026 LegacyWorks &middot; Capture. Preserve. Remember.</span>
+        <nav class="lw-foot-legal">
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // FAQ accordion
+    document.querySelectorAll('.faq-q').forEach(function(btn){
+      btn.addEventListener('click',function(){
+        var item=btn.parentElement;
+        var wasOpen=item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(function(i){i.classList.remove('open')});
+        if(!wasOpen)item.classList.add('open');
+      });
+    });
+  </script>
+
+</body>
+</html>
