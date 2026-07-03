@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>How We Preserve Your Story — Built to Last Generations | LegacyWorks</title>
+  <meta name="description" content="What happens to your family's story after we film it? We keep an unchanged master recording, deliver word-for-word transcripts, document every interview, and put the files in your hands — so it lasts, even if we don't." />
+  <meta name="keywords" content="preserve family video, oral history preservation, master file, video archive longevity, family story backup, transcripts, digital preservation" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://legacyworks.studio/how-we-preserve.html" />
+  <meta property="og:title" content="How We Preserve Your Story — Built to Last Generations | LegacyWorks" />
+  <meta property="og:description" content="An unchanged master recording, word-for-word transcripts, and the files in your hands — so your family's story lasts for generations." />
+  <meta property="og:image" content="https://legacyworks.studio/assets/og-image.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://legacyworks.studio/how-we-preserve.html" />
+  <meta name="theme-color" content="#1a1a1a" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles.css" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%231a1a1a'/><text x='50%25' y='58%25' text-anchor='middle' fill='%23c9a961' font-family='Georgia,serif' font-size='20' font-style='italic'>L</text></svg>" />
+  <style>
+    /* page-specific — inherits variables + base classes from styles.css */
+
+    /* lifecycle timeline */
+    .life-track { max-width: 820px; margin: 0 auto; }
+    .life-step { display: grid; grid-template-columns: auto 1fr; gap: 1.75rem; padding-bottom: 2.5rem; position: relative; }
+    .life-step:last-child { padding-bottom: 0; }
+    .life-marker { display: flex; flex-direction: column; align-items: center; }
+    .life-dot { width: 44px; height: 44px; border-radius: 50%; background: var(--charcoal); color: var(--gold); font-family: var(--font-display); font-size: 1.25rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; z-index: 1; }
+    .life-line { width: 1px; flex-grow: 1; background: rgba(201,169,97,0.35); margin-top: 0.5rem; }
+    .life-step:last-child .life-line { display: none; }
+    .life-body { padding-top: 0.4rem; }
+    .life-body h3 { font-family: var(--font-display); font-size: 1.5rem; font-weight: 500; margin-bottom: 0.4rem; line-height: 1.15; }
+    .life-body p { color: var(--muted); font-size: 0.95rem; line-height: 1.65; margin: 0; }
+
+    /* the promise / master file feature */
+    .master-box { max-width: 900px; margin: 0 auto; background: rgba(245,239,230,0.04); border: 1px solid rgba(201,169,97,0.25); padding: 2.5rem; display: grid; grid-template-columns: auto 1fr; gap: 2rem; align-items: center; }
+    .master-icon { font-size: 3rem; line-height: 1; }
+    .master-box h3 { font-family: var(--font-display); font-size: 1.75rem; font-weight: 500; color: var(--cream); margin-bottom: 0.6rem; }
+    .master-box p { color: rgba(245,239,230,0.65); font-size: 0.95rem; line-height: 1.7; margin: 0; }
+
+    /* pillars */
+    .pillar-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; max-width: 1000px; margin: 0 auto; }
+    .pillar { background: #fff; border: 1px solid rgba(0,0,0,0.07); padding: 2rem; }
+    .pillar-num { font-family: var(--font-display); font-size: 1.1rem; color: var(--gold-deep); font-weight: 600; letter-spacing: 0.1em; }
+    .pillar h3 { font-family: var(--font-display); font-size: 1.5rem; font-weight: 500; margin: 0.5rem 0 0.6rem; line-height: 1.15; }
+    .pillar p { color: var(--muted); font-size: 0.92rem; line-height: 1.65; margin: 0; }
+
+    /* what you hold */
+    .hold-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; max-width: 1000px; margin: 0 auto; }
+    .hold-card { text-align: center; padding: 2rem 1.5rem; background: var(--cream-soft); border: 1px solid rgba(0,0,0,0.06); }
+    .hold-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+    .hold-card h4 { font-family: var(--font-display); font-size: 1.3rem; font-weight: 500; margin-bottom: 0.4rem; }
+    .hold-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.55; margin: 0; }
+
+    /* the fear-reversal callout */
+    .reversal { max-width: 820px; margin: 0 auto; text-align: center; }
+    .reversal h2 { font-family: var(--font-display); font-weight: 300; font-size: clamp(1.9rem,4vw,2.8rem); line-height: 1.15; margin-bottom: 1.25rem; }
+    .reversal h2 em { font-style: italic; color: var(--gold-soft); }
+    .reversal p { color: rgba(245,239,230,0.72); font-size: 1.02rem; line-height: 1.75; max-width: 60ch; margin: 0 auto 1rem; }
+    .reversal p:last-child { margin-bottom: 0; }
+    .reversal strong { color: var(--gold-soft); font-weight: 500; }
+
+    @media (max-width: 820px) {
+      .pillar-grid { grid-template-columns: 1fr; }
+      .hold-grid { grid-template-columns: 1fr; }
+      .master-box { grid-template-columns: 1fr; text-align: center; gap: 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="index.html" class="brand">Legacy<span class="brand-mark">Works</span></a>
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">☰</button>
+      <div class="nav-links">
+        <a href="story-starter.html" class="nav-link">Story Starter</a>
+        <a href="story-keeper.html" class="nav-link">Story Keeper</a>
+        <a href="story-legacy.html" class="nav-link">Story Legacy</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="family-historians.html" class="nav-link">For Family Historians</a>
+        <a href="contact.html" class="nav-cta">Book a Call</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow" style="color: var(--gold);">How we preserve your story</span>
+      <h1 style="margin-top: 1.5rem;">A story worth capturing<br><strong>is worth keeping forever.</strong></h1>
+      <p class="lede" style="margin-top: 1.5rem;">Anyone can record a video. The hard part &mdash; the part that matters &mdash; is making sure it&rsquo;s still there, still watchable, and still theirs, long after the phones and apps of today are gone. Here&rsquo;s exactly how we make your family&rsquo;s story last.</p>
+    </div>
+  </section>
+
+  <!-- THE CORE PROMISE -->
+  <section class="section dark">
+    <div class="container">
+      <div class="master-box">
+        <div class="master-icon">🎞️</div>
+        <div>
+          <h3>We keep the original, untouched &mdash; forever.</h3>
+          <p>The heart of preservation is simple: we create one high-quality master recording of every interview and never alter it. Every edited film, every clip, every shareable version is made from a copy. The original &mdash; their voice, exactly as it was spoken &mdash; stays preserved as the true source your family can always return to.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY IT MATTERS -->
+  <section class="section">
+    <div class="container-narrow">
+      <span class="eyebrow reveal">Why this matters</span>
+      <h2 class="reveal" style="margin: 1rem 0 2rem;">Most family videos don&rsquo;t survive. Here&rsquo;s why.</h2>
+      <p class="reveal">Think of the home movies your own family has lost &mdash; the camcorder tapes no one can play, the phone that broke with three years of videos on it, the account no one could log into after a loved one passed. It&rsquo;s not that families don&rsquo;t care. It&rsquo;s that nobody planned for the recording to outlive the technology that made it.</p>
+      <p class="reveal">The oral-history field has a principle for this: preservation is planned from the very beginning, not bolted on at the end. We build every LegacyWorks project that way &mdash; so the thing you paid to capture is still here in fifty years, not lost to a dead hard drive or a company that vanished.</p>
+    </div>
+  </section>
+
+  <!-- THE FOUR PILLARS -->
+  <section class="section cream">
+    <div class="container">
+      <div style="max-width: 720px; margin: 0 auto 3.5rem; text-align: center;">
+        <span class="eyebrow reveal">Our preservation standards</span>
+        <h2 class="reveal" style="margin: 1rem 0 1rem;">Four commitments that keep it safe.</h2>
+        <p class="reveal" style="color: var(--muted); max-width: 55ch; margin: 0 auto;">These are the same principles archivists and oral historians use &mdash; translated into plain language, and built into every project.</p>
+      </div>
+      <div class="pillar-grid reveal">
+        <div class="pillar">
+          <div class="pillar-num">01</div>
+          <h3>An unchanged master</h3>
+          <p>One preservation-grade original per interview, kept exactly as recorded. It&rsquo;s never edited or compressed &mdash; it&rsquo;s the source of truth everything else is made from, and the copy your grandchildren will thank you for.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">02</div>
+          <h3>Word-for-word transcripts</h3>
+          <p>Every interview is transcribed in their actual words &mdash; not summarized, not rewritten by software into someone else&rsquo;s phrasing. The transcript makes the story searchable, readable, and citable, and it preserves the meaning even if formats change.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">03</div>
+          <h3>Multiple copies, multiple places</h3>
+          <p>A single copy is a single point of failure. Your finished films and masters are delivered so they can live in more than one place &mdash; your own storage, a cloud drive, and a physical keepsake &mdash; so no one lost device or closed account can erase them.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">04</div>
+          <h3>A documented record</h3>
+          <p>Each interview comes with the details that keep it meaningful over time: who was interviewed, when and where, and what was covered. It&rsquo;s what turns a nameless video file into a findable, trustworthy piece of your family&rsquo;s history.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE LIFECYCLE -->
+  <section class="section">
+    <div class="container">
+      <div style="max-width: 720px; margin: 0 auto 3.5rem; text-align: center;">
+        <span class="eyebrow reveal">From interview to heirloom</span>
+        <h2 class="reveal" style="margin: 1rem 0 1rem;">What happens to your story, step by step.</h2>
+      </div>
+      <div class="life-track reveal">
+        <div class="life-step">
+          <div class="life-marker"><div class="life-dot">1</div><div class="life-line"></div></div>
+          <div class="life-body">
+            <h3>We capture it well</h3>
+            <p>Good preservation starts with good capture &mdash; clear audio, clear picture, recorded at high quality from the first moment, because you can&rsquo;t preserve what wasn&rsquo;t captured properly.</p>
+          </div>
+        </div>
+        <div class="life-step">
+          <div class="life-marker"><div class="life-dot">2</div><div class="life-line"></div></div>
+          <div class="life-body">
+            <h3>We lock the master</h3>
+            <p>The original recording is set aside, unchanged, as the preservation master. Nothing we do afterward ever touches it.</p>
+          </div>
+        </div>
+        <div class="life-step">
+          <div class="life-marker"><div class="life-dot">3</div><div class="life-line"></div></div>
+          <div class="life-body">
+            <h3>We transcribe and document</h3>
+            <p>The interview is transcribed word-for-word and paired with a record of who, when, where, and what &mdash; the context that keeps it meaningful for generations.</p>
+          </div>
+        </div>
+        <div class="life-step">
+          <div class="life-marker"><div class="life-dot">4</div><div class="life-line"></div></div>
+          <div class="life-body">
+            <h3>We craft the films from copies</h3>
+            <p>Every edited episode, highlight film, and shareable clip is made from copies &mdash; so the polished versions never put the original at risk.</p>
+          </div>
+        </div>
+        <div class="life-step">
+          <div class="life-marker"><div class="life-dot">5</div><div class="life-line"></div></div>
+          <div class="life-body">
+            <h3>We put it in your hands</h3>
+            <p>You receive the finished films, the transcripts, and the master archive &mdash; yours to keep, back up, and pass down. It doesn&rsquo;t live only on our servers. It lives with you.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT YOU HOLD -->
+  <section class="section cream-deep">
+    <div class="container">
+      <div style="max-width: 720px; margin: 0 auto 3rem; text-align: center;">
+        <span class="eyebrow reveal">Ownership</span>
+        <h2 class="reveal" style="margin: 1rem 0 1rem;">You hold the real thing &mdash; not just a login.</h2>
+        <p class="reveal" style="color: var(--muted); max-width: 55ch; margin: 0 auto;">When the project is done, your family physically holds its own archive. That&rsquo;s the difference between a keepsake you own and a subscription you rent.</p>
+      </div>
+      <div class="hold-grid reveal">
+        <div class="hold-card">
+          <div class="hold-icon">💾</div>
+          <h4>The master files</h4>
+          <p>High-quality originals, delivered to you &mdash; the true source, in your possession.</p>
+        </div>
+        <div class="hold-card">
+          <div class="hold-icon">📝</div>
+          <h4>The transcripts</h4>
+          <p>Every word, in writing &mdash; readable and usable even without the video.</p>
+        </div>
+        <div class="hold-card">
+          <div class="hold-icon">🎬</div>
+          <h4>The finished films</h4>
+          <p>The edited episodes and highlight film, ready to watch and share for generations.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE FEAR REVERSAL -->
+  <section class="section dark">
+    <div class="container">
+      <div class="reversal reveal">
+        <span class="eyebrow" style="color: var(--gold);">The question every family should ask</span>
+        <h2>&ldquo;What happens if <em>you</em> disappear?&rdquo;</h2>
+        <p>It&rsquo;s the right question &mdash; and the honest answer is the whole point of how we work. Your family&rsquo;s story does not depend on us still being here. Because you hold the master files, the transcripts, and the finished films yourself, your archive survives independently of LegacyWorks, of any app, and of any single company.</p>
+        <p><strong>We build it so that even if we were gone tomorrow, your grandmother&rsquo;s voice would still be here for your grandchildren.</strong> That&rsquo;s not a feature. It&rsquo;s the promise.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-banner">
+    <div class="container">
+      <span class="eyebrow" style="color: var(--gold);">Preserve it properly</span>
+      <h2 style="margin: 1rem 0 1rem;">Let&rsquo;s make sure their story is kept &mdash; the right way.</h2>
+      <p>Book a free 20-minute call. We&rsquo;ll walk you through exactly how your family&rsquo;s story will be captured, preserved, and delivered into your hands.</p>
+      <a href="contact.html" class="btn btn-primary btn-arrow">Book a discovery call</a>
+    </div>
+  </section>
+
+  <footer class="lw-footer">
+    <div class="lw-foot-top">
+      <div>
+        <p class="lw-statement">The next generation should never have to wonder <em>what their grandmother sounded like.</em></p>
+        <p class="lw-statement-sub">LegacyWorks captures the voices, the wisdom, and the small unrepeatable moments that make a life &mdash; before they&rsquo;re lost. At every budget, for every family.</p>
+      </div>
+      <div>
+        <span class="lw-signup-label">Stay close to the work</span>
+        <p class="lw-signup-copy">A quiet letter, now and then &mdash; on capturing a life well, and the families we&rsquo;ve helped remember theirs. No noise.</p>
+        <!-- TODO: wire this form to an email provider (Mailchimp / ConvertKit). Currently does nothing. -->
+        <form class="lw-signup-form" onsubmit="return false;">
+          <div class="lw-input-row">
+            <input type="email" placeholder="Your email address" aria-label="Email address" />
+            <button type="submit">Subscribe</button>
+          </div>
+          <p class="lw-signup-fine">We send rarely and never share your email. Unsubscribe anytime.</p>
+        </form>
+      </div>
+    </div>
+    <div class="lw-foot-mid">
+      <div class="lw-brand-col">
+        <div class="lw-brandmark">Legacy<span>Works</span></div>
+        <p class="lw-brand-desc">A premium life-story studio capturing voices, wisdom, and histories for the families who love them.</p>
+        <div class="lw-socials">
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.81 3.81 0 0 1-1.38-.9 3.81 3.81 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zm0 1.62c-3.15 0-3.5.01-4.74.07-.95.04-1.47.2-1.81.34-.46.18-.78.39-1.12.73-.34.34-.55.66-.73 1.12-.14.34-.3.86-.34 1.81-.06 1.24-.07 1.59-.07 4.74s.01 3.5.07 4.74c.04.95.2 1.47.34 1.81.18.46.39.78.73 1.12.34.34.66.55 1.12.73.34.14.86.3 1.81.34 1.24.06 1.59.07 4.74.07s3.5-.01 4.74-.07c.95-.04 1.47-.2 1.81-.34.46-.18.78-.39 1.12-.73.34-.34.55-.66.73-1.12.14-.34.3-.86.34-1.81.06-1.24.07-1.59.07-4.74s-.01-3.5-.07-4.74c-.04-.95-.2-1.47-.34-1.81a3.02 3.02 0 0 0-.73-1.12 3.02 3.02 0 0 0-1.12-.73c-.34-.14-.86-.3-1.81-.34-1.24-.06-1.59-.07-4.74-.07zm0 2.76a5.46 5.46 0 1 1 0 10.92 5.46 5.46 0 0 1 0-10.92zm0 9a3.54 3.54 0 1 0 0-7.08 3.54 3.54 0 0 0 0 7.08zm6.95-9.22a1.28 1.28 0 1 1-2.56 0 1.28 1.28 0 0 1 2.56 0z"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.5 6.2a3.02 3.02 0 0 0-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.51A3.02 3.02 0 0 0 .5 6.2C0 8.07 0 12 0 12s0 3.93.5 5.8a3.02 3.02 0 0 0 2.12 2.14c1.88.51 9.38.51 9.38.51s7.5 0 9.38-.51a3.02 3.02 0 0 0 2.12-2.14C24 15.93 24 12 24 12s0-3.93-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zm1.78 13.02H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg></a>
+        </div>
+      </div>
+      <div class="lw-col">
+        <h4>The Tiers</h4>
+        <ul>
+          <li><a href="story-starter.html">Story Starter<span class="lw-tier-price">From $100 &middot; DIY kit</span></a></li>
+          <li><a href="story-keeper.html">Story Keeper<span class="lw-tier-price">$2,500&ndash;$4,995 &middot; Coached</span></a></li>
+          <li><a href="story-legacy.html">Story Legacy<span class="lw-tier-price">$25K&ndash;$100K &middot; Cinematic</span></a></li>
+        </ul>
+      </div>
+      <div class="lw-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">Our story</a></li>
+          <li><a href="family-historians.html">For family historians</a></li>
+          <li><a href="how-we-preserve.html">How we preserve</a></li>
+          <li><a href="link-to-family-tree.html">Family tree guide</a></li>
+          <li><a href="contact.html">Book a call</a></li>
+        </ul>
+      </div>
+      <div class="lw-col">
+        <h4>Get in touch</h4>
+        <ul>
+          <li><a href="mailto:mike@aspirex.org">mike@aspirex.org</a></li>
+          <li><a href="contact.html">Schedule a discovery call</a></li>
+          <li><a href="contact.html">For funeral homes &amp; advisors</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="lw-signature" aria-hidden="true">
+      <div class="lw-signature-text">Every life remembered.</div>
+    </div>
+    <div class="lw-foot-bottom">
+      <div class="lw-foot-bottom-inner">
+        <span class="lw-copy">&copy; 2026 LegacyWorks &middot; Capture. Preserve. Remember.</span>
+        <nav class="lw-foot-legal">
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/main.js"></script>
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/6a45fc70539b7e1d4b7d2e31/1jsgm461m';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
+</body>
+</html>

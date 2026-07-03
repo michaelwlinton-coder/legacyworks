@@ -940,3 +940,22 @@ em, .italic { font-style: italic; font-family: var(--font-display); }
 @media (prefers-reduced-motion: reduce) {
   .lw-col a, .lw-socials a, .lw-input-row, .lw-input-row button { transition: none; }
 }
+
+/* ============================================================
+   FAMILY HISTORY TIER BLOCKS (.fh-tier-*)
+   Used on story-starter, story-keeper, story-legacy
+   ============================================================ */
+.fh-tier-inner { display: grid; grid-template-columns: 1.25fr 1fr; gap: 3.5rem; align-items: center; max-width: 1080px; margin: 0 auto; }
+.fh-tier-copy h2 { font-family: var(--font-display); font-weight: 300; font-size: clamp(1.8rem, 3.6vw, 2.75rem); line-height: 1.14; margin: 1rem 0 1.25rem; }
+.fh-tier-copy h2 em { font-style: italic; color: var(--gold-deep); }
+.fh-tier-copy p { color: var(--muted); margin-bottom: 1rem; line-height: 1.7; }
+.fh-tier-link { display: inline-block; margin-top: 0.75rem; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold-deep); text-decoration: none; }
+.fh-tier-link:hover { color: var(--gold); }
+.fh-tier-points { list-style: none; padding: 0; margin: 0; }
+.fh-tier-points li { position: relative; padding: 0.9rem 0 0.9rem 1.75rem; border-bottom: 1px solid rgba(0,0,0,0.08); font-size: 0.92rem; color: var(--muted); line-height: 1.5; }
+.fh-tier-points li:last-child { border-bottom: none; }
+.fh-tier-points li::before { content: "✓"; position: absolute; left: 0; top: 0.9rem; color: var(--gold-deep); font-weight: 700; }
+.fh-tier-points strong { color: var(--ink); font-weight: 600; }
+@media (max-width: 820px) {
+  .fh-tier-inner { grid-template-columns: 1fr; gap: 2rem; }
+}
