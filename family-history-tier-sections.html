@@ -1,0 +1,108 @@
+<!-- ============================================================================
+     "FOR YOUR FAMILY HISTORY" — TIER PAGE SECTIONS
+     Three self-contained blocks, one per tier. Each uses shared classes from
+     styles.css and adds a tiny scoped style block so it drops cleanly into any
+     page regardless of that page's internal section system.
+
+     PLACEMENT: paste the matching block on each tier page, ideally just BEFORE
+     the final CTA / booking section, so it reinforces value right before the ask.
+
+     Links point to family-historians.html (the hub page).
+     ============================================================================ -->
+
+
+<!-- ############################################################################
+     BLOCK 1 — STORY STARTER  (DIY / empowerment angle)
+     Paste on story-starter.html, before <section class="cta-final">
+     ############################################################################ -->
+<section class="section cream fh-tier-block">
+  <div class="container">
+    <div class="fh-tier-inner">
+      <div class="fh-tier-copy">
+        <span class="eyebrow">For your family history</span>
+        <h2>Not just a keepsake &mdash; a <em>primary source.</em></h2>
+        <p>If you&rsquo;re the one keeping your family&rsquo;s history, Story Starter gives you more than a video. It gives you a proper first-person oral-history interview &mdash; captured in their own voice, transcribed in their own words, and preserved so it&rsquo;s still usable generations from now.</p>
+        <p>It&rsquo;s the living testimony behind the names and dates in your family tree &mdash; the one source you can&rsquo;t pull from any archive, captured the right way, by you.</p>
+        <a href="family-historians.html" class="fh-tier-link">Why family historians choose LegacyWorks &rarr;</a>
+      </div>
+      <ul class="fh-tier-points">
+        <li><strong>Authentic voice</strong> &mdash; their actual words, never rewritten by software</li>
+        <li><strong>Transcribed</strong> &mdash; searchable and easy to cite in your research</li>
+        <li><strong>Preserved</strong> &mdash; guidance to keep the recording safe for the long term</li>
+        <li><strong>Yours to attach</strong> &mdash; link it to their profile on Ancestry or FamilySearch</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+<!-- ############################################################################
+     BLOCK 2 — STORY KEEPER  (coached / done-for-you, transcripts + preservation)
+     Paste on story-keeper.html, before <section class="final" id="book">
+     ############################################################################ -->
+<section class="section cream-deep fh-tier-block">
+  <div class="container">
+    <div class="fh-tier-inner">
+      <div class="fh-tier-copy">
+        <span class="eyebrow">For your family history</span>
+        <h2>The primary source, <em>captured for you.</em></h2>
+        <p>You&rsquo;ve done the research &mdash; the tree, the records, the years of work. Story Keeper captures the one source you can&rsquo;t retrieve from any archive: the living testimony behind it all. We interview, film, and transcribe every session, and preserve it to the standards the oral-history field is built on.</p>
+        <p>The result sits alongside your research as a citable, searchable, first-person source &mdash; the voice behind the record, kept with the record.</p>
+        <a href="family-historians.html" class="fh-tier-link">See our approach to preservation &rarr;</a>
+      </div>
+      <ul class="fh-tier-points">
+        <li><strong>Preservation master</strong> &mdash; one high-quality original, kept unchanged</li>
+        <li><strong>Word-for-word transcripts</strong> &mdash; linked to the footage, never AI-rewritten</li>
+        <li><strong>A documented record</strong> &mdash; who, when, where, and what was covered</li>
+        <li><strong>Your rights, your access</strong> &mdash; you decide who can view and share it</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+<!-- ####################################################################
+     BLOCK 3 — STORY LEGACY  (full archive / maximal)
+     Paste on story-legacy.html, before <section class="cta-banner">
+     #################################################################### -->
+<section class="section cream fh-tier-block">
+  <div class="container">
+    <div class="fh-tier-inner">
+      <div class="fh-tier-copy">
+        <span class="eyebrow">For your family history</span>
+        <h2>Oral history as a <em>permanent family archive.</em></h2>
+        <p>Story Legacy is the fullest expression of what family history can be: multiple interviews, across multiple generations, produced cinematically and preserved as a complete, documented archive. Not one recording &mdash; a body of first-person testimony your descendants will draw on a century from now.</p>
+        <p>For families and institutions building a lasting record, it meets the preservation and documentation standards professionals expect, without ever losing the warmth of the people at its heart.</p>
+        <a href="family-historians.html" class="fh-tier-link">Explore preservation &amp; provenance &rarr;</a>
+      </div>
+      <ul class="fh-tier-points">
+        <li><strong>A complete archive</strong> &mdash; multiple subjects and generations</li>
+        <li><strong>Full documentation</strong> &mdash; descriptive, technical, and rights records</li>
+        <li><strong>Archival masters</strong> &mdash; preservation-grade files built to outlast formats</li>
+        <li><strong>Institution-ready</strong> &mdash; suitable for family foundations and legacies</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+<!-- ####################################################################
+     SCOPED STYLES — add ONCE to styles.css (or inline once per page).
+     Uses existing CSS variables from styles.css.
+     #################################################################### -->
+<style>
+  .fh-tier-inner { display: grid; grid-template-columns: 1.25fr 1fr; gap: 3.5rem; align-items: center; max-width: 1080px; margin: 0 auto; }
+  .fh-tier-copy h2 { font-family: var(--font-display); font-weight: 300; font-size: clamp(1.8rem, 3.6vw, 2.75rem); line-height: 1.14; margin: 1rem 0 1.25rem; }
+  .fh-tier-copy h2 em { font-style: italic; color: var(--gold-deep); }
+  .fh-tier-copy p { color: var(--muted); margin-bottom: 1rem; line-height: 1.7; }
+  .fh-tier-link { display: inline-block; margin-top: 0.75rem; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold-deep); text-decoration: none; }
+  .fh-tier-link:hover { color: var(--gold); }
+  .fh-tier-points { list-style: none; padding: 0; margin: 0; }
+  .fh-tier-points li { position: relative; padding: 0.9rem 0 0.9rem 1.75rem; border-bottom: 1px solid rgba(0,0,0,0.08); font-size: 0.92rem; color: var(--muted); line-height: 1.5; }
+  .fh-tier-points li:last-child { border-bottom: none; }
+  .fh-tier-points li::before { content: "✓"; position: absolute; left: 0; top: 0.9rem; color: var(--gold-deep); font-weight: 700; }
+  .fh-tier-points strong { color: var(--ink); font-weight: 600; }
+  @media (max-width: 820px) {
+    .fh-tier-inner { grid-template-columns: 1fr; gap: 2rem; }
+  }
+</style>

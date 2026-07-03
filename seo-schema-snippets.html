@@ -1,0 +1,142 @@
+<!-- ============================================================================
+     LEGACYWORKS — STRUCTURED DATA (SCHEMA.ORG) SNIPPETS FOR SEO
+     ============================================================================
+
+     WHY THIS MATTERS
+     These are invisible-to-humans JSON-LD blocks that tell Google exactly what
+     your pages are. They help LegacyWorks surface in search for genealogy /
+     oral-history / family-video queries — a channel none of the competitors
+     optimize for. They also enable "rich results" (video thumbnails, FAQ
+     drop-downs) that make your listings stand out.
+
+     HOW TO USE
+     Paste each block inside the <head> of the matching page, just before </head>.
+     Replace every ALL-CAPS placeholder with the real value.
+     Validate at https://validator.schema.org and https://search.google.com/test/rich-results
+     ============================================================================ -->
+
+
+<!-- ############################################################################
+     1) ORGANIZATION SCHEMA
+     Put this in the <head> of index.html (site homepage).
+     Establishes LegacyWorks as a known entity to search engines.
+     ############################################################################ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "LegacyWorks",
+  "url": "https://legacyworks.studio",
+  "logo": "https://legacyworks.studio/assets/og-image.jpg",
+  "description": "A premium life-story studio that captures, preserves, and produces video oral histories for families — from a DIY kit to fully produced cinematic documentaries.",
+  "email": "mike@aspirex.org",
+  "slogan": "Every life remembered.",
+  "sameAs": [
+    "REPLACE_WITH_INSTAGRAM_URL_OR_DELETE_THIS_LINE",
+    "REPLACE_WITH_YOUTUBE_URL_OR_DELETE_THIS_LINE",
+    "REPLACE_WITH_LINKEDIN_URL_OR_DELETE_THIS_LINE"
+  ],
+  "makesOffer": [
+    { "@type": "Offer", "name": "Story Starter", "description": "DIY life-story kit", "price": "100", "priceCurrency": "USD" },
+    { "@type": "Offer", "name": "Story Keeper", "description": "Coached, done-for-you life-story program", "priceCurrency": "USD", "priceSpecification": { "@type": "PriceSpecification", "minPrice": "2500", "maxPrice": "4995", "priceCurrency": "USD" } },
+    { "@type": "Offer", "name": "Story Legacy", "description": "Cinematic documentary family archive", "priceCurrency": "USD", "priceSpecification": { "@type": "PriceSpecification", "minPrice": "25000", "maxPrice": "100000", "priceCurrency": "USD" } }
+  ]
+}
+</script>
+
+
+<!-- ############################################################################
+     2) VIDEOOBJECT SCHEMA
+     Put this in the <head> of any page that shows a real sample film
+     (e.g. the Story Keeper page once you embed a sample clip).
+     A transcript field is included — this is the SEO gold for a video business.
+     Replace placeholders; delete the "transcript" line only if you have none.
+     ############################################################################ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  "name": "REPLACE_WITH_VIDEO_TITLE (e.g. Legacy Highlight Film — Sample)",
+  "description": "REPLACE_WITH_SHORT_DESCRIPTION (e.g. A two-minute sample of a LegacyWorks Legacy Highlight Film, capturing one family's oral history.)",
+  "thumbnailUrl": "https://legacyworks.studio/assets/REPLACE_THUMBNAIL.jpg",
+  "uploadDate": "REPLACE_WITH_DATE (format: 2026-07-03)",
+  "duration": "REPLACE_WITH_DURATION (ISO 8601 format, e.g. PT2M14S for 2 min 14 sec)",
+  "contentUrl": "REPLACE_WITH_DIRECT_VIDEO_URL_OR_DELETE",
+  "embedUrl": "REPLACE_WITH_EMBED_URL (e.g. https://www.youtube.com/embed/XXXX or Vimeo embed)",
+  "publisher": {
+    "@type": "Organization",
+    "name": "LegacyWorks",
+    "logo": { "@type": "ImageObject", "url": "https://legacyworks.studio/assets/og-image.jpg" }
+  },
+  "transcript": "REPLACE_WITH_FULL_TRANSCRIPT_TEXT — paste the word-for-word transcript here. This dense, keyword-rich text is the single best organic-SEO asset a video business has; genealogy searchers find pages through transcript text. Delete this field if no transcript is available."
+}
+</script>
+
+
+<!-- ############################################################################
+     3) FAQPAGE SCHEMA
+     Put this in the <head> of a page with a real FAQ section
+     (e.g. story-keeper.html, which already has 6 FAQs).
+     Can produce expandable FAQ rich-results under your search listing.
+     The questions/answers below mirror the Story Keeper page — edit to match
+     the live copy exactly (Google requires the visible text to match).
+     ############################################################################ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "My parent is shy on camera. Will this even work?",
+      "acceptedAnswer": { "@type": "Answer", "text": "It's the most common worry, and it disappears within the first ten minutes. Our Story Coaches are trained to make people forget the camera is there. Most subjects who dislike being filmed end up not wanting the sessions to end." }
+    },
+    {
+      "@type": "Question",
+      "name": "How much work is this for me?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Almost none. You help schedule the sessions and make sure your loved one is comfortable. We handle the questions, the filming, the editing, the book design, and the delivery." }
+    },
+    {
+      "@type": "Question",
+      "name": "My loved one is in declining health. Can we start quickly?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Tell us when you book and we can begin interviews within a week when time matters. This is exactly the situation Story Keeper was built for." }
+    },
+    {
+      "@type": "Question",
+      "name": "What if we live in different cities?",
+      "acceptedAnswer": { "@type": "Answer", "text": "That's normal. Interviews are conducted remotely over video, so your loved one can be filmed comfortably in their own home while you join from anywhere in the world." }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does the whole process take?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Six to eight weeks from first interview to finished delivery. We pace the sessions weekly so memories have time to surface." }
+    }
+  ]
+}
+</script>
+
+
+<!-- ############################################################################
+     4) ARTICLE / HOWTO SCHEMA
+     Put this in the <head> of link-to-family-tree.html (the guide page).
+     Helps the guide rank for "how to attach video to family tree" searches.
+     ############################################################################ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to Link Your Video Interview to Your Family Tree",
+  "description": "A step-by-step guide to attaching a transcribed video oral-history interview to a person's profile on FamilySearch and Ancestry, and keeping a well-organized personal archive.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "LegacyWorks",
+    "logo": { "@type": "ImageObject", "url": "https://legacyworks.studio/assets/og-image.jpg" }
+  },
+  "step": [
+    { "@type": "HowToStep", "name": "Find the person", "text": "Sign in to your genealogy platform and open the profile of the person the interview is about." },
+    { "@type": "HowToStep", "name": "Open their memories or media", "text": "Go to the Memories (FamilySearch) or Gallery/Media (Ancestry) section of that person's profile." },
+    { "@type": "HowToStep", "name": "Attach the interview and transcript", "text": "Upload the video or a highlight clip, and attach the word-for-word transcript so the content is searchable." },
+    { "@type": "HowToStep", "name": "Cite it as a source", "text": "Record it as an oral-history interview with a date and interviewer, turning it into genealogical evidence." }
+  ]
+}
+</script>
