@@ -1,0 +1,50 @@
+<!-- ============================================================================
+     VIDEOOBJECT SCHEMA — FILLED WITH REAL VIDEO (The Story of Mohammed)
+     Replaces the placeholder VideoObject block from seo-schema-snippets.html.
+
+     PLACEMENT: paste in the <head> of story-keeper.html (where the Real Stories
+     section lives), just before </head>. You can also add it to
+     family-historians.html since Mohammed's film now appears there too — but
+     use it on ONE primary page to avoid duplicate-video schema across the site;
+     story-keeper.html is the best home.
+
+     A FEW FIELDS TO CONFIRM (marked ⚠) — fill the real values when you have them:
+       • uploadDate  — set to the date the video was published on YouTube
+       • duration    — the real length in ISO 8601 (PT#M#S)
+       • transcript  — optional but HUGE for SEO; paste the real transcript if you
+                       have one. Genealogy searchers find pages through this text.
+     Everything else is real and correct.
+     ============================================================================ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  "name": "The Story of Mohammed — a LegacyWorks Family Film",
+  "description": "A real LegacyWorks family film: Mohammed shares his life story in his own words, set to the photographs that shaped it — a preserved, first-person oral history and primary source for his family.",
+  "thumbnailUrl": "https://i.ytimg.com/vi/TTyXqcpI1JY/hqdefault.jpg",
+  "uploadDate": "2026-07-09",
+  "duration": "PT3M",
+  "contentUrl": "https://youtu.be/TTyXqcpI1JY",
+  "embedUrl": "https://www.youtube-nocookie.com/embed/TTyXqcpI1JY",
+  "publisher": {
+    "@type": "Organization",
+    "name": "LegacyWorks",
+    "logo": { "@type": "ImageObject", "url": "https://legacyworks.studio/assets/og-image.jpg" }
+  }
+}
+</script>
+
+<!-- ⚠ NOTES:
+     - uploadDate above is a placeholder (2026-07-09). Set it to the actual
+       YouTube publish date. Format: YYYY-MM-DD.
+     - duration "PT3M" is a guess (3 minutes). Set the real length, e.g. a
+       2-min-14-sec video is "PT2M14S".
+     - thumbnailUrl uses YouTube's auto-generated thumbnail, which works. If you
+       later create a branded thumbnail, host it at legacyworks.studio/assets/
+       and swap the URL.
+     - To add a transcript (strongly recommended for SEO), insert this line
+       before the closing brace of the main block, after "publisher": {...}, :
+         , "transcript": "PASTE THE FULL WORD-FOR-WORD TRANSCRIPT HERE"
+     - Validate at https://validator.schema.org and
+       https://search.google.com/test/rich-results before relying on it.
+-->

@@ -1,0 +1,83 @@
+<!-- ============================================================================
+     SOCIAL PROOF PLACEMENTS — HOMEPAGE + FAMILY-HISTORIANS
+     Two ready-to-paste blocks using the real Mohammed film (permission granted).
+     Both reuse the .rs-* CSS you're adding to styles.css for the Story Keeper
+     Real Stories section — so NO new CSS is needed if that's already in place.
+     (If deploying this before the Story Keeper section, copy the .rs-* CSS from
+     real-stories-section.html into styles.css once.)
+     ============================================================================ -->
+
+
+<!-- ═══════════ BLOCK A — HOMEPAGE ═══════════
+     PLACEMENT: index.html — paste AFTER <section class="quote-section"> ... </section>
+     and BEFORE <section class="section dark"> (so it sits between the opening
+     quote and the tiers — visitors meet real proof before they see prices).
+     Uses the dark treatment to match that part of the homepage. -->
+<section class="section dark" id="see-a-story">
+  <div class="container">
+    <div class="rs-home">
+      <div class="rs-home-video">
+        <iframe
+          src="https://www.youtube-nocookie.com/embed/TTyXqcpI1JY"
+          title="The Story of Mohammed — a real LegacyWorks family film"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          loading="lazy"></iframe>
+      </div>
+      <div class="rs-home-copy">
+        <span class="eyebrow" style="color: var(--gold);">A real family story</span>
+        <h2>See what we make.</h2>
+        <p>This is Mohammed&rsquo;s story &mdash; his life, in his own words, set to the photographs that shaped it. It&rsquo;s the kind of keepsake a family holds onto for generations. Shared with his family&rsquo;s kind permission.</p>
+        <a href="story-keeper.html#real-stories" class="btn btn-ghost">See more real stories</a>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- CSS for this block (add once to styles.css if not already present):
+<style>
+  .rs-home { display: grid; grid-template-columns: 1.4fr 1fr; gap: 2.5rem; align-items: center; max-width: 1000px; margin: 0 auto; }
+  .rs-home-video { position: relative; aspect-ratio: 16/9; background: #000; border: 1px solid rgba(201,169,97,0.3); overflow: hidden; }
+  .rs-home-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .rs-home-copy h2 { font-family: var(--font-display); font-weight: 300; font-size: clamp(1.9rem, 3.5vw, 2.6rem); line-height: 1.15; margin: 0.9rem 0 1rem; color: var(--cream); }
+  .rs-home-copy p { color: rgba(245,239,230,0.72); font-size: 0.98rem; line-height: 1.7; margin-bottom: 1.75rem; }
+  @media (max-width: 820px) { .rs-home { grid-template-columns: 1fr; gap: 1.5rem; } }
+</style>
+-->
+
+
+<!-- ═══════════ BLOCK B — FAMILY-HISTORIANS ═══════════
+     PLACEMENT: family-historians.html — paste as a NEW section immediately
+     AFTER the "records vs voice" comparison section
+     (<section class="section cream-deep"> ... </section> around line 151),
+     BEFORE the next <section class="section dark">. This shows the primary
+     source in action, right after the page argues for it. -->
+<section class="section" id="primary-source-in-action">
+  <div class="container">
+    <div class="rs-fh">
+      <div class="rs-fh-head">
+        <span class="eyebrow reveal" style="color: var(--gold-deep);">The primary source, in action</span>
+        <h2 class="reveal">This is what a preserved voice looks like.</h2>
+        <p class="reveal">Everything above is the argument. This is the proof. Mohammed&rsquo;s story &mdash; his own voice, his own words, set to the photographs that trace his life. This is the primary source no archive could ever hold, captured before it was lost. Shared with his family&rsquo;s permission.</p>
+      </div>
+      <div class="rs-fh-video reveal">
+        <iframe
+          src="https://www.youtube-nocookie.com/embed/TTyXqcpI1JY"
+          title="The Story of Mohammed — a preserved oral history"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- CSS for this block (add once to styles.css if not already present):
+<style>
+  .rs-fh-head { max-width: 640px; margin: 0 auto 2.5rem; text-align: center; }
+  .rs-fh-head h2 { font-family: var(--font-display); font-weight: 300; font-size: clamp(1.9rem, 3.6vw, 2.6rem); line-height: 1.15; margin: 0.9rem 0 1rem; }
+  .rs-fh-head p { color: var(--muted); font-size: 1rem; line-height: 1.75; margin: 0; }
+  .rs-fh-video { position: relative; aspect-ratio: 16/9; background: #000; border: 1px solid rgba(201,169,97,0.3); overflow: hidden; max-width: 820px; margin: 0 auto; }
+  .rs-fh-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; }
+</style>
+-->
