@@ -975,3 +975,48 @@ em, .italic { font-style: italic; font-family: var(--font-display); }
 .founding-perk p { font-size: 0.88rem; color: var(--muted); line-height: 1.6; margin: 0; }
 .founding-foot { text-align: center; margin-top: 2.25rem; font-size: 0.9rem; color: var(--muted); font-style: italic; }
 @media (max-width: 780px) { .founding-perks { grid-template-columns: 1fr; } }
+
+/* ============================================================
+   REAL STORIES — SOCIAL PROOF SECTION (.rs-*)
+   Used on story-keeper
+   ============================================================ */
+.rs-section { background: var(--cream); }
+.rs-head { max-width: 640px; margin: 0 auto 3rem; text-align: center; }
+.rs-head h2 { font-family: var(--font-display); font-weight: 300; font-size: clamp(2rem, 4vw, 2.8rem); line-height: 1.15; margin: 0.9rem 0 1rem; }
+.rs-intro { color: var(--muted); font-size: 1rem; line-height: 1.75; margin: 0; }
+
+/* Featured — horizontal */
+.rs-featured { max-width: 940px; margin: 0 auto 3.5rem; display: grid; grid-template-columns: 1.4fr 1fr; gap: 2rem; align-items: center; }
+.rs-featured-video { position: relative; aspect-ratio: 16/9; background: #000; border: 1px solid rgba(201,169,97,0.3); overflow: hidden; }
+.rs-featured-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; }
+.rs-tag { display: inline-block; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold-deep); background: rgba(201,169,97,0.12); padding: 0.3rem 0.8rem; margin-bottom: 0.9rem; }
+.rs-featured-caption h3 { font-family: var(--font-display); font-size: 1.9rem; font-weight: 500; line-height: 1.15; margin-bottom: 0.6rem; }
+.rs-featured-caption p { color: var(--muted); font-size: 0.95rem; line-height: 1.7; margin: 0; }
+
+/* Gallery — vertical Shorts */
+.rs-gallery-label { text-align: center; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 1.5rem; }
+.rs-gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; max-width: 820px; margin: 0 auto; }
+.rs-clip-video { position: relative; aspect-ratio: 9/16; background: #000; border: 1px solid rgba(0,0,0,0.1); overflow: hidden; }
+.rs-clip-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; }
+.rs-clip-caption { text-align: center; font-size: 0.88rem; color: var(--ink); margin-top: 0.75rem; font-family: var(--font-display); font-style: italic; }
+.rs-foot { text-align: center; margin-top: 3rem; font-size: 1rem; color: var(--muted); font-style: italic; font-family: var(--font-display); }
+
+@media (max-width: 820px) {
+  .rs-featured { grid-template-columns: 1fr; gap: 1.25rem; }
+  .rs-gallery { grid-template-columns: 1fr; max-width: 320px; }
+}
+
+/* Homepage placement (.rs-home) */
+.rs-home { display: grid; grid-template-columns: 1.4fr 1fr; gap: 2.5rem; align-items: center; max-width: 1000px; margin: 0 auto; }
+.rs-home-video { position: relative; aspect-ratio: 16/9; background: #000; border: 1px solid rgba(201,169,97,0.3); overflow: hidden; }
+.rs-home-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; }
+.rs-home-copy h2 { font-family: var(--font-display); font-weight: 300; font-size: clamp(1.9rem, 3.5vw, 2.6rem); line-height: 1.15; margin: 0.9rem 0 1rem; color: var(--cream); }
+.rs-home-copy p { color: rgba(245,239,230,0.72); font-size: 0.98rem; line-height: 1.7; margin-bottom: 1.75rem; }
+@media (max-width: 820px) { .rs-home { grid-template-columns: 1fr; gap: 1.5rem; } }
+
+/* Family-historians placement (.rs-fh) */
+.rs-fh-head { max-width: 640px; margin: 0 auto 2.5rem; text-align: center; }
+.rs-fh-head h2 { font-family: var(--font-display); font-weight: 300; font-size: clamp(1.9rem, 3.6vw, 2.6rem); line-height: 1.15; margin: 0.9rem 0 1rem; }
+.rs-fh-head p { color: var(--muted); font-size: 1rem; line-height: 1.75; margin: 0; }
+.rs-fh-video { position: relative; aspect-ratio: 16/9; background: #000; border: 1px solid rgba(201,169,97,0.3); overflow: hidden; max-width: 820px; margin: 0 auto; }
+.rs-fh-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; }

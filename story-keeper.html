@@ -33,16 +33,6 @@
   .btn-arrow::after{content:"→";transition:transform .2s ease}
   .btn-arrow:hover::after{transform:translateX(4px)}
 
-  /* ---- sticky nav ---- */
-  .nav{position:sticky;top:0;z-index:100;background:rgba(26,26,26,.92);backdrop-filter:blur(10px);
-    border-bottom:1px solid rgba(201,169,97,.12)}
-  .nav-inner{max-width:1180px;margin:0 auto;padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between}
-  .brand{font-family:var(--display);font-size:1.35rem;letter-spacing:.14em;text-transform:uppercase;color:#fff}
-  .brand span{color:var(--gold)}
-  .nav-cta{font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--charcoal);
-    background:var(--gold);padding:.6rem 1.25rem;transition:background .2s ease}
-  .nav-cta:hover{background:var(--gold-soft)}
-
   /* ---- HERO ---- */
   .hero{position:relative;background:var(--charcoal);color:var(--cream);overflow:hidden;
     padding:6.5rem 2rem 6rem}
@@ -113,24 +103,6 @@
   .deliver-icon{font-size:1.6rem;flex-shrink:0;line-height:1;margin-top:.15rem}
   .deliver-card h3{font-family:var(--display);font-size:1.4rem;font-weight:500;margin-bottom:.4rem;line-height:1.2}
   .deliver-card p{font-size:.9rem;color:var(--muted);line-height:1.6}
-
-  /* ---- SAMPLE FILM (placeholder) ---- */
-  .sample{background:var(--charcoal);color:var(--cream);text-align:center}
-  .sample-inner{max-width:900px;margin:0 auto}
-  .sample-frame{position:relative;margin-top:2.5rem;aspect-ratio:16/9;border:1px solid rgba(201,169,97,.25);
-    background:linear-gradient(135deg,#1f1f1f,#161616);display:flex;flex-direction:column;align-items:center;
-    justify-content:center;gap:1rem;overflow:hidden}
-  .sample-frame::before{content:"";position:absolute;inset:0;
-    background:radial-gradient(ellipse at center,rgba(201,169,97,.08),transparent 70%)}
-  .play-btn{position:relative;width:74px;height:74px;border-radius:50%;border:1.5px solid var(--gold);
-    display:flex;align-items:center;justify-content:center;transition:all .25s ease}
-  .play-btn::after{content:"";border-left:18px solid var(--gold);border-top:11px solid transparent;
-    border-bottom:11px solid transparent;margin-left:5px}
-  .sample-frame:hover .play-btn{background:rgba(201,169,97,.12);transform:scale(1.05)}
-  .sample-note{position:relative;font-size:.8rem;letter-spacing:.05em;color:rgba(245,239,230,.4)}
-  .placeholder-tag{display:inline-block;font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
-    background:rgba(201,169,97,.15);color:var(--gold);padding:.3rem .7rem;border:1px dashed rgba(201,169,97,.4);
-    margin-top:1.5rem}
 
   /* ---- TESTIMONIALS (placeholder) ---- */
   .proof{background:var(--cream-soft)}
@@ -343,14 +315,41 @@
   "serviceType": "Life Story Video Production"
 }
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  "name": "The Story of Mohammed — a LegacyWorks Family Film",
+  "description": "A real LegacyWorks family film: Mohammed shares his life story in his own words, set to the photographs that shaped it — a preserved, first-person oral history and primary source for his family.",
+  "thumbnailUrl": "https://i.ytimg.com/vi/TTyXqcpI1JY/hqdefault.jpg",
+  "uploadDate": "2026-07-09",
+  "duration": "PT12M5S",
+  "contentUrl": "https://youtu.be/TTyXqcpI1JY",
+  "embedUrl": "https://www.youtube-nocookie.com/embed/TTyXqcpI1JY",
+  "publisher": {
+    "@type": "Organization",
+    "name": "LegacyWorks",
+    "logo": { "@type": "ImageObject", "url": "https://legacyworks.studio/assets/og-image.jpg" }
+  }
+}
+</script>
 </head>
 <body>
 
   <!-- NAV -->
   <nav class="nav">
-    <div class="nav-inner">
-      <a href="index.html" class="brand">Legacy<span>Works</span></a>
-      <a href="#book" class="nav-cta">Book a free call</a>
+    <div class="container nav-inner">
+      <a href="index.html" class="brand">Legacy<span class="brand-mark">Works</span></a>
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">☰</button>
+      <div class="nav-links">
+        <a href="story-starter.html" class="nav-link">Story Starter</a>
+        <a href="story-keeper.html" class="nav-link">Story Keeper</a>
+        <a href="story-legacy.html" class="nav-link">Story Legacy</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="family-historians.html" class="nav-link">For Family Historians</a>
+        <a href="gift.html" class="nav-link">Gift</a>
+        <a href="contact.html" class="nav-cta">Book a Call</a>
+      </div>
     </div>
   </nav>
 
@@ -453,16 +452,81 @@
     </div>
   </section>
 
-  <!-- SAMPLE FILM (PLACEHOLDER) -->
-  <section class="section sample">
-    <div class="sample-inner">
-      <span class="eyebrow" style="color:var(--gold)">See it for yourself</span>
-      <h2 style="font-family:var(--display);font-weight:300;font-size:clamp(2rem,4vw,3rem);line-height:1.15">A two-minute glimpse of a <em style="color:var(--gold-soft)">Legacy Highlight Film</em></h2>
-      <div class="sample-frame">
-        <div class="play-btn"></div>
-        <div class="sample-note">Sample film · 2 min 14 sec</div>
+  <!-- REAL STORIES — SOCIAL PROOF -->
+  <section class="section rs-section" id="real-stories">
+    <div class="container">
+
+      <div class="rs-head">
+        <span class="eyebrow">Real families. Real stories.</span>
+        <h2>This is what we make.</h2>
+        <p class="rs-intro">These are real stories from real families we&rsquo;ve had the privilege of filming &mdash; shared with their kind permission. This is the kind of keepsake your family will hold onto forever.</p>
       </div>
-      <span class="placeholder-tag">⚑ Frank — embed a real sample clip here (Vimeo/YouTube). This is the single highest-impact thing on the page.</span>
+
+      <!-- FEATURED — Mohammed (horizontal) -->
+      <div class="rs-featured">
+        <div class="rs-featured-video">
+          <iframe
+            src="https://www.youtube-nocookie.com/embed/TTyXqcpI1JY"
+            title="The Story of Mohammed — a LegacyWorks family film"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+            loading="lazy"></iframe>
+        </div>
+        <div class="rs-featured-caption">
+          <span class="rs-tag">Featured story</span>
+          <h3>The Story of Mohammed</h3>
+          <p>A life told in his own words, set to the photographs that shaped it &mdash; exactly the kind of primary-source record a family treasures for generations. This is the heart of what we do.</p>
+        </div>
+      </div>
+
+      <!-- GALLERY — the three Shorts (vertical) -->
+      <div class="rs-gallery-label">More moments from real families</div>
+      <div class="rs-gallery">
+
+        <div class="rs-clip">
+          <div class="rs-clip-video">
+            <iframe
+              src="https://www.youtube-nocookie.com/embed/Qu8vU9fs4SU"
+              title="Vicki's high school heartbreak — a LegacyWorks moment"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+              loading="lazy"></iframe>
+          </div>
+          <div class="rs-clip-caption">Vicki&rsquo;s high school heartbreak</div>
+        </div>
+
+        <div class="rs-clip">
+          <div class="rs-clip-video">
+            <iframe
+              src="https://www.youtube-nocookie.com/embed/8exrChhusCM"
+              title="Vicki and Danielle — a LegacyWorks moment"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+              loading="lazy"></iframe>
+          </div>
+          <div class="rs-clip-caption">Vicki &amp; Danielle</div>
+        </div>
+
+        <div class="rs-clip">
+          <div class="rs-clip-video">
+            <iframe
+              src="https://www.youtube-nocookie.com/embed/k3F27M_vyEw"
+              title="Richard's regret about not journaling — a LegacyWorks moment"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+              loading="lazy"></iframe>
+          </div>
+          <div class="rs-clip-caption">Richard&rsquo;s regret about not journaling</div>
+        </div>
+
+      </div>
+
+      <p class="rs-foot">Every family&rsquo;s story is different. Yours will be entirely its own.</p>
+
     </div>
   </section>
 
@@ -750,6 +814,7 @@
     });
   </script>
 
+  <script src="assets/main.js"></script>
 <!--Start of Tawk.to Script-->
 <script type="text/javascript">
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
