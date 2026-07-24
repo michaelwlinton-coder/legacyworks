@@ -1,0 +1,15 @@
+{
+  "name": "legacyworks-capture",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Survey-to-archive capture system for LegacyWorks (Cloudflare Workers + D1)",
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "db:create": "wrangler d1 create legacyworks",
+    "db:init": "wrangler d1 execute legacyworks --remote --file=./schema.sql",
+    "dev": "wrangler dev"
+  },
+  "devDependencies": {
+    "wrangler": "^4.114.0"
+  }
+}

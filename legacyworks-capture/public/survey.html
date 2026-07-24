@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- ═══════════════════════════════════════════════════════════════════════
+     THE STORY SURVEY — free written capture, the front door to the funnel.
+     Posts to the Worker API, then shows the person their custom archive link.
+
+     BEFORE DEPLOYING: set API_BASE below to your Worker URL, e.g.
+       const API_BASE = "https://legacyworks-api.michael-w-linton.workers.dev";
+     ═══════════════════════════════════════════════════════════════════════ -->
+<title>Begin their story — LegacyWorks</title>
+<meta name="description" content="Tell us about them, and we'll begin their archive. Free, takes about ten minutes." />
+<meta name="theme-color" content="#12100e" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%2312100e'/><text x='50%25' y='58%25' text-anchor='middle' fill='%23c9a961' font-family='Georgia,serif' font-size='20' font-style='italic'>L</text></svg>" />
+<style>
+  :root{
+    --bg:#12100e; --paper:#f7f2e9; --paper-deep:#ece3d4; --ink:#1a1714;
+    --gold:#c9a961; --gold-deep:#a3823f; --gold-soft:#e2cc99;
+    --muted:#8a7f70; --hair:rgba(201,169,97,.28);
+    --display:"Cormorant Garamond",Georgia,serif; --body:"Inter",-apple-system,sans-serif;
+  }
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:var(--body);font-size:16px;line-height:1.7;color:var(--ink);background:var(--paper)}
+
+  .hero{background:var(--bg);color:var(--paper);text-align:center;padding:5rem 1.5rem 4rem;position:relative;overflow:hidden}
+  .hero::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 65% 55% at 50% 40%,rgba(201,169,97,.15),transparent 70%)}
+  .hero-in{position:relative;max-width:640px;margin:0 auto}
+  .crest{width:52px;height:52px;margin:0 auto 1.75rem;border:1px solid var(--hair);border-radius:50%;
+    display:flex;align-items:center;justify-content:center;font-family:var(--display);font-style:italic;
+    font-size:1.5rem;color:var(--gold-soft)}
+  .hero h1{font-family:var(--display);font-weight:300;font-size:clamp(2.2rem,5.5vw,3.4rem);line-height:1.1;margin-bottom:1.25rem}
+  .hero h1 em{font-style:italic;color:var(--gold-soft)}
+  .hero p{color:rgba(247,242,233,.72);font-size:1.05rem;line-height:1.7}
+  .hero .fine{margin-top:1.5rem;font-size:.8rem;color:rgba(247,242,233,.45);letter-spacing:.02em}
+
+  .form-wrap{max-width:640px;margin:0 auto;padding:4rem 1.5rem 6rem}
+  fieldset{border:none;margin-bottom:3.5rem}
+  legend{font-family:var(--display);font-size:1.6rem;font-weight:500;color:var(--ink);margin-bottom:.4rem;padding:0}
+  .sec-note{font-size:.9rem;color:var(--muted);margin-bottom:2rem;line-height:1.6}
+  .field{margin-bottom:1.75rem}
+  label{display:block;font-size:.95rem;font-weight:500;margin-bottom:.5rem;color:var(--ink)}
+  label .opt{font-weight:400;color:var(--muted);font-size:.85rem}
+  .hint{font-size:.85rem;color:var(--muted);margin-bottom:.6rem;line-height:1.5}
+  input[type=text],input[type=email],textarea{
+    width:100%;padding:.85rem 1rem;background:#fff;border:1px solid rgba(0,0,0,.14);border-radius:2px;
+    font-family:var(--body);font-size:1rem;color:var(--ink);transition:border-color .2s,box-shadow .2s}
+  input:focus,textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,169,97,.15)}
+  textarea{min-height:110px;resize:vertical;line-height:1.65}
+  .hp{position:absolute;left:-9999px;opacity:0;height:0;width:0}
+
+  .submit-row{border-top:1px solid var(--hair);padding-top:2.5rem;text-align:center}
+  button{background:var(--bg);color:var(--paper);border:none;border-radius:2px;padding:1.05rem 2.5rem;
+    font-family:var(--body);font-size:.8rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+    cursor:pointer;transition:background .25s}
+  button:hover:not(:disabled){background:var(--gold-deep)}
+  button:disabled{opacity:.55;cursor:not-allowed}
+  .err{color:#9b2c2c;font-size:.9rem;margin-top:1rem;min-height:1.2em}
+
+  /* success */
+  .done{display:none;text-align:center;padding:5rem 1.5rem;max-width:620px;margin:0 auto}
+  .done.show{display:block}
+  .done h2{font-family:var(--display);font-weight:300;font-size:clamp(2rem,4.5vw,2.8rem);line-height:1.2;margin-bottom:1.25rem}
+  .done h2 em{font-style:italic;color:var(--gold-deep)}
+  .done p{color:var(--muted);font-size:1.02rem;line-height:1.75;margin-bottom:2rem}
+  .link-box{display:flex;gap:.5rem;max-width:470px;margin:0 auto 1.25rem;flex-wrap:wrap}
+  .link-box input{flex:1;min-width:230px;background:var(--paper-deep);border:1px solid var(--hair);
+    padding:.85rem 1rem;font-size:.88rem;color:var(--muted)}
+  .go{display:inline-block;margin-top:.5rem;background:var(--gold);color:var(--bg);text-decoration:none;
+    padding:1rem 2.2rem;border-radius:2px;font-size:.78rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase}
+  @media(max-width:560px){.form-wrap{padding:3rem 1.25rem 4rem}}
+</style>
+</head>
+<body>
+
+  <header class="hero">
+    <div class="hero-in">
+      <div class="crest">L</div>
+      <h1>Begin <em>their story.</em></h1>
+      <p>Tell us what you know about them. We&rsquo;ll turn it into the beginning of their archive &mdash; and show you what&rsquo;s still waiting to be captured.</p>
+      <p class="fine">Free &middot; About ten minutes &middot; Write as much or as little as you like</p>
+    </div>
+  </header>
+
+  <div class="form-wrap" id="formWrap">
+    <form id="survey" novalidate>
+
+      <fieldset>
+        <legend>About them</legend>
+        <p class="sec-note">Start with the simple things.</p>
+
+        <div class="field">
+          <label for="subject_name">Their full name <span class="opt">(required)</span></label>
+          <input type="text" id="subject_name" name="subject_name" required />
+        </div>
+        <div class="field">
+          <label for="subject_called">What do you call them? <span class="opt">(optional)</span></label>
+          <p class="hint">Nana, Pop, Mum &mdash; whatever the family says.</p>
+          <input type="text" id="subject_called" name="subject_called" />
+        </div>
+        <div class="field">
+          <label for="relationship">Your relationship to them</label>
+          <input type="text" id="relationship" name="relationship" placeholder="Daughter, grandson, nephew&hellip;" />
+        </div>
+        <div class="field">
+          <label for="birth_place">Where were they born?</label>
+          <input type="text" id="birth_place" name="birth_place" />
+        </div>
+        <div class="field">
+          <label for="birth_year">What year? <span class="opt">(a rough year is fine)</span></label>
+          <input type="text" id="birth_year" name="birth_year" />
+        </div>
+        <div class="field">
+          <label for="places_lived">Where have they lived?</label>
+          <p class="hint">The places that shaped them.</p>
+          <textarea id="places_lived" name="places_lived"></textarea>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Their life</legend>
+        <p class="sec-note">The shape of the years.</p>
+
+        <div class="field">
+          <label for="life_work">What did they do for most of their life?</label>
+          <p class="hint">Work, raising a family, service &mdash; whatever filled their days.</p>
+          <textarea id="life_work" name="life_work"></textarea>
+        </div>
+        <div class="field">
+          <label for="turning_points">Name a few moments that changed the course of their life.</label>
+          <p class="hint">A move, a marriage, a loss, a decision.</p>
+          <textarea id="turning_points" name="turning_points"></textarea>
+        </div>
+        <div class="field">
+          <label for="proudest">What are they proudest of?</label>
+          <textarea id="proudest" name="proudest"></textarea>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>The heart of it</legend>
+        <p class="sec-note">These are the ones that matter most. Even a sentence is enough to begin.</p>
+
+        <div class="field">
+          <label for="story_always_told">What&rsquo;s a story they always tell?</label>
+          <p class="hint">The one the family has heard a hundred times.</p>
+          <textarea id="story_always_told" name="story_always_told"></textarea>
+        </div>
+        <div class="field">
+          <label for="story_heard_once">What&rsquo;s a story you&rsquo;ve only heard once &mdash; and wish you&rsquo;d recorded?</label>
+          <textarea id="story_heard_once" name="story_heard_once"></textarea>
+        </div>
+        <div class="field">
+          <label for="last_question">What would you ask them, if you had one last conversation?</label>
+          <textarea id="last_question" name="last_question"></textarea>
+        </div>
+        <div class="field">
+          <label for="never_forget">What do you never want the family to forget about them?</label>
+          <textarea id="never_forget" name="never_forget"></textarea>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Where should we send it?</legend>
+        <p class="sec-note">We&rsquo;ll send you a private link to their archive.</p>
+
+        <div class="field">
+          <label for="submitter_name">Your name <span class="opt">(required)</span></label>
+          <input type="text" id="submitter_name" name="submitter_name" required />
+        </div>
+        <div class="field">
+          <label for="submitter_email">Your email <span class="opt">(required)</span></label>
+          <input type="email" id="submitter_email" name="submitter_email" required />
+        </div>
+        <div class="field">
+          <label for="urgency">Is there any urgency? <span class="opt">(optional)</span></label>
+          <p class="hint">Failing health, a big birthday coming up &mdash; anything that means time matters. We&rsquo;ll prioritise you.</p>
+          <textarea id="urgency" name="urgency"></textarea>
+        </div>
+
+        <!-- honeypot: hidden from people, filled by bots -->
+        <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" />
+      </fieldset>
+
+      <div class="submit-row">
+        <button type="submit" id="btn">Begin their archive</button>
+        <div class="err" id="err"></div>
+      </div>
+    </form>
+  </div>
+
+  <div class="done" id="done">
+    <h2>Their archive <em>has begun.</em></h2>
+    <p>We&rsquo;ve saved what you told us. This is their private link &mdash; keep it, and share it with the family when you&rsquo;re ready.</p>
+    <div class="link-box">
+      <input type="text" id="url" readonly />
+      <button type="button" id="copy">Copy</button>
+    </div>
+    <a class="go" id="visit" href="#">See their archive</a>
+    <p style="margin-top:2.5rem;font-size:.9rem">We&rsquo;ve also emailed this link to you.</p>
+  </div>
+
+<script>
+  // ⚠ SET THIS to your deployed Worker URL before going live
+  const API_BASE = "https://legacyworks-api.michael-w-linton.workers.dev";
+
+  const form = document.getElementById('survey');
+  const btn  = document.getElementById('btn');
+  const err  = document.getElementById('err');
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    err.textContent = '';
+
+    const data = {};
+    new FormData(form).forEach(function (v, k) { data[k] = v; });
+
+    if (!data.subject_name || !data.subject_name.trim()) {
+      err.textContent = 'Please tell us their name.'; return;
+    }
+    if (!data.submitter_name || !data.submitter_name.trim()) {
+      err.textContent = 'Please tell us your name.'; return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(data.submitter_email || '')) {
+      err.textContent = 'Please enter a valid email address.'; return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = 'Saving\u2026';
+
+    try {
+      const res = await fetch(API_BASE + '/api/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      const out = await res.json();
+      if (!res.ok || !out.ok) throw new Error(out.error || 'Something went wrong.');
+
+      const link = window.location.origin + '/a/' + out.slug;
+      document.getElementById('url').value = link;
+      document.getElementById('visit').href = '/a/' + out.slug;
+      document.getElementById('formWrap').style.display = 'none';
+      document.querySelector('.hero').style.display = 'none';
+      document.getElementById('done').classList.add('show');
+      window.scrollTo(0, 0);
+    } catch (ex) {
+      err.textContent = ex.message || 'Something went wrong. Please try again.';
+      btn.disabled = false;
+      btn.textContent = 'Begin their archive';
+    }
+  });
+
+  document.getElementById('copy').addEventListener('click', function () {
+    const i = document.getElementById('url');
+    const b = this;
+    function ok(){ b.textContent = 'Copied \u2713'; setTimeout(function(){ b.textContent = 'Copy'; }, 1800); }
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(i.value).then(ok).catch(fb);
+    } else { fb(); }
+    function fb(){ i.select(); i.setSelectionRange(0,99999);
+      try { document.execCommand('copy'); ok(); } catch(e){ window.prompt('Copy this link:', i.value); } }
+  });
+</script>
+</body>
+</html>

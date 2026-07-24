@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- ═══════════════════════════════════════════════════════════════════════
+     THE PARTIAL ARCHIVE — /a/<slug>
+     Loads a family's written answers from the Worker API and renders them
+     beautifully, with the MISSING pieces (voice, film, photographs) shown
+     as warm invitations rather than locked content. The gaps do the selling.
+
+     BEFORE DEPLOYING: set API_BASE below to your Worker URL.
+     ROUTING: this file should serve every /a/* path (see _redirects).
+     ═══════════════════════════════════════════════════════════════════════ -->
+<title>A Family Archive | LegacyWorks</title>
+<meta name="robots" content="noindex, nofollow" />
+<meta name="referrer" content="no-referrer" />
+<meta name="theme-color" content="#12100e" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%2312100e'/><text x='50%25' y='58%25' text-anchor='middle' fill='%23c9a961' font-family='Georgia,serif' font-size='20' font-style='italic'>L</text></svg>" />
+<style>
+  :root{
+    --bg:#12100e; --paper:#f7f2e9; --paper-deep:#ece3d4; --ink:#1a1714;
+    --gold:#c9a961; --gold-deep:#a3823f; --gold-soft:#e2cc99;
+    --muted:#8a7f70; --muted-light:rgba(247,242,233,.55); --hair:rgba(201,169,97,.28);
+    --display:"Cormorant Garamond",Georgia,serif; --body:"Inter",-apple-system,sans-serif;
+  }
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:var(--body);font-size:16px;line-height:1.7;color:var(--ink);background:var(--paper)}
+  a{color:inherit}
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+  .grain::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:3;opacity:.5;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
+    mix-blend-mode:overlay}
+  .ornament{display:flex;align-items:center;justify-content:center;gap:1rem}
+  .ornament::before,.ornament::after{content:"";height:1px;width:44px;background:linear-gradient(90deg,transparent,var(--gold-deep))}
+  .ornament::after{background:linear-gradient(90deg,var(--gold-deep),transparent)}
+  .ornament span{color:var(--gold-deep);font-size:.7rem;transform:rotate(45deg);display:inline-block}
+
+  /* overture */
+  .ov{position:relative;min-height:92vh;background:var(--bg);color:var(--paper);display:flex;
+    align-items:center;justify-content:center;text-align:center;padding:3rem 1.5rem;overflow:hidden}
+  .ov::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 70% 55% at 50% 42%,rgba(201,169,97,.16),transparent 70%);animation:breathe 14s ease-in-out infinite}
+  @keyframes breathe{0%,100%{transform:scale(1);opacity:.85}50%{transform:scale(1.1);opacity:1}}
+  @media(prefers-reduced-motion:reduce){.ov::before{animation:none}}
+  .ov-in{position:relative;z-index:2;max-width:800px}
+  .crest{position:relative;width:92px;height:92px;margin:0 auto 2.25rem;border-radius:50%;display:flex;
+    align-items:center;justify-content:center;font-family:var(--display);font-style:italic;font-size:2.5rem;
+    color:var(--gold-soft);border:1px solid var(--hair);
+    background:radial-gradient(circle at 50% 40%,rgba(201,169,97,.10),transparent 70%);
+    box-shadow:0 0 0 6px rgba(201,169,97,.04),0 0 0 7px rgba(201,169,97,.10)}
+  .crest::before{content:"";position:absolute;inset:7px;border-radius:50%;border:1px solid rgba(201,169,97,.16)}
+  .ov-eyebrow{font-size:.66rem;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);margin-bottom:1.75rem;padding-left:.4em}
+  .ov h1{font-family:var(--display);font-weight:300;font-size:clamp(2.6rem,8vw,5.4rem);line-height:1;letter-spacing:-.015em}
+  .ov h1 em{display:block;font-style:italic;color:var(--gold-soft);font-size:.62em;margin-top:.35em}
+  .ov-sub{margin-top:2rem;font-family:var(--display);font-style:italic;font-size:1.3rem;color:var(--muted-light)}
+  .ov-badge{position:absolute;top:1.6rem;left:50%;transform:translateX(-50%);z-index:2;font-size:.6rem;
+    letter-spacing:.16em;text-transform:uppercase;color:var(--muted-light);
+    border:1px solid rgba(247,242,233,.16);padding:.42rem 1rem;white-space:nowrap}
+
+  /* written sections */
+  .sec{padding:6rem 1.5rem}
+  .sec-in{max-width:660px;margin:0 auto}
+  .lbl{text-align:center;font-size:.66rem;font-weight:500;letter-spacing:.32em;text-transform:uppercase;
+    color:var(--gold-deep);margin:1.5rem 0 1rem}
+  .sec h2{font-family:var(--display);font-weight:300;font-size:clamp(1.9rem,4vw,2.6rem);line-height:1.2;
+    text-align:center;margin-bottom:2.5rem}
+  .prose{font-family:var(--display);font-size:clamp(1.25rem,2.4vw,1.6rem);font-weight:300;line-height:1.6;text-align:center}
+  .prose+.prose{margin-top:1.4rem}
+  .entry{margin-bottom:2.75rem}
+  .entry:last-child{margin-bottom:0}
+  .entry-q{font-size:.68rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-deep);
+    margin-bottom:.7rem;text-align:center}
+  .entry-a{font-family:var(--display);font-size:1.3rem;font-weight:300;line-height:1.65;text-align:center;color:var(--ink)}
+
+  /* the quote pulled from "story heard once" */
+  .pull{background:var(--bg);color:var(--paper);padding:6.5rem 1.5rem;text-align:center;position:relative;overflow:hidden}
+  .pull-in{position:relative;max-width:740px;margin:0 auto}
+  .pull-mark{font-family:var(--display);font-size:5rem;color:rgba(201,169,97,.22);line-height:.5;margin-bottom:1rem}
+  .pull blockquote{font-family:var(--display);font-weight:300;font-style:italic;font-size:clamp(1.5rem,3.6vw,2.4rem);line-height:1.4}
+  .pull cite{display:block;margin-top:1.75rem;font-family:var(--body);font-style:normal;font-size:.68rem;
+    font-weight:500;letter-spacing:.26em;text-transform:uppercase;color:var(--gold)}
+
+  /* THE MISSING PIECES — the heart of the pitch */
+  .missing{background:var(--paper-deep);padding:6.5rem 1.5rem}
+  .missing-in{max-width:840px;margin:0 auto}
+  .missing-head{text-align:center;max-width:600px;margin:0 auto 3.5rem}
+  .missing-head h2{font-family:var(--display);font-weight:300;font-size:clamp(2rem,4.4vw,2.9rem);line-height:1.2;margin:1rem 0}
+  .missing-head p{color:var(--muted);font-size:1rem;line-height:1.75}
+  .gaps{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+  .gap{background:rgba(255,255,255,.5);border:1px dashed rgba(201,169,97,.5);padding:2rem 1.5rem;text-align:center;
+    position:relative;transition:border-color .3s,background .3s}
+  .gap:hover{border-color:var(--gold);background:rgba(255,255,255,.75)}
+  .gap-icon{font-size:1.5rem;margin-bottom:.9rem;opacity:.55}
+  .gap h3{font-family:var(--display);font-size:1.25rem;font-weight:500;margin-bottom:.5rem}
+  .gap p{font-size:.86rem;color:var(--muted);line-height:1.6}
+  .gap-tag{display:inline-block;margin-top:1rem;font-size:.6rem;font-weight:600;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--gold-deep);border:1px solid var(--hair);padding:.28rem .7rem}
+  .missing-foot{text-align:center;margin-top:3rem;font-family:var(--display);font-style:italic;
+    font-size:1.25rem;color:var(--gold-deep)}
+
+  /* tiers */
+  .tiers{background:var(--paper);padding:6.5rem 1.5rem}
+  .tiers-in{max-width:960px;margin:0 auto}
+  .tiers-head{text-align:center;max-width:600px;margin:0 auto 3.5rem}
+  .tiers-head h2{font-family:var(--display);font-weight:300;font-size:clamp(2rem,4.4vw,2.9rem);line-height:1.2;margin:1rem 0}
+  .tiers-head p{color:var(--muted);line-height:1.75}
+  .tier-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;align-items:stretch}
+  .tier{background:#fff;border:1px solid rgba(0,0,0,.08);padding:2.25rem 1.75rem;display:flex;flex-direction:column;text-align:center}
+  .tier.feat{border-color:var(--gold);box-shadow:0 20px 50px -25px rgba(163,130,63,.45)}
+  .tier-name{font-family:var(--display);font-size:1.55rem;font-weight:500;margin-bottom:.3rem}
+  .tier-price{font-family:var(--display);font-size:2rem;font-weight:300;color:var(--gold-deep);margin:.4rem 0 .9rem}
+  .tier-desc{font-size:.88rem;color:var(--muted);line-height:1.6;flex-grow:1;margin-bottom:1.5rem}
+  .tier-cta{display:inline-block;padding:.85rem 1.4rem;border:1px solid var(--ink);text-decoration:none;
+    font-size:.7rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;transition:all .25s}
+  .tier-cta:hover{background:var(--ink);color:var(--paper)}
+  .tier.feat .tier-cta{background:var(--gold);border-color:var(--gold);color:var(--bg)}
+  .tier.feat .tier-cta:hover{background:var(--gold-deep);border-color:var(--gold-deep)}
+
+  /* share + colophon */
+  .share{background:var(--paper-deep);padding:5rem 1.5rem;text-align:center}
+  .share-in{max-width:620px;margin:0 auto}
+  .share h3{font-family:var(--display);font-weight:300;font-size:1.9rem;margin-bottom:.9rem}
+  .share p{color:var(--muted);font-size:.95rem;margin-bottom:1.75rem}
+  .share-row{display:flex;gap:.5rem;max-width:450px;margin:0 auto;flex-wrap:wrap}
+  .share-row input{flex:1;min-width:220px;padding:.85rem 1rem;background:#fff;border:1px solid var(--hair);
+    font-size:.85rem;color:var(--muted)}
+  .share-row button{padding:.85rem 1.5rem;background:var(--bg);color:var(--paper);border:none;
+    font-size:.7rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;cursor:pointer}
+  .colophon{background:var(--bg);color:var(--paper);text-align:center;padding:4.5rem 1.5rem;position:relative;overflow:hidden}
+  .col-in{position:relative}
+  .col-mark{font-family:var(--display);font-size:1.1rem;letter-spacing:.22em;text-transform:uppercase}
+  .col-mark span{color:var(--gold)}
+  .col-tag{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted-light);margin-top:.5rem}
+
+  .loading,.nf{min-height:100vh;background:var(--bg);color:var(--paper);display:flex;align-items:center;
+    justify-content:center;text-align:center;padding:2rem}
+  .nf h1{font-family:var(--display);font-weight:300;font-size:2.4rem;margin-bottom:.9rem}
+  .nf p{color:var(--muted-light);margin-bottom:1.75rem}
+  .nf a{display:inline-block;background:var(--gold);color:var(--bg);padding:.9rem 1.9rem;text-decoration:none;
+    font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase}
+
+  @media(max-width:820px){.gaps,.tier-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+  <div id="app"><div class="loading"><div class="crest">L</div></div></div>
+
+<script>
+  // ⚠ SET THIS to your deployed Worker URL before going live
+  const API_BASE = "https://legacyworks-api.michael-w-linton.workers.dev";
+
+  function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+
+  function getSlug(){
+    var m = location.pathname.match(/\/a\/([^\/?#]+)/);
+    if (m) return decodeURIComponent(m[1]);
+    return new URLSearchParams(location.search).get('a');
+  }
+
+  function notFound(){
+    document.getElementById('app').innerHTML =
+      '<div class="nf"><div><div class="crest">L</div>'+
+      '<h1>We couldn\u2019t find that archive</h1>'+
+      '<p>Please check the link you were given, or get in touch and we\u2019ll gladly help.</p>'+
+      '<a href="https://legacyworks.studio">Visit LegacyWorks</a></div></div>';
+  }
+
+  (async function(){
+    var slug = getSlug();
+    if (!slug) return notFound();
+
+    var f;
+    try {
+      var res = await fetch(API_BASE + '/api/family/' + encodeURIComponent(slug));
+      var out = await res.json();
+      if (!res.ok || !out.ok) return notFound();
+      f = out.family;
+    } catch (e) { return notFound(); }
+
+    var called = f.subject_called || f.subject_name;
+    document.title = 'The story of ' + f.subject_name + ' | LegacyWorks';
+
+    var H = [];
+
+    /* overture */
+    H.push('<section class="ov grain">'+
+      '<div class="ov-badge">\uD83D\uDD12 Private \u00b7 shared by link</div>'+
+      '<div class="ov-in">'+
+        '<div class="crest">'+esc((f.subject_name||'L').charAt(0))+'</div>'+
+        '<div class="ov-eyebrow">A Family Archive</div>'+
+        '<h1>'+esc(f.subject_name)+'<em>Their story, begun.</em></h1>'+
+        (f.birth_year||f.birth_place
+          ? '<div class="ov-sub">'+esc([f.birth_place,f.birth_year].filter(Boolean).join(' \u00b7 '))+'</div>'
+          : '')+
+      '</div></section>');
+
+    /* what we know */
+    var known = [];
+    if (f.life_work)      known.push(['Their life\u2019s work', f.life_work]);
+    if (f.places_lived)   known.push(['The places that shaped them', f.places_lived]);
+    if (f.turning_points) known.push(['Moments that changed everything', f.turning_points]);
+    if (f.proudest)       known.push(['What they\u2019re proudest of', f.proudest]);
+    if (f.story_always_told) known.push(['The story they always tell', f.story_always_told]);
+    if (f.never_forget)   known.push(['What we must never forget', f.never_forget]);
+
+    if (known.length) {
+      H.push('<section class="sec"><div class="sec-in reveal">'+
+        '<div class="ornament"><span>\u2726</span></div>'+
+        '<div class="lbl">What we know so far</div>'+
+        '<h2>'+esc(called)+'</h2>'+
+        known.map(function(k){
+          return '<div class="entry"><div class="entry-q">'+esc(k[0])+'</div>'+
+                 '<div class="entry-a">'+esc(k[1])+'</div></div>';
+        }).join('')+
+      '</div></section>');
+    }
+
+    /* the pull quote — the story they only heard once */
+    if (f.story_heard_once) {
+      H.push('<section class="pull grain"><div class="pull-in reveal">'+
+        '<div class="pull-mark">\u201C</div>'+
+        '<blockquote>'+esc(f.story_heard_once)+'</blockquote>'+
+        '<cite>A story heard once</cite>'+
+      '</div></section>');
+    }
+
+    /* the last question */
+    if (f.last_question) {
+      H.push('<section class="sec"><div class="sec-in reveal">'+
+        '<div class="ornament"><span>\u2726</span></div>'+
+        '<div class="lbl">Still to ask</div>'+
+        '<p class="prose">'+esc(f.last_question)+'</p>'+
+      '</div></section>');
+    }
+
+    /* THE MISSING PIECES */
+    H.push('<section class="missing"><div class="missing-in reveal">'+
+      '<div class="missing-head">'+
+        '<div class="ornament"><span>\u2726</span></div>'+
+        '<h2>What\u2019s still missing</h2>'+
+        '<p>Everything above is written down \u2014 and that already matters more than most families ever manage. '+
+        'But the things that bring a person back are the ones we haven\u2019t captured yet.</p>'+
+      '</div>'+
+      '<div class="gaps">'+
+        '<div class="gap"><div class="gap-icon">\uD83C\uDF99\uFE0F</div>'+
+          '<h3>Their voice</h3>'+
+          '<p>The way '+esc(called)+' pauses before a story. The laugh before the punchline. No recording yet.</p>'+
+          '<span class="gap-tag">Not yet captured</span></div>'+
+        '<div class="gap"><div class="gap-icon">\uD83C\uDFAC</div>'+
+          '<h3>Their face, telling it</h3>'+
+          '<p>Written words hold the facts. Film holds the person \u2014 the hands, the eyes, the pauses.</p>'+
+          '<span class="gap-tag">Not yet filmed</span></div>'+
+        '<div class="gap"><div class="gap-icon">\uD83D\uDDBC\uFE0F</div>'+
+          '<h3>The photographs</h3>'+
+          '<p>The albums in the drawer, unscanned and unlabelled \u2014 and the stories behind each one.</p>'+
+          '<span class="gap-tag">Not yet gathered</span></div>'+
+      '</div>'+
+      '<p class="missing-foot">These are the pieces only '+esc(called)+' can give you \u2014 and only while there\u2019s still time to ask.</p>'+
+    '</div></section>');
+
+    /* tiers */
+    H.push('<section class="tiers"><div class="tiers-in reveal">'+
+      '<div class="tiers-head">'+
+        '<div class="ornament"><span>\u2726</span></div>'+
+        '<h2>How we finish this</h2>'+
+        '<p>Three ways to turn what you\u2019ve written into something your family can watch, hold, and keep.</p>'+
+      '</div>'+
+      '<div class="tier-grid">'+
+        '<div class="tier"><div class="tier-name">Story Starter</div>'+
+          '<div class="tier-price">$895</div>'+
+          '<p class="tier-desc">You film it yourself, with our questions, our method, and a complete tested filming kit shipped to your door \u2014 free for the first 50 families.</p>'+
+          '<a class="tier-cta" href="https://legacyworks.studio/story-starter.html" data-tier="starter">Explore Starter</a></div>'+
+        '<div class="tier feat"><div class="tier-name">Story Keeper</div>'+
+          '<div class="tier-price">$2,500+</div>'+
+          '<p class="tier-desc">We do it all. A trained Story Coach interviews '+esc(called)+' over a few gentle weeks. You receive a film series, a hardcover book, and their voice, kept forever.</p>'+
+          '<a class="tier-cta" href="https://legacyworks.studio/story-keeper.html" data-tier="keeper">Explore Keeper</a></div>'+
+        '<div class="tier"><div class="tier-name">Story Legacy</div>'+
+          '<div class="tier-price">$25K+</div>'+
+          '<p class="tier-desc">A feature-length documentary \u2014 cinematic filming, original music, interviews with everyone who knew them, and a private premiere.</p>'+
+          '<a class="tier-cta" href="https://legacyworks.studio/story-legacy.html" data-tier="legacy">Explore Legacy</a></div>'+
+      '</div></div></section>');
+
+    /* share */
+    H.push('<section class="share"><div class="share-in reveal">'+
+      '<h3>Share this with your family</h3>'+
+      '<p>Anyone with this link can read it. Send it to the people who should see it \u2014 and who might remember more.</p>'+
+      '<div class="share-row"><input id="u" readonly /><button id="c">Copy link</button></div>'+
+    '</div></section>');
+
+    H.push('<section class="colophon grain"><div class="col-in">'+
+      '<div class="col-mark">Legacy<span>Works</span></div>'+
+      '<div class="col-tag">Capture. Preserve. Remember.</div>'+
+    '</div></section>');
+
+    document.getElementById('app').innerHTML = H.join('');
+
+    /* share box */
+    var u = document.getElementById('u');
+    u.value = location.origin + location.pathname;
+    document.getElementById('c').addEventListener('click', function(){
+      var b = this;
+      function ok(){ b.textContent='Copied \u2713'; setTimeout(function(){b.textContent='Copy link';},1800); }
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(u.value).then(ok).catch(fb);
+      else fb();
+      function fb(){ u.select(); u.setSelectionRange(0,99999);
+        try{document.execCommand('copy');ok();}catch(e){window.prompt('Copy this link:',u.value);} }
+      track('share_copy');
+    });
+
+    /* reveal on scroll */
+    var obs = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); obs.unobserve(e.target); } });
+    },{threshold:.1, rootMargin:'0px 0px -6% 0px'});
+    document.querySelectorAll('.reveal').forEach(function(el){ obs.observe(el); });
+
+    /* light engagement tracking — tells you who's interested */
+    function track(type, detail){
+      try {
+        fetch(API_BASE + '/api/event', {
+          method:'POST', headers:{'Content-Type':'application/json'},
+          body: JSON.stringify({ slug: slug, event_type: type, detail: detail || null }),
+          keepalive: true
+        });
+      } catch(e){}
+    }
+    track('view');
+    document.querySelectorAll('[data-tier]').forEach(function(a){
+      a.addEventListener('click', function(){ track('tier_click', a.getAttribute('data-tier')); });
+    });
+  })();
+</script>
+</body>
+</html>

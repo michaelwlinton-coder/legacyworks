@@ -1,0 +1,52 @@
+# ============================================================================
+# LEGACYWORKS WORKER — Cloudflare config
+#
+# SETUP (run these once, in order, from this folder):
+#
+#   1. npm install -g wrangler          (or use npx wrangler for each command)
+#   2. npx wrangler login               (opens browser, log in to Cloudflare)
+#
+#   3. Create the database:
+#        npx wrangler d1 create legacyworks
+#      It prints a database_id — PASTE IT into database_id below.
+#
+#   4. Create the tables:
+#        npx wrangler d1 execute legacyworks --remote --file=./schema.sql
+#
+#   5. Set your admin password (used to view leads):
+#        npx wrangler secret put ADMIN_KEY
+#      (type any long random password when prompted, and save it somewhere)
+#
+#   6. Deploy:
+#        npx wrangler deploy
+#
+#   7. (Optional but recommended) rate limiting:
+#        npx wrangler kv namespace create RATE_LIMIT
+#      then paste the id below and uncomment the kv_namespaces block.
+# ============================================================================
+
+name = "legacyworks-api"
+main = "src/index.js"
+compatibility_date = "2026-01-01"
+
+# Your API will live at:  legacyworks-api.<your-subdomain>.workers.dev
+# Later you can map it to api.legacyworks.studio via a custom domain.
+workers_dev = true
+
+[[d1_databases]]
+binding = "DB"                  # code refers to env.DB
+database_name = "legacyworks"
+database_id = "PASTE_YOUR_DATABASE_ID_HERE"
+
+[vars]
+# Lock this to your site once live, e.g. "https://legacyworks.studio"
+# Leave "*" while testing.
+ALLOWED_ORIGIN = "*"
+
+# Optional rate limiting — uncomment after creating the KV namespace (step 7)
+# [[kv_namespaces]]
+# binding = "RATE_LIMIT"
+# id = "PASTE_YOUR_KV_ID_HERE"
+
+# ADMIN_KEY is a SECRET — never put it in this file.
+# Set it with:  npx wrangler secret put ADMIN_KEY

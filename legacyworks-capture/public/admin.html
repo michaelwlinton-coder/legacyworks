@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- ═══════════════════════════════════════════════════════════════════════
+     ADMIN — your lead list.
+     Shows every survey submission, flags the urgent ones first, and shows
+     how many times each family has opened their archive (a real buying signal).
+
+     Your ADMIN_KEY is asked for on load and kept only in this browser tab.
+     BEFORE DEPLOYING: set API_BASE to your Worker URL.
+     ═══════════════════════════════════════════════════════════════════════ -->
+<title>Leads | LegacyWorks</title>
+<meta name="robots" content="noindex, nofollow" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{--bg:#12100e;--paper:#f7f2e9;--ink:#1a1714;--gold:#c9a961;--gold-deep:#a3823f;
+    --muted:#8a7f70;--hair:rgba(201,169,97,.3);--urgent:#9b2c2c}
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:"Inter",-apple-system,sans-serif;background:#faf7f1;color:var(--ink);font-size:15px;line-height:1.6}
+  header{background:var(--bg);color:var(--paper);padding:1.5rem 2rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+  header h1{font-size:1.05rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase}
+  header h1 span{color:var(--gold)}
+  .stats{display:flex;gap:2rem;font-size:.8rem;color:rgba(247,242,233,.6)}
+  .stats b{display:block;font-size:1.5rem;color:var(--gold);font-weight:600;line-height:1.2}
+  .wrap{max-width:1250px;margin:0 auto;padding:2rem}
+  .gate{max-width:380px;margin:5rem auto;background:#fff;border:1px solid rgba(0,0,0,.1);padding:2.5rem;text-align:center}
+  .gate h2{font-size:1.15rem;margin-bottom:.5rem}
+  .gate p{color:var(--muted);font-size:.88rem;margin-bottom:1.5rem}
+  input,select,textarea{font-family:inherit;font-size:.9rem;padding:.7rem .9rem;border:1px solid rgba(0,0,0,.15);
+    border-radius:2px;width:100%;background:#fff}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold)}
+  button{font-family:inherit;background:var(--bg);color:var(--paper);border:none;padding:.75rem 1.5rem;
+    border-radius:2px;font-size:.78rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer}
+  button:hover{background:var(--gold-deep)}
+  .filters{display:flex;gap:.75rem;margin-bottom:1.5rem;flex-wrap:wrap;align-items:center}
+  .filters input{max-width:280px}
+  .filters select{max-width:180px}
+  .card{background:#fff;border:1px solid rgba(0,0,0,.09);margin-bottom:1rem;padding:1.5rem;border-left:3px solid transparent}
+  .card.urgent{border-left-color:var(--urgent)}
+  .card-top{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:.75rem}
+  .subject{font-size:1.2rem;font-weight:600}
+  .meta{font-size:.82rem;color:var(--muted);margin-top:.15rem}
+  .badges{display:flex;gap:.5rem;flex-wrap:wrap;align-items:flex-start}
+  .badge{font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.28rem .6rem;border-radius:2px}
+  .b-urgent{background:#fdecec;color:var(--urgent)}
+  .b-views{background:#f0ece2;color:var(--gold-deep)}
+  .b-status{background:#eef2f7;color:#3d5573}
+  .urgency-note{background:#fdf6f6;border-left:2px solid var(--urgent);padding:.7rem .9rem;font-size:.85rem;margin:.75rem 0;color:#7a2323}
+  .row{display:flex;gap:.75rem;align-items:center;flex-wrap:wrap;margin-top:1rem;padding-top:1rem;border-top:1px solid rgba(0,0,0,.07)}
+  .row a{font-size:.8rem;color:var(--gold-deep);text-decoration:none;font-weight:500}
+  .row a:hover{text-decoration:underline}
+  .row select{max-width:150px}
+  .row input[type=text]{flex:1;min-width:180px}
+  .row button{padding:.55rem 1rem;font-size:.68rem}
+  .empty{text-align:center;padding:5rem 2rem;color:var(--muted)}
+  .err{color:var(--urgent);font-size:.85rem;margin-top:.75rem;min-height:1.2em}
+  @media(max-width:600px){.wrap{padding:1rem}.stats{gap:1.25rem}}
+</style>
+</head>
+<body>
+
+<div id="gate" class="gate">
+  <h2>Leads</h2>
+  <p>Enter your admin key to continue.</p>
+  <input type="password" id="key" placeholder="Admin key" />
+  <div class="err" id="gateErr"></div>
+  <button id="go" style="margin-top:1rem;width:100%">Open</button>
+</div>
+
+<div id="main" style="display:none">
+  <header>
+    <h1>Legacy<span>Works</span> &nbsp;&middot;&nbsp; Leads</h1>
+    <div class="stats">
+      <div><b id="sTotal">0</b>Total</div>
+      <div><b id="sUrgent">0</b>Urgent</div>
+      <div><b id="sNew">0</b>New</div>
+      <div><b id="sViewed">0</b>Opened theirs</div>
+    </div>
+  </header>
+  <div class="wrap">
+    <div class="filters">
+      <input type="text" id="q" placeholder="Search name, email, subject&hellip;" />
+      <select id="fStatus">
+        <option value="">All statuses</option>
+        <option value="new">New</option>
+        <option value="contacted">Contacted</option>
+        <option value="customer">Customer</option>
+        <option value="archived">Archived</option>
+      </select>
+      <label style="font-size:.85rem;color:var(--muted);display:flex;align-items:center;gap:.4rem">
+        <input type="checkbox" id="fUrgent" style="width:auto" /> Urgent only
+      </label>
+      <button id="refresh" style="margin-left:auto">Refresh</button>
+    </div>
+    <div id="list"></div>
+  </div>
+</div>
+
+<script>
+  // ⚠ SET THIS to your deployed Worker URL
+  const API_BASE = "https://legacyworks-api.michael-w-linton.workers.dev";
+
+  let KEY = sessionStorage.getItem('lw_admin_key') || '';
+  let LEADS = [];
+
+  function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+
+  function when(iso){
+    if(!iso) return '';
+    var d=new Date(iso), now=new Date(), days=Math.floor((now-d)/86400000);
+    if(days===0) return 'today';
+    if(days===1) return 'yesterday';
+    if(days<30) return days+' days ago';
+    return d.toLocaleDateString();
+  }
+
+  async function load(){
+    var res = await fetch(API_BASE+'/api/admin/leads',{headers:{'x-admin-key':KEY}});
+    if(res.status===401){ throw new Error('That key was not accepted.'); }
+    var out = await res.json();
+    if(!out.ok) throw new Error(out.error||'Could not load leads.');
+    LEADS = out.leads||[];
+    render();
+  }
+
+  function render(){
+    var q=(document.getElementById('q').value||'').toLowerCase();
+    var st=document.getElementById('fStatus').value;
+    var onlyUrgent=document.getElementById('fUrgent').checked;
+
+    document.getElementById('sTotal').textContent = LEADS.length;
+    document.getElementById('sUrgent').textContent = LEADS.filter(l=>l.is_urgent).length;
+    document.getElementById('sNew').textContent = LEADS.filter(l=>l.status==='new').length;
+    document.getElementById('sViewed').textContent = LEADS.filter(l=>(l.views||0)>0).length;
+
+    var rows = LEADS.filter(function(l){
+      if(onlyUrgent && !l.is_urgent) return false;
+      if(st && l.status!==st) return false;
+      if(!q) return true;
+      return [l.subject_name,l.submitter_name,l.submitter_email,l.relationship]
+        .filter(Boolean).join(' ').toLowerCase().includes(q);
+    });
+
+    var el=document.getElementById('list');
+    if(!rows.length){ el.innerHTML='<div class="empty">No leads match.</div>'; return; }
+
+    el.innerHTML = rows.map(function(l){
+      return '<div class="card'+(l.is_urgent?' urgent':'')+'">'+
+        '<div class="card-top">'+
+          '<div><div class="subject">'+esc(l.subject_name)+'</div>'+
+            '<div class="meta">'+esc(l.submitter_name)+
+              (l.relationship?' \u00b7 '+esc(l.relationship):'')+
+              ' \u00b7 <a href="mailto:'+esc(l.submitter_email)+'">'+esc(l.submitter_email)+'</a>'+
+              ' \u00b7 '+when(l.created_at)+'</div></div>'+
+          '<div class="badges">'+
+            (l.is_urgent?'<span class="badge b-urgent">Urgent</span>':'')+
+            ((l.views||0)>0?'<span class="badge b-views">Opened '+l.views+'\u00d7</span>':'')+
+            '<span class="badge b-status">'+esc(l.status||'new')+'</span>'+
+          '</div>'+
+        '</div>'+
+        (l.urgency?'<div class="urgency-note">'+esc(l.urgency)+'</div>':'')+
+        '<div class="row">'+
+          '<a href="/a/'+esc(l.slug)+'" target="_blank">Open their archive \u2197</a>'+
+          '<select data-id="'+l.id+'" class="st">'+
+            ['new','contacted','customer','archived'].map(function(s){
+              return '<option value="'+s+'"'+((l.status||'new')===s?' selected':'')+'>'+s+'</option>';
+            }).join('')+
+          '</select>'+
+          '<input type="text" class="nt" data-id="'+l.id+'" placeholder="Notes\u2026" value="'+esc(l.notes||'')+'" />'+
+          '<button class="save" data-id="'+l.id+'">Save</button>'+
+        '</div></div>';
+    }).join('');
+
+    el.querySelectorAll('.save').forEach(function(b){
+      b.addEventListener('click', async function(){
+        var id=b.getAttribute('data-id');
+        var status=el.querySelector('.st[data-id="'+id+'"]').value;
+        var notes=el.querySelector('.nt[data-id="'+id+'"]').value;
+        b.textContent='Saving\u2026';
+        try{
+          await fetch(API_BASE+'/api/admin/lead/'+id,{method:'PATCH',
+            headers:{'Content-Type':'application/json','x-admin-key':KEY},
+            body:JSON.stringify({status:status,notes:notes})});
+          var lead=LEADS.find(x=>String(x.id)===String(id));
+          if(lead){ lead.status=status; lead.notes=notes; }
+          b.textContent='Saved \u2713';
+          setTimeout(function(){ b.textContent='Save'; render(); },1200);
+        }catch(e){ b.textContent='Failed'; }
+      });
+    });
+  }
+
+  async function enter(){
+    KEY=document.getElementById('key').value.trim();
+    if(!KEY) return;
+    try{
+      await load();
+      sessionStorage.setItem('lw_admin_key',KEY);
+      document.getElementById('gate').style.display='none';
+      document.getElementById('main').style.display='block';
+    }catch(e){
+      document.getElementById('gateErr').textContent=e.message;
+    }
+  }
+
+  document.getElementById('go').addEventListener('click',enter);
+  document.getElementById('key').addEventListener('keydown',function(e){ if(e.key==='Enter') enter(); });
+  ['q','fStatus','fUrgent'].forEach(function(id){
+    document.getElementById(id).addEventListener('input',render);
+  });
+  document.getElementById('refresh').addEventListener('click',function(){ load().catch(function(e){alert(e.message);}); });
+
+  // auto-enter if key already in this tab
+  if(KEY){
+    load().then(function(){
+      document.getElementById('gate').style.display='none';
+      document.getElementById('main').style.display='block';
+    }).catch(function(){ sessionStorage.removeItem('lw_admin_key'); });
+  }
+</script>
+</body>
+</html>
