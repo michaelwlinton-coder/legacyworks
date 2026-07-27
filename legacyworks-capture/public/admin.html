@@ -145,6 +145,7 @@
     });
 
     var el=document.getElementById('list');
+    bindListOnce();
     if(!rows.length){ el.innerHTML='<div class="empty">No leads match.</div>'; return; }
 
     el.innerHTML = rows.map(function(l){
@@ -174,22 +175,36 @@
         '</div></div>';
     }).join('');
 
-    el.querySelectorAll('.save').forEach(function(b){
-      b.addEventListener('click', async function(){
-        var id=b.getAttribute('data-id');
-        var status=el.querySelector('.st[data-id="'+id+'"]').value;
-        var notes=el.querySelector('.nt[data-id="'+id+'"]').value;
-        b.textContent='Saving\u2026';
-        try{
-          await fetch(API_BASE+'/api/admin/lead/'+id,{method:'PATCH',
-            headers:{'Content-Type':'application/json','x-admin-key':KEY},
-            body:JSON.stringify({status:status,notes:notes})});
-          var lead=LEADS.find(x=>String(x.id)===String(id));
-          if(lead){ lead.status=status; lead.notes=notes; }
-          b.textContent='Saved \u2713';
-          setTimeout(function(){ b.textContent='Save'; render(); },1200);
-        }catch(e){ b.textContent='Failed'; }
-      });
+    // NOTE: no per-button listeners here — a single delegated handler is
+    // bound once (see bindListOnce). Re-binding on every render was causing
+    // the page to lock up.
+  }
+
+  // Bind the save-button handler ONCE, using event delegation on the list
+  // container. This survives every re-render without re-attaching listeners.
+  var _listBound = false;
+  function bindListOnce(){
+    if (_listBound) return;
+    _listBound = true;
+    document.getElementById('list').addEventListener('click', async function(ev){
+      var b = ev.target.closest('.save');
+      if (!b) return;
+      var el = document.getElementById('list');
+      var id = b.getAttribute('data-id');
+      var status = el.querySelector('.st[data-id="'+id+'"]').value;
+      var notes  = el.querySelector('.nt[data-id="'+id+'"]').value;
+      b.textContent = 'Saving\u2026';
+      try{
+        await fetch(API_BASE+'/api/admin/lead/'+id,{method:'PATCH',
+          headers:{'Content-Type':'application/json','x-admin-key':KEY},
+          body:JSON.stringify({status:status,notes:notes})});
+        var lead = LEADS.find(function(x){ return String(x.id)===String(id); });
+        if(lead){ lead.status=status; lead.notes=notes; }
+        b.textContent = 'Saved \u2713';
+        // update the just-changed row's data only — do NOT re-render the whole
+        // list from inside a click (that was part of the freeze).
+        setTimeout(function(){ b.textContent = 'Save'; }, 1400);
+      }catch(e){ b.textContent = 'Failed'; }
     });
   }
 
@@ -208,9 +223,14 @@
 
   document.getElementById('go').addEventListener('click',enter);
   document.getElementById('key').addEventListener('keydown',function(e){ if(e.key==='Enter') enter(); });
-  ['q','fStatus','fUrgent'].forEach(function(id){
-    document.getElementById(id).addEventListener('input',render);
-  });
+
+  // filters: debounce so typing doesn't re-render on every single keystroke
+  var _t;
+  function onFilter(){ clearTimeout(_t); _t = setTimeout(render, 180); }
+  document.getElementById('q').addEventListener('input', onFilter);
+  document.getElementById('fStatus').addEventListener('change', render);
+  document.getElementById('fUrgent').addEventListener('change', render);
+
   document.getElementById('refresh').addEventListener('click',function(){ load().catch(function(e){alert(e.message);}); });
 
   // auto-enter if key already in this tab
