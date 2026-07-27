@@ -36,7 +36,7 @@ workers_dev = true
 [[d1_databases]]
 binding = "DB"                  # code refers to env.DB
 database_name = "legacyworks"
-database_id = "PASTE_YOUR_DATABASE_ID_HERE"
+database_id = "63da30d9-c91a-45bf-b18a-d8bd4d2c3980"
 
 [vars]
 # Lock this to your site once live, e.g. "https://legacyworks.studio"
