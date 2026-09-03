@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git add *)",
+      "Bash(python -c ' *)",
+      "Bash(python \"C:/Users/LENOVO~1/AppData/Local/Temp/claude/c--Users-LENOVO-THINKPAD-L490-OneDrive-Documents-Home-Work-legacyworks/245a6bb3-eeda-4c93-ac85-85abcadee514/scratchpad/seo_inject.py\")",
+      "Bash(python -c \"from PIL import Image, ImageDraw, ImageFont; print\\('Pillow OK'\\)\")",
+      "Bash(python -c \"import PIL; print\\(PIL.__version__\\)\")",
+      "Bash(fc-list)",
+      "Read(//c/Windows/Fonts/**)",
+      "WebFetch(domain:support.ankerwork.com)",
+      "Bash(grep -n '895\\\\|\\\\$100\\\\|LAUNCH100\\\\|Launch price\\\\|tier-price-note\\\\|free.*gear\\\\|free.*kit\\\\|First 50' index.html)",
+      "Bash(diff \"story-starter.html\" \"C:\\\\Users\\\\LENOVO THINKPAD L490\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-LENOVO-THINKPAD-L490-OneDrive-Documents-Home-Work-legacyworks\\\\0e37e95c-7750-48fc-add3-e774c866b67e\\\\scratchpad\\\\story-starter-new.html\")",
+      "Read(//c/Users/LENOVO THINKPAD L490/AppData/Local/Temp/claude/c--Users-LENOVO-THINKPAD-L490-OneDrive-Documents-Home-Work-legacyworks/0e37e95c-7750-48fc-add3-e774c866b67e/scratchpad/**)",
+      "Bash(npx --yes playwright install chromium)"
+    ]
+  }
+}
