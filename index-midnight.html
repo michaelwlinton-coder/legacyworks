@@ -1734,15 +1734,18 @@ em, .italic { font-style: italic; font-family: var(--font-display); }
 .rs-home-copy p { color: rgba(246, 241, 233,0.72); font-size: 0.98rem; line-height: 1.7; margin-bottom: 1.75rem; }
 @media (max-width: 820px) { .rs-home { grid-template-columns: 1fr; gap: 1.5rem; } }
 
-/* Homepage hero with sample videos (.hero-home) */
-.hero-home { min-height: auto; padding: 8.5rem 0 4.5rem; }
-.hero-samples { margin-top: 3.5rem; }
-.hero-samples .hero-eyebrow { margin-bottom: 1.25rem; }
+/* Homepage hero with sample video (.hero-home) */
+.hero-home { min-height: auto; padding: 8.5rem 0 5rem; }
+.hero-split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 3.5rem; align-items: center; }
+.hero-split .hero-copy h1 { font-size: clamp(2.6rem, 5vw, 4.5rem); }
+.hero-split .hero-copy p { margin-bottom: 2rem; }
+.hero-video .sample-video-frame { box-shadow: 0 30px 80px -30px rgba(0,0,0,0.8); }
 .hero-samples-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
 .sample-video { margin: 0; min-width: 0; }
 .sample-video-frame { position: relative; aspect-ratio: 16/9; background: #000; border: 1px solid rgba(216, 189, 138,0.3); overflow: hidden; }
 .sample-video-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
-.sample-video figcaption { margin-top: 0.6rem; font-size: 0.85rem; color: rgba(246, 241, 233,0.6); }
+.sample-video figcaption { margin-top: 0.75rem; font-size: 0.85rem; color: rgba(246, 241, 233,0.6); }
+@media (max-width: 960px) { .hero-split { grid-template-columns: 1fr; gap: 2.5rem; } }
 @media (max-width: 720px) { .hero-home { padding: 7rem 0 3.5rem; } .hero-samples-grid { grid-template-columns: 1fr; } }
 
 /* Family-historians placement (.rs-fh) */
@@ -1750,8 +1753,10 @@ em, .italic { font-style: italic; font-family: var(--font-display); }
 .rs-fh-head h2 { font-family: var(--font-display); font-weight: 300; font-size: clamp(1.9rem, 3.6vw, 2.6rem); line-height: 1.15; margin: 0.9rem 0 1rem; }
 .rs-fh-head p { color: var(--muted); font-size: 1rem; line-height: 1.75; margin: 0; }
 .rs-fh-video { position: relative; aspect-ratio: 16/9; background: #000; border: 1px solid rgba(216, 189, 138,0.3); overflow: hidden; max-width: 820px; margin: 0 auto; }
-.rs-fh-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; }.rs-samples { max-width: 940px; margin: 0 auto; }
+.rs-fh-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; }
+.rs-samples { max-width: 940px; margin: 0 auto; }
 .rs-samples .sample-video-frame { border-color: rgba(0,0,0,0.1); }
+.tiers h2 { color: var(--cream); }
 
 </style>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230f1a2e'/><text x='50%25' y='58%25' text-anchor='middle' fill='%23d8bd8a' font-family='Georgia,serif' font-size='20' font-style='italic'>L</text></svg>" />
@@ -1796,33 +1801,24 @@ h1, h2 { font-weight: 400; letter-spacing: -0.02em; }
   <!-- Hero -->
   <header class="hero hero-home">
     <div class="film-frame"></div>
-    <div class="container hero-inner">
-      <span class="eyebrow hero-eyebrow">Capture · Preserve · Remember</span>
-      <h1>Every life deserves to be <strong>remembered.</strong></h1>
-      <p>LegacyWorks transforms the voices, wisdom, and histories of the people you love into films and books your whole family will actually watch, share, and cherish — for generations.</p>
-      <div class="hero-actions">
-        <a href="#tiers" class="btn btn-primary btn-arrow">See the three tiers</a>
-        <a href="contact.html" class="btn btn-ghost">Book a discovery call</a>
-      </div>
-
-      <!-- Sample videos (Google Drive). Files must stay shared as "Anyone with the link". -->
-      <div class="hero-samples">
-        <span class="eyebrow hero-eyebrow">Watch a sample</span>
-        <div class="hero-samples-grid">
-          <figure class="sample-video">
-            <div class="sample-video-frame">
-              <iframe src="https://drive.google.com/file/d/1jBHYjcdeykPWj0t-YNg0SogNGU8RK7QV/preview" title="Sample LegacyWorks interview highlight 1" allow="autoplay; fullscreen" allowfullscreen></iframe>
-            </div>
-            <figcaption>Interview highlight</figcaption>
-          </figure>
-          <figure class="sample-video">
-            <div class="sample-video-frame">
-              <iframe src="https://drive.google.com/file/d/1l1ud_ALf_ksRABB55deIEHIPQ30zIEm_/preview" title="Sample LegacyWorks interview highlight 2" allow="autoplay; fullscreen" allowfullscreen></iframe>
-            </div>
-            <figcaption>Interview highlight</figcaption>
-          </figure>
+    <div class="container hero-inner hero-split">
+      <div class="hero-copy">
+        <span class="eyebrow hero-eyebrow">Capture · Preserve · Remember</span>
+        <h1>Every life deserves to be <strong>remembered.</strong></h1>
+        <p>LegacyWorks transforms the voices, wisdom, and histories of the people you love into films and books your whole family will actually watch, share, and cherish — for generations.</p>
+        <div class="hero-actions">
+          <a href="#tiers" class="btn btn-primary btn-arrow">See the three tiers</a>
+          <a href="contact.html" class="btn btn-ghost">Book a discovery call</a>
         </div>
       </div>
+
+      <!-- Sample video (Google Drive). Files must stay shared as "Anyone with the link". -->
+      <figure class="sample-video hero-video">
+        <div class="sample-video-frame">
+          <iframe src="https://drive.google.com/file/d/1jBHYjcdeykPWj0t-YNg0SogNGU8RK7QV/preview" title="Sample LegacyWorks interview highlight" allow="autoplay; fullscreen" allowfullscreen></iframe>
+        </div>
+        <figcaption>&#9654;&ensp;Press play to watch a sample interview highlight</figcaption>
+      </figure>
     </div>
   </header>
 
@@ -1840,8 +1836,8 @@ h1, h2 { font-weight: 400; letter-spacing: -0.02em; }
       <div class="rs-home">
         <div class="rs-home-video">
           <iframe
-            src="https://drive.google.com/file/d/12TMSd-ue8s9rnuBm_NrVV7cUKJDIpHIE/preview"
-            title="Sample LegacyWorks interview highlight 3"
+            src="https://drive.google.com/file/d/1l1ud_ALf_ksRABB55deIEHIPQ30zIEm_/preview"
+            title="Sample LegacyWorks interview highlight"
             allow="autoplay; fullscreen"
             allowfullscreen
             loading="lazy"></iframe>
@@ -2051,7 +2047,7 @@ h1, h2 { font-weight: 400; letter-spacing: -0.02em; }
         <h4>Get in touch</h4>
         <ul>
           <li><a href="tel:+12089156171">Customer Help Line: (208) 915-6171</a></li>
-          <li><a href="mailto:mike@aspirex.org">mike@aspirex.org</a></li>
+          <li><a href="mailto:hello@legacyworks.us">hello@legacyworks.us</a></li>
           <li><a href="contact.html">Schedule a discovery call</a></li>
           <li><a href="partners.html">For funeral homes &amp; advisors</a></li>
         </ul>
