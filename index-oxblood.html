@@ -1738,6 +1738,15 @@ em, .italic { font-style: italic; font-family: var(--font-display); }
 .hero-home { min-height: auto; padding: 8.5rem 0 5rem; }
 .hero-split .hero-copy p { margin-bottom: 2rem; }
 .hero-split .hero-video { width: min(100%, 680px); margin: 3rem 0 0 auto; }
+@media (min-width: 1024px) {
+  /* Laptops: video in the right column, bottom-aligned with the buttons, so it fits on short screens */
+  .hero-home { padding: 7.5rem 0 4rem; }
+  .hero-split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: 3rem; align-items: end; }
+  .hero-split .hero-copy h1 { font-size: clamp(2.6rem, 4.4vw, 4rem); margin-bottom: 1.25rem; }
+  .hero-split .hero-copy p { margin-bottom: 1.75rem; }
+  .hero-split .hero-video { width: 100%; margin: 0; position: relative; }
+  .hero-split .hero-video figcaption { position: absolute; }
+}
 .hero-video .sample-video-frame { box-shadow: 0 30px 80px -30px rgba(0,0,0,0.8); }
 .hero-samples-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
 .sample-video { margin: 0; min-width: 0; }
