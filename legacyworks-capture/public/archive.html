@@ -19,12 +19,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%2312100e'/><text x='50%25' y='58%25' text-anchor='middle' fill='%23c9a961' font-family='Georgia,serif' font-size='20' font-style='italic'>L</text></svg>" />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%2312100e'/><text x='50%25' y='58%25' text-anchor='middle' fill='%23c4a067' font-family='Georgia,serif' font-size='20' font-style='italic'>L</text></svg>" />
 <style>
   :root{
     --bg:#12100e; --paper:#f7f2e9; --paper-deep:#ece3d4; --ink:#1a1714;
-    --gold:#c9a961; --gold-deep:#a3823f; --gold-soft:#e2cc99;
-    --muted:#8a7f70; --muted-light:rgba(247,242,233,.55); --hair:rgba(201,169,97,.28);
+    --gold:#c4a067; --gold-deep:#a3823f; --gold-soft:#e2cc99;
+    --muted:#8a7f70; --muted-light:rgba(247,242,233,.55); --hair:rgba(196,160,103,.28);
     --display:"Cormorant Garamond",Georgia,serif; --body:"Inter",-apple-system,sans-serif;
   }
   *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
@@ -44,16 +44,16 @@
   /* overture */
   .ov{position:relative;min-height:92vh;background:var(--bg);color:var(--paper);display:flex;
     align-items:center;justify-content:center;text-align:center;padding:3rem 1.5rem;overflow:hidden}
-  .ov::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 70% 55% at 50% 42%,rgba(201,169,97,.16),transparent 70%);animation:breathe 14s ease-in-out infinite}
+  .ov::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 70% 55% at 50% 42%,rgba(196,160,103,.16),transparent 70%);animation:breathe 14s ease-in-out infinite}
   @keyframes breathe{0%,100%{transform:scale(1);opacity:.85}50%{transform:scale(1.1);opacity:1}}
   @media(prefers-reduced-motion:reduce){.ov::before{animation:none}}
   .ov-in{position:relative;z-index:2;max-width:800px}
   .crest{position:relative;width:92px;height:92px;margin:0 auto 2.25rem;border-radius:50%;display:flex;
     align-items:center;justify-content:center;font-family:var(--display);font-style:italic;font-size:2.5rem;
     color:var(--gold-soft);border:1px solid var(--hair);
-    background:radial-gradient(circle at 50% 40%,rgba(201,169,97,.10),transparent 70%);
-    box-shadow:0 0 0 6px rgba(201,169,97,.04),0 0 0 7px rgba(201,169,97,.10)}
-  .crest::before{content:"";position:absolute;inset:7px;border-radius:50%;border:1px solid rgba(201,169,97,.16)}
+    background:radial-gradient(circle at 50% 40%,rgba(196,160,103,.10),transparent 70%);
+    box-shadow:0 0 0 6px rgba(196,160,103,.04),0 0 0 7px rgba(196,160,103,.10)}
+  .crest::before{content:"";position:absolute;inset:7px;border-radius:50%;border:1px solid rgba(196,160,103,.16)}
   .ov-eyebrow{font-size:.66rem;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);margin-bottom:1.75rem;padding-left:.4em}
   .ov h1{font-family:var(--display);font-weight:300;font-size:clamp(2.6rem,8vw,5.4rem);line-height:1;letter-spacing:-.015em}
   .ov h1 em{display:block;font-style:italic;color:var(--gold-soft);font-size:.62em;margin-top:.35em}
@@ -80,7 +80,7 @@
   /* the quote pulled from "story heard once" */
   .pull{background:var(--bg);color:var(--paper);padding:6.5rem 1.5rem;text-align:center;position:relative;overflow:hidden}
   .pull-in{position:relative;max-width:740px;margin:0 auto}
-  .pull-mark{font-family:var(--display);font-size:5rem;color:rgba(201,169,97,.22);line-height:.5;margin-bottom:1rem}
+  .pull-mark{font-family:var(--display);font-size:5rem;color:rgba(196,160,103,.22);line-height:.5;margin-bottom:1rem}
   .pull blockquote{font-family:var(--display);font-weight:300;font-style:italic;font-size:clamp(1.5rem,3.6vw,2.4rem);line-height:1.4}
   .pull cite{display:block;margin-top:1.75rem;font-family:var(--body);font-style:normal;font-size:.68rem;
     font-weight:500;letter-spacing:.26em;text-transform:uppercase;color:var(--gold)}
@@ -92,7 +92,7 @@
   .missing-head h2{font-family:var(--display);font-weight:300;font-size:clamp(2rem,4.4vw,2.9rem);line-height:1.2;margin:1rem 0}
   .missing-head p{color:var(--muted);font-size:1rem;line-height:1.75}
   .gaps{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
-  .gap{background:rgba(255,255,255,.5);border:1px dashed rgba(201,169,97,.5);padding:2rem 1.5rem;text-align:center;
+  .gap{background:rgba(255,255,255,.5);border:1px dashed rgba(196,160,103,.5);padding:2rem 1.5rem;text-align:center;
     position:relative;transition:border-color .3s,background .3s}
   .gap:hover{border-color:var(--gold);background:rgba(255,255,255,.75)}
   .gap-icon{font-size:1.5rem;margin-bottom:.9rem;opacity:.55}

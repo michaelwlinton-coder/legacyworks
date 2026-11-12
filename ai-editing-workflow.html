@@ -8,18 +8,18 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%231a1a1a'/><text x='50%25' y='58%25' text-anchor='middle' fill='%23c9a961' font-family='Georgia,serif' font-size='20' font-style='italic'>L</text></svg>" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%231b2838'/><text x='50%25' y='58%25' text-anchor='middle' fill='%23c4a067' font-family='Georgia,serif' font-size='20' font-style='italic'>L</text></svg>" />
   <style>
     :root {
-      --charcoal: #1a1a1a;
+      --charcoal: #1b2838;
       --ink: #111111;
-      --cream: #f5efe6;
-      --cream-deep: #ebe2d2;
-      --cream-soft: #faf6ee;
-      --gold: #c9a961;
-      --gold-deep: #a88842;
-      --gold-soft: #e0c898;
-      --muted: #6b6258;
+      --cream: #f2eee6;
+      --cream-deep: #e3ddd0;
+      --cream-soft: #f8f6f1;
+      --gold: #c4a067;
+      --gold-deep: #9c7a45;
+      --gold-soft: #dfc79d;
+      --muted: #5c6470;
       --green: #2d7a4f;
       --green-light: #e8f5ee;
       --amber: #b45309;
@@ -48,24 +48,24 @@
     .nav-brand span { color: var(--gold); }
     .nav-right { display: flex; gap: 1rem; align-items: center; }
     .nav-back { font-size: 0.72rem; color: rgba(255,255,255,0.45); letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; }
-    .btn-print { font-size: 0.72rem; color: var(--gold); border: 1px solid rgba(201,169,97,0.35); padding: 0.35rem 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; background: none; font-family: var(--font-body); }
+    .btn-print { font-size: 0.72rem; color: var(--gold); border: 1px solid rgba(196,160,103,0.35); padding: 0.35rem 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; background: none; font-family: var(--font-body); }
 
     /* HERO */
     .hero { background: var(--charcoal); padding: 5rem 2rem 4rem; position: relative; overflow: hidden; }
-    .hero::before { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse at 15% 55%, rgba(201,169,97,0.12), transparent 50%), radial-gradient(ellipse at 85% 15%, rgba(109,40,217,0.08), transparent 50%); }
+    .hero::before { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse at 15% 55%, rgba(196,160,103,0.12), transparent 50%), radial-gradient(ellipse at 85% 15%, rgba(109,40,217,0.08), transparent 50%); }
     .hero-inner { max-width: 860px; margin: 0 auto; position: relative; z-index: 1; }
     .hero-eyebrow { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 1.25rem; }
     .hero h1 { font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 300; line-height: 1.1; color: var(--cream); margin-bottom: 1.25rem; }
     .hero h1 em { font-style: italic; color: var(--gold-soft); }
-    .hero-sub { font-size: 1rem; color: rgba(245,239,230,0.62); max-width: 580px; line-height: 1.7; margin-bottom: 2.5rem; }
+    .hero-sub { font-size: 1rem; color: rgba(242,238,230,0.62); max-width: 580px; line-height: 1.7; margin-bottom: 2.5rem; }
     .level-pills { display: flex; gap: 0.75rem; flex-wrap: wrap; }
     .level-pill { padding: 0.45rem 1rem; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; border: 1px solid; text-decoration: none; }
     .pill-beginner { border-color: var(--green); color: #6ee7b7; background: rgba(45,122,79,0.15); }
-    .pill-intermediate { border-color: var(--gold); color: var(--gold); background: rgba(201,169,97,0.1); }
+    .pill-intermediate { border-color: var(--gold); color: var(--gold); background: rgba(196,160,103,0.1); }
     .pill-expert { border-color: #a78bfa; color: #a78bfa; background: rgba(109,40,217,0.1); }
 
     /* SKILL TRACKER */
-    .skill-tracker { background: var(--cream-deep); border-bottom: 1px solid rgba(201,169,97,0.15); padding: 1.5rem 2rem; }
+    .skill-tracker { background: var(--cream-deep); border-bottom: 1px solid rgba(196,160,103,0.15); padding: 1.5rem 2rem; }
     .skill-inner { max-width: 860px; margin: 0 auto; }
     .skill-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; }
     .skill-track { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
@@ -91,12 +91,12 @@
     .tool-name.descript { color: var(--gold-soft); }
     .tool-name.riverside { color: #a78bfa; }
     .tool-best { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.75rem; }
-    .tool-card p { font-size: 0.83rem; color: rgba(245,239,230,0.55); line-height: 1.55; margin-bottom: 0.75rem; }
+    .tool-card p { font-size: 0.83rem; color: rgba(242,238,230,0.55); line-height: 1.55; margin-bottom: 0.75rem; }
     .tool-tag { display: inline-block; font-size: 0.65rem; font-weight: 600; padding: 2px 8px; border-radius: 2px; margin-right: 4px; margin-bottom: 4px; }
     .tag-free { background: rgba(45,122,79,0.25); color: #6ee7b7; }
-    .tag-paid { background: rgba(201,169,97,0.15); color: var(--gold); }
+    .tag-paid { background: rgba(196,160,103,0.15); color: var(--gold); }
     .tag-beginner { background: rgba(45,122,79,0.2); color: #6ee7b7; }
-    .tag-inter { background: rgba(201,169,97,0.15); color: var(--gold); }
+    .tag-inter { background: rgba(196,160,103,0.15); color: var(--gold); }
     .tag-expert { background: rgba(109,40,217,0.2); color: #a78bfa; }
 
     /* MAIN */
@@ -105,7 +105,7 @@
     /* LEVEL HEADERS */
     .level-header { padding: 2rem; margin-bottom: 0; position: relative; overflow: hidden; }
     .level-header.beginner { background: var(--green-light); border-left: 5px solid var(--green); }
-    .level-header.intermediate { background: rgba(201,169,97,0.1); border-left: 5px solid var(--gold); }
+    .level-header.intermediate { background: rgba(196,160,103,0.1); border-left: 5px solid var(--gold); }
     .level-header.expert { background: var(--purple-light); border-left: 5px solid var(--purple); }
     .level-badge { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; display: inline-block; padding: 0.2rem 0.75rem; margin-bottom: 0.6rem; }
     .beginner .level-badge { background: var(--green); color: #fff; }
@@ -209,7 +209,7 @@
     .wf-row { display: flex; align-items: stretch; gap: 0; flex-wrap: wrap; }
     .wf-step { flex: 1; min-width: 120px; }
     .wf-box { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); padding: 1rem; height: 100%; }
-    .wf-num { font-family: var(--font-display); font-size: 2rem; color: rgba(201,169,97,0.3); line-height: 1; margin-bottom: 0.4rem; }
+    .wf-num { font-family: var(--font-display); font-size: 2rem; color: rgba(196,160,103,0.3); line-height: 1; margin-bottom: 0.4rem; }
     .wf-label { font-size: 0.78rem; font-weight: 600; color: rgba(255,255,255,0.8); margin-bottom: 0.3rem; }
     .wf-sub { font-size: 0.7rem; color: rgba(255,255,255,0.35); line-height: 1.4; }
     .wf-arrow { display: flex; align-items: center; color: rgba(255,255,255,0.15); font-size: 1.2rem; padding: 0 0.3rem; flex-shrink: 0; }
@@ -219,12 +219,12 @@
     .pro-tips-inner { max-width: 860px; margin: 0 auto; }
     .pro-tips h2 { font-family: var(--font-display); font-size: 2.5rem; font-weight: 300; color: var(--cream); margin-bottom: 0.5rem; }
     .pro-tips h2 em { color: var(--gold); font-style: italic; }
-    .pro-tips-sub { color: rgba(245,239,230,0.5); font-size: 0.9rem; margin-bottom: 2.5rem; max-width: 50ch; }
+    .pro-tips-sub { color: rgba(242,238,230,0.5); font-size: 0.9rem; margin-bottom: 2.5rem; max-width: 50ch; }
     .tips-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(255,255,255,0.05); }
     .tip-card { background: rgba(255,255,255,0.03); padding: 1.5rem; }
-    .tip-num { font-family: var(--font-display); font-size: 2.5rem; color: rgba(201,169,97,0.2); line-height: 1; margin-bottom: 0.5rem; }
+    .tip-num { font-family: var(--font-display); font-size: 2.5rem; color: rgba(196,160,103,0.2); line-height: 1; margin-bottom: 0.5rem; }
     .tip-title { font-weight: 600; font-size: 0.9rem; color: var(--gold-soft); margin-bottom: 0.5rem; }
-    .tip-text { font-size: 0.83rem; color: rgba(245,239,230,0.5); line-height: 1.6; }
+    .tip-text { font-size: 0.83rem; color: rgba(242,238,230,0.5); line-height: 1.6; }
 
     /* QUICK REFERENCE */
     .quick-ref { background: var(--cream-deep); padding: 2.5rem; margin-top: 3rem; }
@@ -239,10 +239,10 @@
     .next-bar { background: var(--charcoal); color: var(--cream); padding: 2.5rem 2rem; text-align: center; margin-top: 0; }
     .next-bar h3 { font-family: var(--font-display); font-size: 2rem; font-weight: 300; margin-bottom: 0.75rem; }
     .next-bar h3 em { color: var(--gold); font-style: italic; }
-    .next-bar p { color: rgba(245,239,230,0.55); font-size: 0.9rem; margin-bottom: 2rem; }
+    .next-bar p { color: rgba(242,238,230,0.55); font-size: 0.9rem; margin-bottom: 2rem; }
     .next-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
     .btn-dark { display: inline-block; background: var(--gold); color: var(--charcoal); padding: 0.85rem 1.75rem; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; }
-    .btn-outline { background: transparent; border: 1px solid rgba(245,239,230,0.2); color: rgba(245,239,230,0.6); }
+    .btn-outline { background: transparent; border: 1px solid rgba(242,238,230,0.2); color: rgba(242,238,230,0.6); }
 
     .footer { background: #111; color: rgba(255,255,255,0.3); padding: 1.5rem 2rem; text-align: center; font-size: 0.78rem; }
 
@@ -256,6 +256,7 @@
       .next-btns { flex-direction: column; align-items: center; }
     }
   </style>
+  <style>/* Headlines at weight 500 (Navy & Brass update) */ h1, h2, h3, h1 em, h2 em, h3 em, h1 strong, h2 strong, h3 strong, h1 span, h2 span, h3 span { font-weight: 500 !important; }</style>
 </head>
 <body>
 

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>LegacyWorks: Every Life Remembered</title>
   <meta name="description" content="LegacyWorks is a premium life-story studio. We capture the voices, wisdom, and histories of individuals and transform them into films, documentaries, and legacy books your family will actually watch." />
-  <meta name="theme-color" content="#1a1a1a" />
+  <meta name="theme-color" content="#1b2838" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -17,19 +17,19 @@
 
 :root {
   /* Palette */
-  --charcoal: #1a1a1a;
-  --charcoal-soft: #2a2a2a;
+  --charcoal: #1b2838;
+  --charcoal-soft: #26364a;
   --charcoal-line: #3a3a3a;
-  --cream: #f5efe6;
-  --cream-deep: #ebe2d2;
-  --cream-soft: #faf6ee;
-  --gold: #c9a961;
-  --gold-deep: #a88842;
-  --gold-soft: #e0c898;
+  --cream: #f2eee6;
+  --cream-deep: #e3ddd0;
+  --cream-soft: #f8f6f1;
+  --gold: #c4a067;
+  --gold-deep: #9c7a45;
+  --gold-soft: #dfc79d;
   --sepia: #8b6f47;
   --burgundy: #6d2e46;
   --ink: #111111;
-  --muted: #6b6258;
+  --muted: #5c6470;
 
   /* Typography */
   --font-display: "Cormorant Garamond", "Playfair Display", Georgia, serif;
@@ -126,11 +126,11 @@ em, .italic { font-style: italic; font-family: var(--font-display); }
   transition: background-color 0.4s var(--ease), backdrop-filter 0.4s var(--ease), padding 0.4s var(--ease);
 }
 .nav.scrolled {
-  background: rgba(26, 26, 26, 0.92);
+  background: rgba(27,40,56, 0.92);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   padding: 0.75rem 0;
-  border-bottom: 1px solid rgba(201, 169, 97, 0.15);
+  border-bottom: 1px solid rgba(196,160,103, 0.15);
 }
 .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
 
@@ -186,7 +186,7 @@ em, .italic { font-style: italic; font-family: var(--font-display); }
 .hero::before {
   content: ""; position: absolute; inset: 0;
   background:
-    radial-gradient(ellipse at 20% 30%, rgba(201, 169, 97, 0.18), transparent 55%),
+    radial-gradient(ellipse at 20% 30%, rgba(196,160,103, 0.18), transparent 55%),
     radial-gradient(ellipse at 80% 80%, rgba(139, 111, 71, 0.22), transparent 55%),
     linear-gradient(180deg, var(--charcoal) 0%, #0e0e0e 100%);
   z-index: 0;
@@ -194,7 +194,7 @@ em, .italic { font-style: italic; font-family: var(--font-display); }
 .hero::after {
   content: ""; position: absolute; inset: 0;
   background-image:
-    radial-gradient(circle at 1px 1px, rgba(245, 239, 230, 0.04) 1px, transparent 0);
+    radial-gradient(circle at 1px 1px, rgba(242,238,230, 0.04) 1px, transparent 0);
   background-size: 22px 22px;
   z-index: 0;
   opacity: 0.5;
@@ -212,7 +212,7 @@ em, .italic { font-style: italic; font-family: var(--font-display); }
 .hero p {
   max-width: 50ch;
   font-size: 1.1rem;
-  color: rgba(245, 239, 230, 0.78);
+  color: rgba(242,238,230, 0.78);
   margin-bottom: 2.5rem;
 }
 .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
@@ -221,7 +221,7 @@ em, .italic { font-style: italic; font-family: var(--font-display); }
 .film-frame {
   position: absolute;
   inset: 1.5rem;
-  border: 1px solid rgba(201, 169, 97, 0.25);
+  border: 1px solid rgba(196,160,103, 0.25);
   pointer-events: none;
   z-index: 1;
 }
@@ -240,7 +240,7 @@ em, .italic { font-style: italic; font-family: var(--font-display); }
   font-size: 0.7rem;
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: rgba(245, 239, 230, 0.55);
+  color: rgba(242,238,230, 0.55);
   z-index: 3;
   display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
 }
@@ -266,7 +266,7 @@ em, .italic { font-style: italic; font-family: var(--font-display); }
 .btn-primary { background: var(--gold); color: var(--charcoal); border-color: var(--gold); }
 .btn-primary:hover { background: var(--gold-deep); border-color: var(--gold-deep); transform: translateY(-1px); }
 
-.btn-ghost { background: transparent; color: var(--cream); border-color: rgba(245, 239, 230, 0.4); }
+.btn-ghost { background: transparent; color: var(--cream); border-color: rgba(242,238,230, 0.4); }
 .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
 
 .btn-dark { background: var(--charcoal); color: var(--cream); border-color: var(--charcoal); }
@@ -335,7 +335,7 @@ em, .italic { font-style: italic; font-family: var(--font-display); }
   text-transform: uppercase;
   color: var(--muted);
 }
-.dark .stat-label { color: rgba(245, 239, 230, 0.7); }
+.dark .stat-label { color: rgba(242,238,230, 0.7); }
 
 /* Tier cards (the marquee section) */
 .tiers {
@@ -359,8 +359,8 @@ em, .italic { font-style: italic; font-family: var(--font-display); }
 }
 .tier-card:hover { transform: translateY(-6px); border-color: var(--gold); }
 .tier-card.featured {
-  background: linear-gradient(180deg, #2a2a2a 0%, #1f1f1f 100%);
-  border-color: rgba(201, 169, 97, 0.4);
+  background: linear-gradient(180deg, #26364a 0%, #1f1f1f 100%);
+  border-color: rgba(196,160,103, 0.4);
 }
 .tier-card.featured::before {
   content: "Most Requested";
@@ -401,7 +401,7 @@ em, .italic { font-style: italic; font-family: var(--font-display); }
 }
 .tier-price-note {
   font-size: 0.78rem; letter-spacing: 0.12em;
-  text-transform: uppercase; color: rgba(245, 239, 230, 0.55);
+  text-transform: uppercase; color: rgba(242,238,230, 0.55);
   margin-bottom: 2rem;
 }
 .tier-features {
@@ -411,9 +411,9 @@ em, .italic { font-style: italic; font-family: var(--font-display); }
 }
 .tier-features li {
   padding: 0.7rem 0;
-  border-bottom: 1px solid rgba(245, 239, 230, 0.07);
+  border-bottom: 1px solid rgba(242,238,230, 0.07);
   font-size: 0.95rem;
-  color: rgba(245, 239, 230, 0.82);
+  color: rgba(242,238,230, 0.82);
   display: flex; align-items: flex-start; gap: 0.7rem;
 }
 .tier-features li::before {
@@ -424,7 +424,7 @@ em, .italic { font-style: italic; font-family: var(--font-display); }
 .tier-features li:last-child { border-bottom: 0; }
 .tier-cta {
   display: inline-flex; align-items: center; gap: 0.5rem;
-  border: 1px solid rgba(245, 239, 230, 0.3);
+  border: 1px solid rgba(242,238,230, 0.3);
   padding: 0.85rem 1.5rem;
   font-size: 0.78rem; letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -458,13 +458,13 @@ em, .italic { font-style: italic; font-family: var(--font-display); }
   content: "";
   position: absolute; inset: 0;
   background:
-    radial-gradient(ellipse at center, rgba(201, 169, 97, 0.25) 0%, transparent 60%),
+    radial-gradient(ellipse at center, rgba(196,160,103, 0.25) 0%, transparent 60%),
     repeating-linear-gradient(45deg, transparent 0px, rgba(0,0,0,0.04) 2px, transparent 4px);
 }
 .image-frame::after {
   content: "";
   position: absolute; inset: 12px;
-  border: 1px solid rgba(245, 239, 230, 0.2);
+  border: 1px solid rgba(242,238,230, 0.2);
 }
 .image-frame .frame-caption {
   position: absolute;
@@ -524,7 +524,7 @@ em, .italic { font-style: italic; font-family: var(--font-display); }
   color: var(--muted);
   line-height: 1.6;
 }
-.dark .process-step p { color: rgba(245, 239, 230, 0.7); }
+.dark .process-step p { color: rgba(242,238,230, 0.7); }
 
 /* Comparison / feature table */
 .compare-table {
@@ -535,10 +535,10 @@ em, .italic { font-style: italic; font-family: var(--font-display); }
 .compare-table th, .compare-table td {
   padding: 1.1rem 1rem;
   text-align: left;
-  border-bottom: 1px solid rgba(26, 26, 26, 0.1);
+  border-bottom: 1px solid rgba(27,40,56, 0.1);
   vertical-align: top;
 }
-.dark .compare-table th, .dark .compare-table td { border-bottom-color: rgba(245, 239, 230, 0.1); }
+.dark .compare-table th, .dark .compare-table td { border-bottom-color: rgba(242,238,230, 0.1); }
 .compare-table th {
   font-family: var(--font-display);
   font-weight: 500;
@@ -553,7 +553,7 @@ em, .italic { font-style: italic; font-family: var(--font-display); }
   font-weight: 500;
 }
 .compare-table .check { color: var(--gold); font-weight: 600; }
-.compare-table .cross { color: rgba(26, 26, 26, 0.25); }
+.compare-table .cross { color: rgba(27,40,56, 0.25); }
 
 /* Bullets list with gold accent */
 .feature-list {
@@ -564,7 +564,7 @@ em, .italic { font-style: italic; font-family: var(--font-display); }
 }
 .feature-list li {
   padding: 1rem 0 1rem 1.5rem;
-  border-bottom: 1px solid rgba(26, 26, 26, 0.08);
+  border-bottom: 1px solid rgba(27,40,56, 0.08);
   font-size: 0.98rem;
   position: relative;
   line-height: 1.55;
@@ -576,7 +576,7 @@ em, .italic { font-style: italic; font-family: var(--font-display); }
   color: var(--gold);
   font-size: 0.8rem;
 }
-.dark .feature-list li { border-bottom-color: rgba(245, 239, 230, 0.1); color: rgba(245, 239, 230, 0.85); }
+.dark .feature-list li { border-bottom-color: rgba(242,238,230, 0.1); color: rgba(242,238,230, 0.85); }
 
 /* CTA banner */
 .cta-banner {
@@ -589,7 +589,7 @@ em, .italic { font-style: italic; font-family: var(--font-display); }
 }
 .cta-banner::before {
   content: ""; position: absolute; inset: 0;
-  background: radial-gradient(ellipse at center, rgba(201, 169, 97, 0.15), transparent 60%);
+  background: radial-gradient(ellipse at center, rgba(196,160,103, 0.15), transparent 60%);
   z-index: 0;
 }
 .cta-banner > .container { position: relative; z-index: 1; }
@@ -599,14 +599,14 @@ em, .italic { font-style: italic; font-family: var(--font-display); }
   font-style: italic;
   font-weight: 300;
 }
-.cta-banner p { color: rgba(245, 239, 230, 0.75); max-width: 50ch; margin: 0 auto 2.5rem; }
+.cta-banner p { color: rgba(242,238,230, 0.75); max-width: 50ch; margin: 0 auto 2.5rem; }
 
 /* Footer */
 .footer {
   background: #0e0e0e;
-  color: rgba(245, 239, 230, 0.7);
+  color: rgba(242,238,230, 0.7);
   padding: 5rem 0 2rem;
-  border-top: 1px solid rgba(201, 169, 97, 0.15);
+  border-top: 1px solid rgba(196,160,103, 0.15);
 }
 .footer-grid {
   display: grid;
@@ -626,14 +626,14 @@ em, .italic { font-style: italic; font-family: var(--font-display); }
   font-weight: 600;
 }
 .footer ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
-.footer a { color: rgba(245, 239, 230, 0.7); font-size: 0.95rem; transition: color 0.2s; }
+.footer a { color: rgba(242,238,230, 0.7); font-size: 0.95rem; transition: color 0.2s; }
 .footer a:hover { color: var(--gold); }
 .footer-bottom {
   padding-top: 2rem;
-  border-top: 1px solid rgba(245, 239, 230, 0.08);
+  border-top: 1px solid rgba(242,238,230, 0.08);
   display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
   font-size: 0.85rem;
-  color: rgba(245, 239, 230, 0.5);
+  color: rgba(242,238,230, 0.5);
 }
 
 /* Page hero (smaller than home hero) */
@@ -646,7 +646,7 @@ em, .italic { font-style: italic; font-family: var(--font-display); }
 }
 .page-hero::before {
   content: ""; position: absolute; inset: 0;
-  background: radial-gradient(ellipse at 70% 40%, rgba(201, 169, 97, 0.18), transparent 60%);
+  background: radial-gradient(ellipse at 70% 40%, rgba(196,160,103, 0.18), transparent 60%);
 }
 .page-hero .container { position: relative; }
 .page-hero h1 {
@@ -656,7 +656,7 @@ em, .italic { font-style: italic; font-family: var(--font-display); }
   color: var(--cream);
 }
 .page-hero h1 strong { font-style: normal; font-weight: 500; color: var(--gold-soft); }
-.page-hero .lede { color: rgba(245, 239, 230, 0.78); margin-top: 1.5rem; }
+.page-hero .lede { color: rgba(242,238,230, 0.78); margin-top: 1.5rem; }
 
 /* Pricing block on tier pages */
 .price-block {
@@ -685,7 +685,7 @@ em, .italic { font-style: italic; font-family: var(--font-display); }
 .link {
   color: var(--gold-deep);
   text-decoration: underline;
-  text-decoration-color: rgba(201, 169, 97, 0.4);
+  text-decoration-color: rgba(196,160,103, 0.4);
   text-underline-offset: 4px;
   transition: text-decoration-color 0.2s;
 }
@@ -718,7 +718,8 @@ em, .italic { font-style: italic; font-family: var(--font-display); }
 
 </style>
   <link rel="stylesheet" href="assets/styles.css" />
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%231a1a1a'/><text x='50%25' y='58%25' text-anchor='middle' fill='%23c9a961' font-family='Georgia,serif' font-size='20' font-style='italic'>L</text></svg>" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%231b2838'/><text x='50%25' y='58%25' text-anchor='middle' fill='%23c4a067' font-family='Georgia,serif' font-size='20' font-style='italic'>L</text></svg>" />
+  <style>/* Headlines at weight 500 (Navy & Brass update) */ h1, h2, h3, h1 em, h2 em, h3 em, h1 strong, h2 strong, h3 strong, h1 span, h2 span, h3 span { font-weight: 500 !important; }</style>
 </head>
 <body>
   <!-- Nav -->
@@ -813,7 +814,7 @@ em, .italic { font-style: italic; font-family: var(--font-display); }
           <span class="stat-label">Of families ever capture these stories on film</span>
         </div>
       </div>
-      <p class="lede reveal" style="text-align:center; margin: 4rem auto 0; max-width: 50ch; color: rgba(245,239,230,0.7);">Tapes rot. Photos fade. Memories die with the people who hold them. The tools exist. The time never comes. And then it&rsquo;s too late.</p>
+      <p class="lede reveal" style="text-align:center; margin: 4rem auto 0; max-width: 50ch; color: rgba(242,238,230,0.7);">Tapes rot. Photos fade. Memories die with the people who hold them. The tools exist. The time never comes. And then it&rsquo;s too late.</p>
     </div>
   </section>
 
@@ -844,7 +845,7 @@ em, .italic { font-style: italic; font-family: var(--font-display); }
       <div class="tiers-header reveal">
         <span class="eyebrow">Three tiers · One brand</span>
         <h2 style="margin: 1rem 0 1rem;">Three ways to capture a legacy.</h2>
-        <p class="lede" style="margin: 0 auto; color: rgba(245,239,230,0.75);">From a $179 guided program to a feature-length life documentary, there&rsquo;s a path for every family and every budget.</p>
+        <p class="lede" style="margin: 0 auto; color: rgba(242,238,230,0.75);">From a $179 guided program to a feature-length life documentary, there&rsquo;s a path for every family and every budget.</p>
         <p style="margin-top: 1.25rem; font-size: 0.9rem;"><a href="quiz.html" style="color: var(--gold);">Not sure? Take the quiz &rarr;</a></p>
       </div>
 

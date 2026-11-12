@@ -8,11 +8,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%231a1a1a'/><text x='50%25' y='58%25' text-anchor='middle' fill='%23c9a961' font-family='Georgia,serif' font-size='20' font-style='italic'>L</text></svg>" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%231b2838'/><text x='50%25' y='58%25' text-anchor='middle' fill='%23c4a067' font-family='Georgia,serif' font-size='20' font-style='italic'>L</text></svg>" />
   <style>
     :root {
-      --charcoal: #1a1a1a; --ink: #111111; --cream: #f5efe6; --cream-deep: #ebe2d2; --cream-soft: #faf6ee;
-      --gold: #c9a961; --gold-deep: #a88842; --gold-soft: #e0c898; --muted: #6b6258;
+      --charcoal: #1b2838; --ink: #111111; --cream: #f2eee6; --cream-deep: #e3ddd0; --cream-soft: #f8f6f1;
+      --gold: #c4a067; --gold-deep: #9c7a45; --gold-soft: #dfc79d; --muted: #5c6470;
       --green: #2d7a4f; --green-light: #e8f5ee; --amber: #b45309; --amber-light: #fffbeb;
       --blue: #1a5a8a; --blue-light: #e8f2fb;
       --font-display: "Cormorant Garamond", Georgia, serif;
@@ -31,15 +31,15 @@
     .nav-brand span { color: var(--gold); }
     .nav-right { display: flex; gap: 1rem; align-items: center; }
     .nav-back { font-size: 0.72rem; color: rgba(255,255,255,0.45); letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; }
-    .btn-print { font-size: 0.72rem; color: var(--gold); border: 1px solid rgba(201,169,97,0.35); padding: 0.35rem 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; background: none; font-family: var(--font-body); }
+    .btn-print { font-size: 0.72rem; color: var(--gold); border: 1px solid rgba(196,160,103,0.35); padding: 0.35rem 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; background: none; font-family: var(--font-body); }
 
     .hero { background: var(--charcoal); padding: 5rem 2rem 4rem; position: relative; overflow: hidden; }
-    .hero::before { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse at 20% 60%, rgba(201,169,97,0.12), transparent 50%), radial-gradient(ellipse at 85% 15%, rgba(139,111,71,0.08), transparent 50%); }
+    .hero::before { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse at 20% 60%, rgba(196,160,103,0.12), transparent 50%), radial-gradient(ellipse at 85% 15%, rgba(139,111,71,0.08), transparent 50%); }
     .hero-inner { max-width: 860px; margin: 0 auto; position: relative; z-index: 1; }
     .hero-eyebrow { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 1.25rem; }
     .hero h1 { font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 300; line-height: 1.1; color: var(--cream); margin-bottom: 1.25rem; }
     .hero h1 em { font-style: italic; color: var(--gold-soft); }
-    .hero-sub { font-size: 1rem; color: rgba(245,239,230,0.62); max-width: 580px; line-height: 1.7; }
+    .hero-sub { font-size: 1rem; color: rgba(242,238,230,0.62); max-width: 580px; line-height: 1.7; }
 
     .main { max-width: 860px; margin: 0 auto; padding: 3rem 2rem 5rem; }
 
@@ -64,13 +64,13 @@
     .arc-map { background: var(--charcoal); padding: 2rem; margin: 1.5rem 0; }
     .arc-title { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
     .arc-flow { display: flex; flex-direction: column; gap: 0; }
-    .arc-act { border-left: 2px solid rgba(201,169,97,0.3); padding: 0 0 1.5rem 1.5rem; position: relative; }
+    .arc-act { border-left: 2px solid rgba(196,160,103,0.3); padding: 0 0 1.5rem 1.5rem; position: relative; }
     .arc-act:last-child { padding-bottom: 0; }
     .arc-act::before { content: ""; position: absolute; left: -7px; top: 2px; width: 12px; height: 12px; background: var(--gold); border-radius: 50%; }
     .arc-act-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; }
     .arc-act-title { font-family: var(--font-display); font-size: 1.3rem; color: var(--cream); font-weight: 500; margin-bottom: 0.4rem; }
-    .arc-act-chapters { font-size: 0.8rem; color: rgba(245,239,230,0.5); line-height: 1.5; }
-    .arc-act-why { font-size: 0.78rem; color: rgba(245,239,230,0.4); font-style: italic; margin-top: 0.4rem; }
+    .arc-act-chapters { font-size: 0.8rem; color: rgba(242,238,230,0.5); line-height: 1.5; }
+    .arc-act-why { font-size: 0.78rem; color: rgba(242,238,230,0.4); font-style: italic; margin-top: 0.4rem; }
 
     /* TEMPLATE TABLE */
     .tmpl-table { width: 100%; border-collapse: collapse; background: #fff; font-size: 0.85rem; margin: 1rem 0; border: 1px solid rgba(0,0,0,0.06); }
@@ -107,17 +107,17 @@
     /* PRINCIPLES */
     .principles { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(0,0,0,0.06); border: 1px solid rgba(0,0,0,0.06); margin: 1.5rem 0; }
     .principle { background: #fff; padding: 1.5rem; }
-    .principle-num { font-family: var(--font-display); font-size: 2rem; color: rgba(201,169,97,0.3); line-height: 1; margin-bottom: 0.5rem; }
+    .principle-num { font-family: var(--font-display); font-size: 2rem; color: rgba(196,160,103,0.3); line-height: 1; margin-bottom: 0.5rem; }
     .principle-title { font-weight: 600; font-size: 0.92rem; margin-bottom: 0.4rem; color: var(--ink); }
     .principle-text { font-size: 0.83rem; color: var(--muted); line-height: 1.55; }
 
     .next-bar { background: var(--charcoal); color: var(--cream); padding: 2.5rem 2rem; text-align: center; margin-top: 3rem; }
     .next-bar h3 { font-family: var(--font-display); font-size: 2rem; font-weight: 300; margin-bottom: 0.75rem; }
     .next-bar h3 em { color: var(--gold); font-style: italic; }
-    .next-bar p { color: rgba(245,239,230,0.55); font-size: 0.9rem; margin-bottom: 2rem; }
+    .next-bar p { color: rgba(242,238,230,0.55); font-size: 0.9rem; margin-bottom: 2rem; }
     .next-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
     .btn-dark { display: inline-block; background: var(--gold); color: var(--charcoal); padding: 0.85rem 1.75rem; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; }
-    .btn-outline { background: transparent; border: 1px solid rgba(245,239,230,0.2); color: rgba(245,239,230,0.6); }
+    .btn-outline { background: transparent; border: 1px solid rgba(242,238,230,0.2); color: rgba(242,238,230,0.6); }
 
     .footer { background: #111; color: rgba(255,255,255,0.3); padding: 1.5rem 2rem; text-align: center; font-size: 0.78rem; }
 
@@ -127,6 +127,7 @@
       .next-btns { flex-direction: column; align-items: center; }
     }
   </style>
+  <style>/* Headlines at weight 500 (Navy & Brass update) */ h1, h2, h3, h1 em, h2 em, h3 em, h1 strong, h2 strong, h3 strong, h1 span, h2 span, h3 span { font-weight: 500 !important; }</style>
 </head>
 <body>
 

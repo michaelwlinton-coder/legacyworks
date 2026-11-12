@@ -8,11 +8,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%231a1a1a'/><text x='50%25' y='58%25' text-anchor='middle' fill='%23c9a961' font-family='Georgia,serif' font-size='20' font-style='italic'>L</text></svg>" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%231b2838'/><text x='50%25' y='58%25' text-anchor='middle' fill='%23c4a067' font-family='Georgia,serif' font-size='20' font-style='italic'>L</text></svg>" />
   <style>
     :root {
-      --charcoal: #1a1a1a; --ink: #111111; --cream: #f5efe6; --cream-deep: #ebe2d2; --cream-soft: #faf6ee;
-      --gold: #c9a961; --gold-deep: #a88842; --gold-soft: #e0c898; --muted: #6b6258;
+      --charcoal: #1b2838; --ink: #111111; --cream: #f2eee6; --cream-deep: #e3ddd0; --cream-soft: #f8f6f1;
+      --gold: #c4a067; --gold-deep: #9c7a45; --gold-soft: #dfc79d; --muted: #5c6470;
       --green: #2d7a4f;
       --font-display: "Cormorant Garamond", Georgia, serif;
       --font-body: "Inter", -apple-system, sans-serif;
@@ -25,15 +25,15 @@
     .nav { background: var(--charcoal); padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; }
     .nav-brand { font-family: var(--font-display); font-size: 1.3rem; letter-spacing: 0.15em; text-transform: uppercase; color: #fff; }
     .nav-brand span { color: var(--gold); }
-    .nav-tag { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); border: 1px solid rgba(201,169,97,0.4); padding: 0.3rem 0.8rem; }
+    .nav-tag { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); border: 1px solid rgba(196,160,103,0.4); padding: 0.3rem 0.8rem; }
 
     .hero { background: var(--charcoal); padding: 5rem 2rem 4rem; text-align: center; position: relative; overflow: hidden; }
-    .hero::before { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 0%, rgba(201,169,97,0.18), transparent 60%); }
+    .hero::before { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 0%, rgba(196,160,103,0.18), transparent 60%); }
     .hero-inner { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; }
     .welcome-badge { display: inline-block; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--charcoal); background: var(--gold); padding: 0.4rem 1rem; margin-bottom: 1.5rem; }
     .hero h1 { font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 300; line-height: 1.1; color: var(--cream); margin-bottom: 1.25rem; }
     .hero h1 em { font-style: italic; color: var(--gold-soft); }
-    .hero-sub { color: rgba(245,239,230,0.65); font-size: 1.05rem; max-width: 540px; margin: 0 auto; line-height: 1.7; }
+    .hero-sub { color: rgba(242,238,230,0.65); font-size: 1.05rem; max-width: 540px; margin: 0 auto; line-height: 1.7; }
 
     .main { max-width: 980px; margin: 0 auto; padding: 3rem 2rem 5rem; }
 
@@ -55,7 +55,7 @@
     .kit-card:hover { transform: translateY(-4px); border-color: var(--gold); box-shadow: 0 12px 30px rgba(0,0,0,0.08); }
     .kit-card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform 0.3s; }
     .kit-card:hover::before { transform: scaleX(1); }
-    .kit-num { font-family: var(--font-display); font-size: 2.5rem; color: rgba(201,169,97,0.25); line-height: 1; margin-bottom: 0.75rem; }
+    .kit-num { font-family: var(--font-display); font-size: 2.5rem; color: rgba(196,160,103,0.25); line-height: 1; margin-bottom: 0.75rem; }
     .kit-icon { font-size: 1.75rem; margin-bottom: 0.75rem; }
     .kit-name { font-family: var(--font-display); font-size: 1.5rem; font-weight: 500; margin-bottom: 0.5rem; line-height: 1.15; }
     .kit-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.55; flex-grow: 1; margin-bottom: 1.25rem; }
@@ -68,13 +68,14 @@
     .support { background: var(--charcoal); color: var(--cream); padding: 3rem 2rem; text-align: center; margin-top: 3rem; }
     .support h3 { font-family: var(--font-display); font-size: 2rem; font-weight: 300; margin-bottom: 0.75rem; }
     .support h3 em { color: var(--gold); font-style: italic; }
-    .support p { color: rgba(245,239,230,0.6); font-size: 0.92rem; margin-bottom: 1.5rem; max-width: 480px; margin-left: auto; margin-right: auto; }
-    .support a { color: var(--gold); border-bottom: 1px solid rgba(201,169,97,0.4); }
+    .support p { color: rgba(242,238,230,0.6); font-size: 0.92rem; margin-bottom: 1.5rem; max-width: 480px; margin-left: auto; margin-right: auto; }
+    .support a { color: var(--gold); border-bottom: 1px solid rgba(196,160,103,0.4); }
 
     .footer { background: #111; color: rgba(255,255,255,0.3); padding: 1.5rem 2rem; text-align: center; font-size: 0.78rem; }
 
     @media (max-width: 600px) { .kit-grid { grid-template-columns: 1fr; } }
   </style>
+  <style>/* Headlines at weight 500 (Navy & Brass update) */ h1, h2, h3, h1 em, h2 em, h3 em, h1 strong, h2 strong, h3 strong, h1 span, h2 span, h3 span { font-weight: 500 !important; }</style>
 </head>
 <body>
 

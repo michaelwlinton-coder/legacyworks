@@ -8,18 +8,18 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%231a1a1a'/><text x='50%25' y='58%25' text-anchor='middle' fill='%23c9a961' font-family='Georgia,serif' font-size='20' font-style='italic'>L</text></svg>" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%231b2838'/><text x='50%25' y='58%25' text-anchor='middle' fill='%23c4a067' font-family='Georgia,serif' font-size='20' font-style='italic'>L</text></svg>" />
   <style>
     :root {
-      --charcoal: #1a1a1a;
+      --charcoal: #1b2838;
       --ink: #111111;
-      --cream: #f5efe6;
-      --cream-deep: #ebe2d2;
-      --cream-soft: #faf6ee;
-      --gold: #c9a961;
-      --gold-deep: #a88842;
-      --gold-soft: #e0c898;
-      --muted: #6b6258;
+      --cream: #f2eee6;
+      --cream-deep: #e3ddd0;
+      --cream-soft: #f8f6f1;
+      --gold: #c4a067;
+      --gold-deep: #9c7a45;
+      --gold-soft: #dfc79d;
+      --muted: #5c6470;
       --sepia: #8b6f47;
       --font-display: "Cormorant Garamond", Georgia, serif;
       --font-body: "Inter", -apple-system, sans-serif;
@@ -41,24 +41,24 @@
     .nav-brand span { color: var(--gold); }
     .nav-right { display: flex; gap: 1rem; align-items: center; }
     .nav-back { font-size: 0.75rem; color: rgba(255,255,255,0.5); letter-spacing: 0.1em; text-transform: uppercase; }
-    .nav-print { font-size: 0.75rem; color: var(--gold); border: 1px solid rgba(201,169,97,0.4); padding: 0.4rem 0.9rem; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; background: none; font-family: var(--font-body); }
-    .nav-print:hover { background: rgba(201,169,97,0.1); }
+    .nav-print { font-size: 0.75rem; color: var(--gold); border: 1px solid rgba(196,160,103,0.4); padding: 0.4rem 0.9rem; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; background: none; font-family: var(--font-body); }
+    .nav-print:hover { background: rgba(196,160,103,0.1); }
 
     /* HERO */
     .hero { background: var(--charcoal); padding: 5rem 2rem 4rem; position: relative; overflow: hidden; }
-    .hero::before { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse at 20% 50%, rgba(201,169,97,0.12), transparent 55%), radial-gradient(ellipse at 80% 10%, rgba(139,111,71,0.1), transparent 55%); }
+    .hero::before { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse at 20% 50%, rgba(196,160,103,0.12), transparent 55%), radial-gradient(ellipse at 80% 10%, rgba(139,111,71,0.1), transparent 55%); }
     .hero-inner { max-width: 860px; margin: 0 auto; position: relative; z-index: 1; }
     .hero-eyebrow { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 1.5rem; }
     .hero h1 { font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 300; line-height: 1.1; color: var(--cream); margin-bottom: 1.5rem; }
     .hero h1 em { font-style: italic; color: var(--gold-soft); }
-    .hero-sub { font-size: 1rem; color: rgba(245,239,230,0.65); max-width: 580px; line-height: 1.7; margin-bottom: 3rem; }
+    .hero-sub { font-size: 1rem; color: rgba(242,238,230,0.65); max-width: 580px; line-height: 1.7; margin-bottom: 3rem; }
     .hero-meta { display: flex; gap: 3rem; flex-wrap: wrap; }
     .hero-stat { }
     .hero-stat-num { font-family: var(--font-display); font-size: 2.5rem; color: var(--gold); line-height: 1; display: block; }
-    .hero-stat-label { font-size: 0.8rem; color: rgba(245,239,230,0.45); letter-spacing: 0.05em; }
+    .hero-stat-label { font-size: 0.8rem; color: rgba(242,238,230,0.45); letter-spacing: 0.05em; }
 
     /* HOW TO USE */
-    .how-to { background: var(--cream-deep); padding: 3rem 2rem; border-bottom: 1px solid rgba(201,169,97,0.2); }
+    .how-to { background: var(--cream-deep); padding: 3rem 2rem; border-bottom: 1px solid rgba(196,160,103,0.2); }
     .how-to-inner { max-width: 860px; margin: 0 auto; }
     .how-to h3 { font-family: var(--font-display); font-size: 1.5rem; font-weight: 500; margin-bottom: 1.5rem; color: var(--ink); }
     .how-to-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
@@ -71,7 +71,7 @@
     .chapter-nav { background: #fff; border-bottom: 1px solid rgba(0,0,0,0.07); padding: 1.25rem 2rem; position: sticky; top: 56px; z-index: 90; overflow-x: auto; }
     .chapter-nav-inner { max-width: 860px; margin: 0 auto; display: flex; gap: 0.5rem; flex-wrap: nowrap; min-width: max-content; }
     .chapter-pill { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.4rem 0.85rem; border: 1px solid rgba(0,0,0,0.1); color: var(--muted); white-space: nowrap; text-decoration: none; transition: all 0.2s; }
-    .chapter-pill:hover { border-color: var(--gold); color: var(--gold-deep); background: rgba(201,169,97,0.05); }
+    .chapter-pill:hover { border-color: var(--gold); color: var(--gold-deep); background: rgba(196,160,103,0.05); }
 
     /* MAIN */
     .main { max-width: 860px; margin: 0 auto; padding: 3rem 2rem 6rem; }
@@ -83,14 +83,14 @@
     .chapter-num-label { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 0.5rem; }
     .chapter-title { font-family: var(--font-display); font-size: clamp(1.8rem, 3.5vw, 2.75rem); font-weight: 300; line-height: 1.1; margin-bottom: 0.75rem; }
     .chapter-title em { font-style: italic; color: var(--gold-soft); }
-    .chapter-desc { font-size: 0.88rem; color: rgba(245,239,230,0.55); max-width: 55ch; line-height: 1.6; }
-    .chapter-weeks { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(201,169,97,0.6); margin-top: 1rem; display: block; }
+    .chapter-desc { font-size: 0.88rem; color: rgba(242,238,230,0.55); max-width: 55ch; line-height: 1.6; }
+    .chapter-weeks { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(196,160,103,0.6); margin-top: 1rem; display: block; }
 
     /* QUESTIONS */
     .questions { background: #fff; border: 1px solid rgba(0,0,0,0.06); }
     .question-item { display: grid; grid-template-columns: 4rem 1fr; gap: 0; border-bottom: 1px solid rgba(0,0,0,0.05); }
     .question-item:last-child { border-bottom: none; }
-    .week-num { background: rgba(201,169,97,0.06); border-right: 1px solid rgba(201,169,97,0.1); padding: 1.25rem 0.75rem; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .week-num { background: rgba(196,160,103,0.06); border-right: 1px solid rgba(196,160,103,0.1); padding: 1.25rem 0.75rem; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
     .week-label { font-size: 0.6rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); display: block; }
     .week-number { font-family: var(--font-display); font-size: 1.6rem; color: var(--charcoal); line-height: 1; }
     .question-body { padding: 1.25rem 1.5rem; }
@@ -99,14 +99,14 @@
     .question-follow span { display: inline; }
     .question-follow span::before { content: "· "; color: var(--gold); }
     .question-follow span:first-child::before { content: "Follow-ups: "; color: var(--muted); font-style: italic; }
-    .question-tip { display: inline-block; margin-top: 0.5rem; font-size: 0.75rem; background: rgba(201,169,97,0.08); color: var(--gold-deep); padding: 0.2rem 0.65rem; font-style: italic; }
+    .question-tip { display: inline-block; margin-top: 0.5rem; font-size: 0.75rem; background: rgba(196,160,103,0.08); color: var(--gold-deep); padding: 0.2rem 0.65rem; font-style: italic; }
 
     /* CLOSING NOTE */
     .closing { background: var(--charcoal); color: var(--cream); padding: 4rem 2rem; text-align: center; }
     .closing-inner { max-width: 600px; margin: 0 auto; }
     .closing h2 { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3rem); font-weight: 300; margin-bottom: 1.25rem; }
     .closing h2 em { color: var(--gold); font-style: italic; }
-    .closing p { color: rgba(245,239,230,0.6); margin-bottom: 2rem; font-size: 0.95rem; }
+    .closing p { color: rgba(242,238,230,0.6); margin-bottom: 2rem; font-size: 0.95rem; }
     .btn-closing { display: inline-block; background: var(--gold); color: var(--charcoal); padding: 0.9rem 2rem; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; }
 
     .footer { background: #111; color: rgba(255,255,255,0.3); padding: 1.5rem 2rem; text-align: center; font-size: 0.8rem; }
@@ -118,6 +118,7 @@
       .how-to-grid { grid-template-columns: 1fr 1fr; }
     }
   </style>
+  <style>/* Headlines at weight 500 (Navy & Brass update) */ h1, h2, h3, h1 em, h2 em, h3 em, h1 strong, h2 strong, h3 strong, h1 span, h2 span, h3 span { font-weight: 500 !important; }</style>
 </head>
 <body>
 
