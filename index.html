@@ -754,15 +754,15 @@ em, .italic { font-style: italic; font-family: var(--font-display); }
         <a href="#see-a-story" class="hero-watch">&#9654;&ensp;Watch two sample highlights</a>
       </div>
 
-      <!-- Optional quote request.
-           NOT CONNECTED YET: set data-endpoint to a form-handling URL (e.g. a Formspree
-           form endpoint, or a server-side function) that delivers to hello@legacyworks.us.
-           Until then the form says plainly that nothing was sent. Never put API keys here. -->
+      <!-- Optional quote request. Submissions post to the Formspree form below, which
+           delivers to hello@legacyworks.us (recipients are managed in the Formspree dashboard).
+           If data-endpoint is ever blanked, the form says plainly that nothing was sent.
+           The form URL is public by design; never put API keys here. -->
       <aside class="quote-card" aria-labelledby="quote-title">
         <p class="quote-card-eyebrow">Optional &middot; No obligation</p>
         <h2 id="quote-title" class="quote-card-title">Request a personal quote</h2>
         <p class="quote-card-intro">Leave your details and we&rsquo;ll get in touch to talk through your family&rsquo;s story and which tier fits.</p>
-        <form id="quote-form" class="quote-form" data-endpoint="" novalidate>
+        <form id="quote-form" class="quote-form" data-endpoint="https://formspree.io/f/xrpqqbvq" novalidate>
           <div class="qf-field">
             <label for="qf-name">Name</label>
             <input id="qf-name" name="name" type="text" autocomplete="name" required />
