@@ -742,7 +742,7 @@ em, .italic { font-style: italic; font-family: var(--font-display); }
   <!-- Hero -->
   <header class="hero hero-home">
     <div class="film-frame"></div>
-    <div class="container hero-inner hero-split">
+    <div class="container hero-inner hero-quote">
       <div class="hero-copy">
         <span class="eyebrow hero-eyebrow">Capture · Preserve · Remember</span>
         <h1>Every life deserves to be <strong>remembered.</strong></h1>
@@ -751,17 +751,77 @@ em, .italic { font-style: italic; font-family: var(--font-display); }
           <a href="#tiers" class="btn btn-primary btn-arrow">See the three tiers</a>
           <a href="contact.html" class="btn btn-ghost">Book a discovery call</a>
         </div>
+        <a href="#see-a-story" class="hero-watch">&#9654;&ensp;Watch two sample highlights</a>
       </div>
 
-      <!-- Sample video (Google Drive). Files must stay shared as "Anyone with the link". -->
-      <figure class="sample-video hero-video">
-        <div class="sample-video-frame">
-          <iframe src="https://drive.google.com/file/d/1jBHYjcdeykPWj0t-YNg0SogNGU8RK7QV/preview" title="Sample LegacyWorks interview highlight" allow="autoplay; fullscreen" allowfullscreen></iframe>
-        </div>
-        <figcaption>&#9654;&ensp;Press play to watch a sample interview highlight</figcaption>
-      </figure>
+      <!-- Optional quote request.
+           NOT CONNECTED YET: set data-endpoint to a form-handling URL (e.g. a Formspree
+           form endpoint, or a server-side function) that delivers to hello@legacyworks.us.
+           Until then the form says plainly that nothing was sent. Never put API keys here. -->
+      <aside class="quote-card" aria-labelledby="quote-title">
+        <p class="quote-card-eyebrow">Optional &middot; No obligation</p>
+        <h2 id="quote-title" class="quote-card-title">Request a personal quote</h2>
+        <p class="quote-card-intro">Leave your details and we&rsquo;ll get in touch to talk through your family&rsquo;s story and which tier fits.</p>
+        <form id="quote-form" class="quote-form" data-endpoint="" novalidate>
+          <div class="qf-field">
+            <label for="qf-name">Name</label>
+            <input id="qf-name" name="name" type="text" autocomplete="name" required />
+          </div>
+          <div class="qf-field">
+            <label for="qf-phone">Phone number</label>
+            <input id="qf-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required />
+          </div>
+          <div class="qf-field">
+            <label for="qf-email">Email</label>
+            <input id="qf-email" name="email" type="email" autocomplete="email" required />
+          </div>
+          <button type="submit" class="btn btn-primary qf-submit">Request a consultation</button>
+          <p class="qf-status" id="qf-status" role="status" aria-live="polite"></p>
+          <p class="qf-fine">We&rsquo;ll use these details only to contact you about your quote and consultation. We never sell your information. Read our <a href="privacy.html">privacy policy</a>.</p>
+        </form>
+      </aside>
     </div>
   </header>
+
+  <!-- Sample stories (Google Drive videos; files must stay shared as "Anyone with the link").
+       Each card shows a real still from its clip and loads the player only when clicked. -->
+  <section class="section sample-stories" id="see-a-story" aria-labelledby="samples-title">
+    <div class="container">
+      <div class="ss-head reveal">
+        <span class="eyebrow">Sample highlights</span>
+        <h2 id="samples-title">See what we make.</h2>
+        <p>Every full LegacyWorks interview is cut into short highlight stories like these. Each is a single memory, in their own words, that the whole family can watch and share.</p>
+      </div>
+
+      <div class="ss-grid">
+        <figure class="ss-card reveal">
+          <div class="ss-frame" data-src="https://drive.google.com/file/d/1jBHYjcdeykPWj0t-YNg0SogNGU8RK7QV/preview" data-title="He Built a Theater, a LegacyWorks interview highlight">
+            <img src="assets/sample-he-built-a-theater.jpg" alt="A woman in a red cardigan in a cream armchair beside a sunny window, mid-interview" width="1280" height="720" loading="lazy" decoding="async" />
+            <button type="button" class="ss-play" aria-label="Play He Built a Theater, 2 minutes 32 seconds"><span class="ss-play-icon" aria-hidden="true"></span></button>
+            <noscript><a class="ss-noscript" href="https://drive.google.com/file/d/1jBHYjcdeykPWj0t-YNg0SogNGU8RK7QV/view">Watch on Google Drive</a></noscript>
+          </div>
+          <figcaption class="ss-caption">
+            <h3 class="ss-title">He Built a Theater</h3>
+            <p class="ss-meta">Interview highlight &middot; 2:32</p>
+          </figcaption>
+        </figure>
+
+        <figure class="ss-card reveal">
+          <div class="ss-frame" data-src="https://drive.google.com/file/d/1l1ud_ALf_ksRABB55deIEHIPQ30zIEm_/preview" data-title="A Silent North Star, a LegacyWorks interview highlight">
+            <img src="assets/sample-a-silent-north-star.jpg" alt="A man in a khaki shirt against a white panelled wall, speaking to the camera" width="1280" height="720" loading="lazy" decoding="async" />
+            <button type="button" class="ss-play" aria-label="Play A Silent North Star, 3 minutes 2 seconds"><span class="ss-play-icon" aria-hidden="true"></span></button>
+            <noscript><a class="ss-noscript" href="https://drive.google.com/file/d/1l1ud_ALf_ksRABB55deIEHIPQ30zIEm_/view">Watch on Google Drive</a></noscript>
+          </div>
+          <figcaption class="ss-caption">
+            <h3 class="ss-title">A Silent North Star</h3>
+            <p class="ss-meta">Interview highlight &middot; 3:02</p>
+          </figcaption>
+        </figure>
+      </div>
+
+      <p class="ss-foot reveal"><a href="story-keeper.html#real-stories" class="btn btn-dark btn-arrow">See more real stories</a></p>
+    </div>
+  </section>
 
   <!-- Quote / mission -->
   <section class="quote-section">
@@ -771,25 +831,14 @@ em, .italic { font-style: italic; font-family: var(--font-display); }
     </div>
   </section>
 
-  <!-- Real family story -->
-  <section class="section dark" id="see-a-story">
-    <div class="container">
-      <div class="rs-home">
-        <div class="rs-home-video">
-          <iframe
-            src="https://drive.google.com/file/d/1l1ud_ALf_ksRABB55deIEHIPQ30zIEm_/preview"
-            title="Sample LegacyWorks interview highlight"
-            allow="autoplay; fullscreen"
-            allowfullscreen
-            loading="lazy"></iframe>
-        </div>
-        <div class="rs-home-copy">
-          <span class="eyebrow" style="color: var(--gold);">Sample highlight</span>
-          <h2>See what we make.</h2>
-          <p>Every full LegacyWorks interview is cut into short highlight stories like this one. Each is a single memory, in their own words, that the whole family can watch and share.</p>
-          <a href="story-keeper.html#real-stories" class="btn btn-ghost">See more real stories</a>
-        </div>
-      </div>
+  <!-- Free starting point: family story survey -->
+  <section class="section cream-deep" id="begin-their-story">
+    <div class="container-narrow" style="text-align:center;">
+      <span class="eyebrow reveal">Start here &middot; Free</span>
+      <h2 class="reveal" style="margin:1rem 0 1.25rem;">Begin their story in about ten minutes.</h2>
+      <p class="reveal" style="max-width:54ch;margin:0 auto 2rem;color:var(--muted);">Our free family story survey is the easiest way to start. It takes about ten minutes, and you can write as much or as little as you know, a few lines or a lifetime. We save it as the beginning of their private archive.</p>
+      <a href="https://legacyworks-capture.pages.dev/survey.html" class="btn btn-primary btn-arrow reveal">Begin their story</a>
+      <p class="reveal" style="margin:1.75rem auto 0;max-width:54ch;font-size:0.95rem;color:var(--muted);">The survey helps you <strong>begin capturing a loved one&rsquo;s story</strong>. If you&rsquo;d rather <strong>choose the right service</strong> first, <a href="quiz.html" class="link">take the quiz</a> or <a href="#tiers" class="link">compare the three tiers</a>.</p>
     </div>
   </section>
 
@@ -930,6 +979,7 @@ em, .italic { font-style: italic; font-family: var(--font-display); }
       <h2 style="margin: 1rem 0 1rem;">Don&rsquo;t let their story <em>end with them.</em></h2>
       <p>Book a 20-minute discovery call. We&rsquo;ll help you choose the right tier and walk you through the process, no pressure, no commitment.</p>
       <a href="contact.html" class="btn btn-primary btn-arrow">Book a discovery call</a>
+      <p style="margin-top:1.75rem;font-size:0.95rem;"><a href="https://legacyworks-capture.pages.dev/survey.html" class="link" style="color:var(--gold);">Prefer to start on your own? Begin their story with our free ten-minute survey &rarr;</a></p>
     </div>
   </section>
 
@@ -1077,6 +1127,81 @@ em, .italic { font-style: italic; font-family: var(--font-display); }
       (path === 'index.html' && href === 'index.html')
     ) {
       a.classList.add('active');
+    }
+  });
+})();
+
+// Sample stories: swap the still for the Google Drive player on click
+(function () {
+  document.querySelectorAll('.ss-frame[data-src]').forEach((frame) => {
+    const play = frame.querySelector('.ss-play');
+    if (!play) return;
+    play.addEventListener('click', () => {
+      const iframe = document.createElement('iframe');
+      iframe.src = frame.dataset.src;
+      iframe.title = frame.dataset.title || 'LegacyWorks interview highlight';
+      iframe.allow = 'autoplay; fullscreen';
+      iframe.allowFullscreen = true;
+      frame.replaceChildren(iframe);
+      frame.classList.add('is-playing');
+      iframe.focus();
+    });
+  });
+})();
+
+// Quote request form. Sends only when data-endpoint is set to a real form handler;
+// success is shown only after that endpoint confirms it accepted the request.
+(function () {
+  const form = document.getElementById('quote-form');
+  if (!form) return;
+  const status = document.getElementById('qf-status');
+  const submit = form.querySelector('.qf-submit');
+  const fallback = 'Please email hello@legacyworks.us, call (208) 915-6171, or book a discovery call.';
+
+  const say = (msg, kind) => {
+    status.textContent = msg;
+    status.className = 'qf-status' + (kind ? ' is-' + kind : '');
+  };
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    say('');
+
+    const fields = Array.from(form.querySelectorAll('input'));
+    fields.forEach((f) => f.removeAttribute('aria-invalid'));
+    const bad = fields.filter((f) => !f.value.trim() || !f.checkValidity());
+    if (bad.length) {
+      bad.forEach((f) => f.setAttribute('aria-invalid', 'true'));
+      const names = bad.map((f) => form.querySelector('label[for="' + f.id + '"]').textContent.toLowerCase());
+      const list = names.length > 1 ? names.slice(0, -1).join(', ') + (names.length > 2 ? ',' : '') + ' and ' + names[names.length - 1] : names[0];
+      say('Please add a valid ' + list + '.', 'error');
+      bad[0].focus();
+      return;
+    }
+
+    const endpoint = (form.dataset.endpoint || '').trim();
+    if (!endpoint) {
+      say('Online quote requests aren’t switched on yet, so nothing was sent. ' + fallback, 'error');
+      return;
+    }
+
+    submit.disabled = true;
+    const label = submit.textContent;
+    submit.textContent = 'Sending…';
+    try {
+      const res = await fetch(endpoint, {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: new FormData(form)
+      });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      form.reset();
+      say('Thank you. Your request was received, and we’ll be in touch soon.', 'ok');
+    } catch (err) {
+      say('Sorry, your request couldn’t be sent. ' + fallback, 'error');
+    } finally {
+      submit.disabled = false;
+      submit.textContent = label;
     }
   });
 })();
