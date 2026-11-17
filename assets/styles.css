@@ -1117,8 +1117,30 @@ em, .italic { font-style: italic; font-family: var(--font-display); }
 .quote-card .qf-fine { font-size: 0.78rem; line-height: 1.5; color: rgba(242,238,230,0.6); margin: 0; max-width: none; }
 .quote-card .qf-fine a { color: var(--gold-soft); text-decoration: underline; text-underline-offset: 3px; }
 @media (max-width: 560px) {
-  .quote-card { padding: 1.4rem 1.25rem 1.25rem; }
-  .quote-card .quote-card-title { font-size: 1.6rem; }
+  .hero-quote { gap: 1.75rem; }
+  .quote-card {
+    max-width: none;
+    padding: 1.4rem 1.25rem 1.25rem;
+    background: var(--cream-soft);
+    border: 1px solid rgba(196,160,103,0.72);
+    border-left: 4px solid var(--gold);
+    box-shadow: 0 20px 44px -28px rgba(0,0,0,0.65);
+  }
+  .quote-card .quote-card-eyebrow { color: var(--gold-deep); }
+  .quote-card .quote-card-title { font-size: 1.6rem; color: var(--charcoal); }
+  .quote-card .quote-card-intro,
+  .quote-card .qf-fine { color: var(--muted); }
+  .quote-card .qf-fine a { color: var(--gold-deep); }
+  .qf-field label { color: var(--charcoal); }
+  .qf-field input {
+    min-height: 52px;
+    color: var(--charcoal);
+    background: #fff;
+    border-color: rgba(27,40,56,0.22);
+  }
+  .quote-card .qf-status { color: var(--charcoal); }
+  .quote-card .qf-status.is-error { color: #8f3026; }
+  .quote-card .qf-status.is-ok { color: #62502d; }
 }
 
 /* ============================================================
@@ -1174,8 +1196,10 @@ em, .italic { font-style: italic; font-family: var(--font-display); }
   .ss-head { margin-bottom: 1.5rem; }
   .ss-head h2 { font-size: 2.1rem; margin: 0.6rem 0 0.6rem; }
   .ss-head p { font-size: 0.95rem; line-height: 1.6; }
-  /* Full-bleed card: the player spans the whole screen width */
+  /* Give the full-width mobile player a clean gutter while keeping its full frame. */
+  .ss-grid { padding-inline: 1rem; }
   .ss-card { padding: 0 0 1rem; border-left: 0; border-right: 0; }
+  .ss-frame { border: 1px solid rgba(156,122,69,0.38); box-shadow: 0 12px 28px -20px rgba(27,40,56,0.7); }
   .ss-caption { padding: 0.85rem 1.5rem 0; }
   .ss-swipe {
     display: block; text-align: center; margin: 0;
