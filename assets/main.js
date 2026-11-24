@@ -17,6 +17,13 @@
   const toggle = document.querySelector('.nav-toggle');
   const links = document.querySelector('.nav-links');
   if (!toggle || !links) return;
+  if (!links.querySelector('.mobile-home-link')) {
+    const homeLink = document.createElement('a');
+    homeLink.href = 'index.html';
+    homeLink.className = 'nav-link mobile-home-link';
+    homeLink.textContent = 'Home';
+    links.prepend(homeLink);
+  }
   if (!links.id) links.id = 'site-nav-links';
   toggle.setAttribute('aria-controls', links.id);
   const menuItems = Array.from(links.querySelectorAll('a[href]'));
