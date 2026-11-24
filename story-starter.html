@@ -112,7 +112,6 @@
       .timeline-item { grid-template-columns: 3rem 1fr; }
     }
   </style>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%231b2838'/><text x='50%25' y='58%25' text-anchor='middle' fill='%23c4a067' font-family='Georgia,serif' font-size='20' font-style='italic'>L</text></svg>" />
 
   <link rel="canonical" href="https://legacyworks.studio/story-starter.html" />
   <meta name="keywords" content="DIY life story interview, record parents story, family history kit, oral history questions, affordable life story video" />
@@ -145,12 +144,13 @@
 }
   </script>
   <style>/* Headlines at weight 500 (Navy & Brass update) */ h1, h2, h3, h1 em, h2 em, h3 em, h1 strong, h2 strong, h3 strong, h1 span, h2 span, h3 span { font-weight: 500 !important; }</style>
+  <link rel="icon" type="image/svg+xml" href="assets/legacyworks-icon.svg" />
 </head>
 <body>
 
   <nav class="nav">
     <div class="container nav-inner">
-      <a href="index.html" class="brand">Legacy<span class="brand-mark">Works</span></a>
+      <a href="index.html" class="brand" aria-label="LegacyWorks home"><img src="assets/legacyworks-logo.svg" class="brand-logo" alt="LegacyWorks" /></a>
       <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">☰</button>
       <div class="nav-links">
         <a href="story-starter.html" class="nav-link">Story Starter</a>
@@ -180,20 +180,20 @@
           <span class="hero-price-note" style="display: block;">6-week guided program · Coaching call included</span>
         </div>
       </div>
-      <a href="https://legacyworks.gumroad.com/l/story-starter" class="btn-gold">Get started</a>
-      <a href="#what" class="btn-ghost">See what's inside</a>
+      <span class="btn-gold" aria-disabled="true">Get started · $179 (checkout link pending)</span><p class="payment-note">Payments are processed securely through our partner, Techno Lizard Marketing.</p>
+      <a href="#what" class="btn-ghost">See what's inside</a><p class="couples-note">Buying for a couple? Get 10% off each package, and one chapter can be filmed with the two of them together.</p>
     </div>
   </section>
 
   <!-- EDITORIAL -->
   <section class="editorial">
     <div class="editorial-inner">
-      <p class="editorial-intro">There is a question most families cannot answer. Not because they don't know the answer, but because no one ever asked it while they still could.</p>
+        <p class="editorial-intro">There is a question most families cannot answer, because no one asked it while they still could.</p>
       <div class="editorial-body">
-        <p>What was your grandfather like as a young man? What was your grandmother afraid of? What did your father want to be before he became what he became? What is the story your mother has never told anyone, not because it's dark, but because no one has ever sat down and asked?</p>
-        <p>These are the stories that disappear. Not with a dramatic ending, but quietly, over time, as the people who carry them age, forget, or simply run out of tomorrows.</p>
+        <p>What was your grandfather like as a young man? What was your grandmother afraid of? What did your father want to be before he became what he became? What is the story your mother has never told anyone, simply because no one ever sat down and asked?</p>
+        <p>These are the stories that disappear. They fade slowly, as the people who carry them get older and start to forget.</p>
 
-        <div class="pull-quote">"Ask anyone to describe their great-grandparent. Most fall silent within a sentence or two. That is how quickly a life fades when no one captures it."</div>
+        <div class="pull-quote">"Ask anyone to describe their great-grandparent. Most fall silent within a sentence or two. That is how quickly a life fades when no one captures it."<small style="display:block;margin-top:.75rem;font-size:.72rem;letter-spacing:.04em;">— A family historian we spoke with</small></div>
 
         <p>The technology to capture these stories has never been better. Your phone shoots better video than a professional camera from a decade ago. Editing software that cost $50,000 is now free. The only thing most families lack is a clear system, the right questions, the right tools, and a simple enough process that they actually start.</p>
         <p>Story Starter is that system. Built by a professional life-story production company. Packaged so any family can use it, <span class="stat-inline">starting this week</span>.</p>
@@ -210,7 +210,7 @@
         </div>
         <div class="rs-home-copy">
           <span class="eyebrow" style="color: var(--gold);">Watch a sample</span>
-          <h2>This is what one conversation can capture.</h2>
+          <h2>Here's a short clip from one of our interviews.</h2>
           <p>A short highlight from a LegacyWorks interview. Story Starter gives you the questions, the tools and a coach, so you can capture moments like this with your own family.</p>
           <a href="#what" class="btn btn-ghost">See what&rsquo;s inside</a>
         </div>
@@ -373,8 +373,7 @@
         <span style="display: block; font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted);">Starts at</span>
         <span class="cta-price" style="color: var(--gold-deep); margin-bottom: 0.5rem;">$179</span>
       </div>
-      <a href="https://legacyworks.gumroad.com/l/story-starter" class="btn-gold" style="font-size: 0.9rem; padding: 1.1rem 2.5rem;">Get started →</a>
-      <p class="cta-guarantee">30-day money-back guarantee</p>
+      <span class="btn-gold" aria-disabled="true" style="font-size: 0.9rem; padding: 1.1rem 2.5rem;">Get started · $179 (checkout link pending)</span><p class="payment-note">Payments are processed securely through our partner, Techno Lizard Marketing.</p>
     </div>
   </section>
 
@@ -403,8 +402,8 @@
     <!-- MIDDLE: brand + navigation columns -->
     <div class="lw-foot-mid">
       <div class="lw-brand-col">
-        <div class="lw-brandmark">Legacy<span>Works</span></div>
-        <p class="lw-brand-desc">A premium life-story studio capturing voices, wisdom, and histories for the families who love them.</p>
+        <div class="lw-brandmark"><img src="assets/legacyworks-logo.svg" alt="LegacyWorks" /></div>
+        <p class="lw-brand-desc">Capturing the voices and moments that make a life, before they&#39;re lost.</p>
         <div class="lw-socials">
           <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.81 3.81 0 0 1-1.38-.9 3.81 3.81 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zm0 1.62c-3.15 0-3.5.01-4.74.07-.95.04-1.47.2-1.81.34-.46.18-.78.39-1.12.73-.34.34-.55.66-.73 1.12-.14.34-.3.86-.34 1.81-.06 1.24-.07 1.59-.07 4.74s.01 3.5.07 4.74c.04.95.2 1.47.34 1.81.18.46.39.78.73 1.12.34.34.66.55 1.12.73.34.14.86.3 1.81.34 1.24.06 1.59.07 4.74.07s3.5-.01 4.74-.07c.95-.04 1.47-.2 1.81-.34.46-.18.78-.39 1.12-.73.34-.34.55-.66.73-1.12.14-.34.3-.86.34-1.81.06-1.24.07-1.59.07-4.74s-.01-3.5-.07-4.74c-.04-.95-.2-1.47-.34-1.81a3.02 3.02 0 0 0-.73-1.12 3.02 3.02 0 0 0-1.12-.73c-.34-.14-.86-.3-1.81-.34-1.24-.06-1.59-.07-4.74-.07zm0 2.76a5.46 5.46 0 1 1 0 10.92 5.46 5.46 0 0 1 0-10.92zm0 9a3.54 3.54 0 1 0 0-7.08 3.54 3.54 0 0 0 0 7.08zm6.95-9.22a1.28 1.28 0 1 1-2.56 0 1.28 1.28 0 0 1 2.56 0z"/></svg></a>
           <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.5 6.2a3.02 3.02 0 0 0-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.51A3.02 3.02 0 0 0 .5 6.2C0 8.07 0 12 0 12s0 3.93.5 5.8a3.02 3.02 0 0 0 2.12 2.14c1.88.51 9.38.51 9.38.51s7.5 0 9.38-.51a3.02 3.02 0 0 0 2.12-2.14C24 15.93 24 12 24 12s0-3.93-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg></a>
