@@ -151,6 +151,8 @@
   .plan li{font-size:.88rem;color:rgba(242,238,230,.72);padding:.5rem 0 .5rem 1.5rem;position:relative;line-height:1.45}
   .plan li::before{content:"✓";position:absolute;left:0;color:var(--gold);font-weight:700}
   .plan .btn{width:100%;justify-content:center}
+  .pricing-actions{display:flex;gap:.75rem;flex-wrap:wrap}
+  .pricing-actions .btn{width:auto;flex:1 1 200px;min-width:0}
   .plans-single{grid-template-columns:minmax(0,560px);justify-content:center}
   .pricing-note{max-width:1080px;margin:2rem auto 0;text-align:center;font-size:.85rem;color:rgba(242,238,230,.5)}
   .pricing-guarantee{max-width:1080px;margin:1.25rem auto 0;text-align:center;font-family:var(--display);
@@ -213,6 +215,8 @@
     .section{padding:4.5rem 1.5rem}
     .hero-cta-row{flex-direction:column}
     .hero-cta-row .btn{width:100%;justify-content:center}
+    .pricing-actions{flex-direction:column}
+    .pricing-actions .btn{width:100%}
   }
   @media(prefers-reduced-motion:reduce){*{transition:none!important}}
 

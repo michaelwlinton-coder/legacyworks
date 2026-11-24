@@ -134,6 +134,7 @@ em, .italic { font-style: italic; font-family: var(--font-display); }
 .brand { display: inline-flex; align-items: center; }
 .brand-logo { display: block; width: 235px; max-width: 40vw; height: auto; }
 .lw-brandmark img { display: block; width: 250px; max-width: 100%; height: auto; }
+body.nav-open { overflow: hidden; }
 
 .nav-links { display: flex; gap: 1.75rem; align-items: center; }
 @media (max-width: 1100px) and (min-width: 901px) { .nav-links { gap: 1.25rem; } .nav-link { font-size: 0.78rem; } }
@@ -545,6 +546,12 @@ em, .italic { font-style: italic; font-family: var(--font-display); }
 }
 .compare-table .check { color: var(--gold); font-weight: 600; }
 .compare-table .cross { color: rgba(27,40,56, 0.25); }
+@media (max-width: 560px) {
+  .legacy-pricing-table { table-layout: fixed; font-size: 0.82rem; }
+  .legacy-pricing-table th, .legacy-pricing-table td { padding: 0.75rem 0.5rem; }
+  .legacy-pricing-table th:first-child, .legacy-pricing-table td:first-child { width: 70%; }
+  .legacy-pricing-table th:last-child, .legacy-pricing-table td:last-child { width: 30%; }
+}
 
 /* Bullets list with gold accent */
 .feature-list {
@@ -689,7 +696,7 @@ em, .italic { font-style: italic; font-family: var(--font-display); }
 
 /* Responsive */
 @media (max-width: 900px) {
-  .nav-links { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: var(--charcoal); flex-direction: column; justify-content: center; align-items: center; gap: 1.5rem; }
+  .nav-links { display: none; position: fixed; z-index: 100; top: 0; left: 0; right: 0; bottom: 0; background: var(--charcoal); flex-direction: column; justify-content: center; align-items: center; gap: 1.5rem; }
   .nav-links.open { display: flex; }
   .nav-links .nav-link { font-size: 1.2rem; font-family: var(--font-display); letter-spacing: 0.05em; text-transform: none; }
   .nav-toggle { display: block; z-index: 101; }
@@ -701,6 +708,8 @@ em, .italic { font-style: italic; font-family: var(--font-display); }
 }
 @media (max-width: 560px) {
   body { font-size: 16px; }
+  .nav-inner { gap: 1rem; }
+  .brand-logo { width: 210px; max-width: min(56vw, 210px); }
   .footer-grid { grid-template-columns: 1fr; }
   .feature-list { grid-template-columns: 1fr; }
   .tier-card { padding: 2.5rem 1.75rem; }
